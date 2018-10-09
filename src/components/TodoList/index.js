@@ -22,6 +22,10 @@ export default class TodoList extends Component {
         text: ""
     };
 
+    static navigationOptions = {
+        title: 'Home',
+    };
+
     changeTextHandler = text => {
         this.setState({ text: text });
     };
@@ -163,7 +167,8 @@ const styles = StyleSheet.create({
         borderWidth: isAndroid ? 0 : 1,
         width: "100%",
         borderRadius: 15,
-        marginTop: 10
+        marginTop: 10,
+        backgroundColor: "white"
     }
 });
 
