@@ -9,3 +9,6 @@ React toDoList:
 
 React Navigation:
 * https://reactnavigation.org/
+
+React Native SwipeOut:
+* https://github.com/dancormier/react-native-swipeout
