@@ -12,6 +12,8 @@ import {
     Keyboard,
     Platform
 } from "react-native";
+import Swipeout from 'react-native-swipeout';
+
 
 const isAndroid = Platform.OS === "android";
 const viewPadding = 10;
@@ -23,7 +25,7 @@ export default class TodoList extends Component {
     };
 
     static navigationOptions = {
-        title: 'Home',
+        title: 'Tasks'
     };
 
     changeTextHandler = text => {
@@ -74,7 +76,36 @@ export default class TodoList extends Component {
         Tasks.all(tasks => this.setState({ tasks: tasks || [] }));
     }
 
+    renderTask(item, index) {
+        let swipeoutBtns = [
+            {
+                text: 'Delete',
+                backgroundColor: 'red',
+                onPress: () => {
+                    this.deleteTask(index)
+                }
+            }
+        ];
+        return(
+            <View>
+                <View style={styles.listItemCont}>
+                    <Swipeout right={swipeoutBtns}
+                              autoClose='true'
+                              style={styles.listSwipe}>
+                        <View>
+                            <Text style={styles.listItem}>
+                                {item.text}
+                            </Text>
+                            {/*<Button title="X" onPress={() => this.deleteTask(index)} />
+                        */}</View>
+                    </Swipeout>
+                </View>
+                <View style={styles.hr} />
+            </View>
+        )
+    }
     render() {
+
         return (
             <View
                 style={[styles.container, { paddingBottom: this.state.viewPadding }]}
@@ -83,16 +114,7 @@ export default class TodoList extends Component {
                     keyExtractor = { (item, index) => index.toString() }
                     style={styles.list}
                     data={this.state.tasks}
-                    renderItem={({ item, index }) =>
-                        <View>
-                            <View style={styles.listItemCont}>
-                                <Text style={styles.listItem}>
-                                    {item.text}
-                                </Text>
-                                <Button title="X" onPress={() => this.deleteTask(index)} />
-                            </View>
-                            <View style={styles.hr} />
-                        </View>}
+                    renderItem={({ item, index }) => this.renderTask(item, index)}
                 />
                 <TextInput
                     style={styles.textInput}
@@ -106,6 +128,7 @@ export default class TodoList extends Component {
             </View>
         );
     }
+
 }
 
 let Tasks = {
@@ -134,7 +157,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: "#F5FCFF",
         padding: viewPadding,
-        paddingTop: 20,
+        paddingTop: 0,
         width: "100%"
     },
     list: {
@@ -142,33 +165,37 @@ const styles = StyleSheet.create({
     },
     listItem: {
         padding: 8,
-        paddingTop: 2,
-        paddingBottom: 2,
+        fontSize: 18,
+        paddingTop: 30,
+        paddingBottom: 30,
+        width: "100%"
 
-        fontSize: 18
+    },
+    listSwipe: {
+        width: "100%",
+        backgroundColor: "transparent"
     },
     hr: {
         height: 1,
-        backgroundColor: "gray"
+        backgroundColor: "#EAEAEA"
     },
     listItemCont: {
         flexDirection: "row",
         alignItems: "center",
-        marginBottom: 10,
-        borderColor: "gray",
-        borderWidth: isAndroid ? 0 : 1,
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        width: "100%"
     },
     textInput: {
-        height: 40,
-        paddingRight: 10,
-        paddingLeft: 10,
-        borderColor: "gray",
+        height: 50,
+        paddingRight: 15,
+        paddingLeft: 15,
+        borderColor: "#EAEAEA",
         borderWidth: isAndroid ? 0 : 1,
         width: "100%",
         borderRadius: 15,
         marginTop: 10,
-        backgroundColor: "white"
+        backgroundColor: "white",
+        fontSize: 18
     }
 });
 
