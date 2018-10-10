@@ -13,6 +13,10 @@ export default class PedometerSensor extends React.Component {
         fill: 0
     };
 
+    static navigationOptions = {
+        title: 'Current Progression'
+    };
+
     componentDidMount() {
         this._subscribe();
     }
@@ -74,13 +78,13 @@ export default class PedometerSensor extends React.Component {
                 <AnimatedCircularProgress
                     size={200}
                     width={15}
-                    fill={(this.state.pastStepCount/this.state.goal)*100}
+                    fill={((this.state.pastStepCount+this.state.currentStepCount)/this.state.goal)*100}
                     tintColor="#00e0ff"
                     backgroundColor="#3d5875">
                     {
                         () => (
                             <Text>
-                                {this.state.pastStepCount} / {this.state.goal}
+                                {this.state.pastStepCount+this.state.currentStepCount} / {this.state.goal}
                             </Text>
                         )
                     }
