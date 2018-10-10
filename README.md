@@ -12,3 +12,9 @@ React Navigation:
 
 React Native SwipeOut:
 * https://github.com/dancormier/react-native-swipeout
+
+react-native-circular-progress:
+* https://github.com/bartgryszko/react-native-circular-progress
+
+Pedometer component:
+* https://docs.expo.io/versions/latest/sdk/pedometer
