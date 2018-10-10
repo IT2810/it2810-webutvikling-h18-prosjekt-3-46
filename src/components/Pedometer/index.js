@@ -68,27 +68,64 @@ export default class PedometerSensor extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>
-                    Pedometer.isAvailableAsync(): {this.state.isPedometerAvailable}
-                </Text>
-                <Text>
-                    Steps taken in the last 24 hours: {this.state.pastStepCount}
-                </Text>
-                <Text>Walk! And watch this go up: {this.state.currentStepCount}</Text>
                 <AnimatedCircularProgress
-                    size={200}
-                    width={15}
+                    size={230}
+                    width={5}
+                    rotaion={270}
+                    lineCap={"butt"}
                     fill={((this.state.pastStepCount+this.state.currentStepCount)/this.state.goal)*100}
                     tintColor="#00e0ff"
-                    backgroundColor="#3d5875">
+                    backgroundColor="#EAEAEA">
                     {
                         () => (
-                            <Text>
-                                {this.state.pastStepCount+this.state.currentStepCount} / {this.state.goal}
-                            </Text>
+                            <View style={styles.progressInfo}>
+                                <Text style={styles.progressText}>{this.state.pastStepCount+this.state.currentStepCount}</Text>
+                                <Text style={styles.goalText}>STEPS WALKED</Text>
+                                <Text style={[styles.goalText, {marginTop: 0}]}>OUT OF</Text>
+                                <Text style={[styles.goalText, {fontSize: 25}]}>{this.state.goal}</Text>
+                            </View>
                         )
                     }
                 </AnimatedCircularProgress>
+                <View style={styles.smallProgressContainer}>
+                    <AnimatedCircularProgress
+                        size={150}
+                        width={5}
+                        fill={20}
+                        lineCap={"butt"}
+                        rotaion={-90}
+                        tintColor="#a2e55b"
+                        backgroundColor="#EAEAEA"
+                        style={{marginTop: 20, marginRight: 12}}>
+                        {
+                            () => (
+                                <View style={styles.progressInfo}>
+                                    <Text style={styles.progressTextSmall}>20</Text>
+                                    <Text style={styles.goalTextSmall}>/ 100</Text>
+                                    <Text style={styles.goalTextSmall}>PUSH-UPS</Text>
+                                </View>
+                            )
+                        }
+                    </AnimatedCircularProgress>
+                    <AnimatedCircularProgress
+                        size={150}
+                        width={5}
+                        fill={50}
+                        lineCap={"butt"}
+                        rotaion={-90}
+                        tintColor="red"
+                        backgroundColor="#EAEAEA"
+                        style={{marginTop: 20, marginLeft: 12}}>
+                        {
+                            () => (
+                                <View style={styles.progressInfo}>
+                                    <Text style={styles.progressTextSmall}>1943</Text>
+                                    <Text style={styles.goalTextSmall}>/ 2500 kcal</Text>
+                                </View>
+                            )
+                        }
+                    </AnimatedCircularProgress>
+                </View>
             </View>
         );
     }
@@ -97,9 +134,45 @@ export default class PedometerSensor extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 15,
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        backgroundColor: "#fff"
+
+    },
+    smallProgressContainer: {
+        flexDirection: 'row',
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#fff"
+
+    },
+    progressInfo: {
+        alignItems: "center",
+    },
+    progressText: {
+        fontSize: 45,
+        letterSpacing: 7,
+        paddingLeft: 10,
+        marginTop: 15,
+        color: "#8E8E8E"
+    },
+    goalText: {
+        fontSize: 15,
+        letterSpacing: 3,
+        paddingLeft: 4,
+        color: "#8E8E8E"
+    },
+    progressTextSmall: {
+        fontSize: 25,
+        letterSpacing: 3,
+        paddingLeft: 5,
+        color: "#8E8E8E"
+    },
+    goalTextSmall: {
+        fontSize: 10,
+        letterSpacing: 1,
+        paddingLeft: 1,
+        color: "#8E8E8E"
     }
 });
 

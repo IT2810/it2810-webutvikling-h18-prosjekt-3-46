@@ -6,7 +6,6 @@ import {
     View,
     FlatList,
     AsyncStorage,
-    Button,
     TextInput,
     Keyboard,
     Platform
@@ -15,7 +14,7 @@ import Swipeout from 'react-native-swipeout';
 
 
 const isAndroid = Platform.OS === "android";
-const viewPadding = 10;
+const viewPadding = 0;
 
 export default class TodoList extends Component {
     state = {
@@ -116,15 +115,17 @@ export default class TodoList extends Component {
                     data={this.state.tasks}
                     renderItem={({ item, index }) => this.renderTask(item, index)}
                 />
-                <TextInput
-                    style={styles.textInput}
-                    onChangeText={this.changeTextHandler}
-                    onSubmitEditing={this.addTask}
-                    value={this.state.text}
-                    placeholder="Add Tasks"
-                    returnKeyType="done"
-                    returnKeyLabel="done"
-                />
+                <View style={styles.textContainer}>
+                    <TextInput
+                        style={styles.textInput}
+                        onChangeText={this.changeTextHandler}
+                        onSubmitEditing={this.addTask}
+                        value={this.state.text}
+                        placeholder="Add Tasks"
+                        returnKeyType="done"
+                        returnKeyLabel="done"
+                    />
+                </View>
             </View>
         );
     }
@@ -155,7 +156,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#F5FCFF",
+        backgroundColor: '#fff',
         padding: viewPadding,
         paddingTop: 0,
         width: "100%"
@@ -164,7 +165,7 @@ const styles = StyleSheet.create({
         width: "100%"
     },
     listItem: {
-        padding: 8,
+        padding: 15,
         fontSize: 18,
         paddingTop: 30,
         paddingBottom: 30,
@@ -189,13 +190,17 @@ const styles = StyleSheet.create({
         height: 50,
         paddingRight: 15,
         paddingLeft: 15,
-        borderColor: "#EAEAEA",
-        borderWidth: isAndroid ? 0 : 1,
+        borderColor: "#F2F2F2",
+        borderWidth: isAndroid ? 0 : 2,
         width: "100%",
         borderRadius: 15,
-        marginTop: 10,
         backgroundColor: "white",
         fontSize: 18
+    },
+    textContainer: {
+        backgroundColor: "#EAEAEA",
+        width: "100%",
+        padding: 10
     }
 });
 

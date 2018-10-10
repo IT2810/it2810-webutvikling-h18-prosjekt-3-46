@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, AsyncStorage, Button} from 'react-native';
+import { StyleSheet, Text, View, Image, Button} from 'react-native';
 import TodoList from './src/components/TodoList';
 import Pedometer from './src/components/Pedometer';
 import { createStackNavigator } from 'react-navigation';
@@ -36,7 +36,10 @@ export default createStackNavigator({
     Goals: {
         screen: Pedometer
     },
-});
+},
+    {
+        portraitOnlyMode: true
+    });
 
 const styles = StyleSheet.create({
   container: {
