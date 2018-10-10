@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, AsyncStorage, Button} from 'react-native';
 import TodoList from './src/components/TodoList';
+import Pedometer from './src/components/Pedometer';
 import { createStackNavigator } from 'react-navigation';
 
 class HomeScreen extends React.Component {
@@ -16,6 +17,10 @@ class HomeScreen extends React.Component {
               title="Go to ToDo"
               onPress={() => this.props.navigation.navigate('ToDo')}
           />
+          <Button
+              title="Go to Goals"
+              onPress={() => this.props.navigation.navigate('Goals')}
+          />
       </View>
     );
   }
@@ -27,6 +32,9 @@ export default createStackNavigator({
     },
     ToDo: {
         screen: TodoList
+    },
+    Goals: {
+        screen: Pedometer
     },
 });
 
