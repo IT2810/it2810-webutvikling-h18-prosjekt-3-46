@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import {
     AppRegistry,
@@ -23,6 +22,7 @@ export default class TodoList extends Component {
         tasks: [],
         text: ""
     };
+
 
     static navigationOptions = {
         title: 'Tasks'
@@ -90,14 +90,14 @@ export default class TodoList extends Component {
             <View>
                 <View style={styles.listItemCont}>
                     <Swipeout right={swipeoutBtns}
-                              autoClose='true'
-                              style={styles.listSwipe}>
+                              autoClose={true}
+                              style={styles.listSwipe}
+                    >
                         <View>
                             <Text style={styles.listItem}>
                                 {item.text}
                             </Text>
-                            {/*<Button title="X" onPress={() => this.deleteTask(index)} />
-                        */}</View>
+                        </View>
                     </Swipeout>
                 </View>
                 <View style={styles.hr} />
