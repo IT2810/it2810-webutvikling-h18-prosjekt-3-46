@@ -22,3 +22,6 @@ react-native-circular-progress:
 
 Pedometer component:
 * https://docs.expo.io/versions/latest/sdk/pedometer
+
+React Native Modal:
+* https://github.com/react-native-community/react-native-modal
