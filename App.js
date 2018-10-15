@@ -5,6 +5,10 @@ import Pedometer from './src/components/Pedometer';
 import { createStackNavigator } from 'react-navigation';
 
 class HomeScreen extends React.Component {
+
+    static navigationOptions = {
+        title: 'Current Progression'
+    };
   render() {
     
 
@@ -35,7 +39,7 @@ export default createStackNavigator({
     },
     Goals: {
         screen: Pedometer
-    },
+    }
 },
     {
         portraitOnlyMode: true

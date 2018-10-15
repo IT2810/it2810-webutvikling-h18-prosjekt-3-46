@@ -8,6 +8,7 @@ import {
     AsyncStorage,
     TextInput,
     Keyboard,
+    Button,
     Platform
 } from "react-native";
 import Swipeout from 'react-native-swipeout';
