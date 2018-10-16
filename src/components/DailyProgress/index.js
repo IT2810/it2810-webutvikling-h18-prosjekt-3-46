@@ -31,7 +31,7 @@ export default class DailyProgress extends React.Component {
         const params = navigation.state.params || {};
 
         return {
-            title: 'Current Progression',
+            title: 'Daily Progress',
             headerRight: (
                 <Button transparent onPress={params.toggleModal}>
                     <Icon name="ios-cog" type="Ionicons"/>

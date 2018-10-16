@@ -8,8 +8,9 @@ import {Toast} from "native-base";
 class HomeScreen extends React.Component {
 
     static navigationOptions = {
-        title: 'Current Progression'
+        title: 'Main'
     };
+
   render() {
     return (
       <View style={styles.container}>
@@ -33,10 +34,10 @@ export default createBottomTabNavigator({
         Home: {
             screen: HomeScreen
         },
-        ToDo: {
+        "Tasks": {
             screen: createStackNavigator({TodoList: {screen: TodoList}})
         },
-        DailyProgress: {
+        "Daily Progress": {
             screen: createStackNavigator({DailyProgress: {screen: DailyProgress}})
         }
     },
