@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Button} from 'react-native';
 import TodoList from './src/components/TodoList';
-import Pedometer from './src/components/Pedometer';
+import DailyProgress from './src/components/DailyProgress';
 import { createStackNavigator } from 'react-navigation';
+import {Toast} from "native-base";
 
 class HomeScreen extends React.Component {
 
@@ -10,8 +11,6 @@ class HomeScreen extends React.Component {
         title: 'Current Progression'
     };
   render() {
-    
-
     return (
       <View style={styles.container}>
         <Text>We ar
@@ -23,7 +22,7 @@ class HomeScreen extends React.Component {
           />
           <Button
               title="Go to Goals"
-              onPress={() => this.props.navigation.navigate('Goals')}
+              onPress={() => this.props.navigation.navigate('DailyProgress')}
           />
       </View>
     );
@@ -31,16 +30,16 @@ class HomeScreen extends React.Component {
 }
 
 export default createStackNavigator({
-    Home: {
-        screen: HomeScreen
+        Home: {
+            screen: HomeScreen
+        },
+        ToDo: {
+            screen: TodoList
+        },
+        DailyProgress: {
+            screen: DailyProgress
+        }
     },
-    ToDo: {
-        screen: TodoList
-    },
-    Goals: {
-        screen: Pedometer
-    }
-},
     {
         portraitOnlyMode: true
     });
@@ -54,3 +53,4 @@ const styles = StyleSheet.create({
       width: "100%"
   },
 });
+

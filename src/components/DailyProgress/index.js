@@ -6,7 +6,13 @@ import {StyleSheet, Text, View, AsyncStorage, TextInput, FlatList} from "react-n
 import { Container, Header, Content, Button, Icon} from 'native-base';
 import Modal from "react-native-modal";
 
-export default class PedometerSensor extends React.Component {
+export default class DailyProgress extends React.Component {
+    constructor(props) {
+        super(props);
+
+        // Avoid async tasks being run after component is unmounted:
+        this._isMounted = false;
+    }
     state = {
         isPedometerAvailable: "checking",
         pastStepCount: 0,
@@ -17,7 +23,8 @@ export default class PedometerSensor extends React.Component {
         goalLeft: 100,
         progressRight: 0,
         goalRight: 2000,
-        optionsVisible: false
+        optionsVisible: false,
+        showToast: false
     };
 
     static navigationOptions = ({ navigation }) => {
@@ -38,6 +45,7 @@ export default class PedometerSensor extends React.Component {
     }
 
     componentDidMount() {
+        this._isMounted = true;
         this._subscribe();
         this._retrieveData();
     }
@@ -50,19 +58,19 @@ export default class PedometerSensor extends React.Component {
             const valueRight = await AsyncStorage.getItem('@MyStore:PROGRESS_2');
             const goalRight = await AsyncStorage.getItem('@MyStore:GOAL_2');
             if (valueLeft !== null) {
-                this.setState({progressLeft: JSON.parse(valueLeft)});
+                this._isMounted && this.setState({progressLeft: JSON.parse(valueLeft)});
             }
             if (valueRight !== null) {
-                this.setState({progressRight: JSON.parse(valueRight)});
+                this._isMounted && this.setState({progressRight: JSON.parse(valueRight)});
             }
             if (goalLeft !== null) {
-                this.setState({goalLeft: JSON.parse(goalLeft)});
+                this._isMounted && this.setState({goalLeft: JSON.parse(goalLeft)});
             }
             if (goalRight !== null) {
-                this.setState({goalRight: JSON.parse(goalRight)});
+                this._isMounted && this.setState({goalRight: JSON.parse(goalRight)});
             }
             if (goalStep !== null) {
-                this.setState({goalStep: JSON.parse(goalStep)});
+                this._isMounted && this.setState({goalStep: JSON.parse(goalStep)});
             }
         } catch (error) {
         }
@@ -71,6 +79,7 @@ export default class PedometerSensor extends React.Component {
     componentWillUnmount() {
         this._unsubscribe();
         this._saveData();
+        this._isMounted = false;
     }
 
     _saveData = () => {
@@ -87,12 +96,13 @@ export default class PedometerSensor extends React.Component {
             progressLeft: 0
             });
         return;
-    }
+        }
 
         let progress = this.state.progressLeft;
         this.setState({
             progressLeft: progress+value
         });
+        this.goalsReached(0,value,0);
     }
 
     changeProgressRight(value) {
@@ -107,6 +117,15 @@ export default class PedometerSensor extends React.Component {
         this.setState({
             progressRight: progress+value
         });
+        this.goalsReached(0,0,value);
+    }
+
+    goalsReached(newStepVal, newLeftVal, newRightVal) {
+        if((this.state.pastStepCount+newStepVal >= this.state.goalStep) &&
+            (this.state.progressLeft+newLeftVal >= this.state.goalLeft) &&
+            (this.state.progressRight+newRightVal >= this.state.goalRight)) {
+            // TODO
+        }
     }
 
     onChanged(value, type) {
@@ -123,19 +142,20 @@ export default class PedometerSensor extends React.Component {
 
     _subscribe = () => {
         this._subscription = Pedometer.watchStepCount(result => {
-            this.setState({
+            this._isMounted && this.setState({
                 currentStepCount: result.steps
             });
+            this.goalsReached(result.steps,0,0);
         });
 
         Pedometer.isAvailableAsync().then(
             result => {
-                this.setState({
+                this._isMounted && this.setState({
                     isPedometerAvailable: String(result)
                 });
             },
             error => {
-                this.setState({
+                this._isMounted && this.setState({
                     isPedometerAvailable: "Could not get isPedometerAvailable: " + error
                 });
             }
@@ -146,10 +166,10 @@ export default class PedometerSensor extends React.Component {
         start.setDate(end.getDate()-1);
         Pedometer.getStepCountAsync(start, end).then(
             result => {
-                this.setState({ pastStepCount: result.steps });
+                this._isMounted && this.setState({ pastStepCount: result.steps });
             },
             error => {
-                this.setState({
+                this._isMounted && this.setState({
                     pastStepCount: "Could not get stepCount: " + error
                 });
             }
@@ -264,8 +284,8 @@ export default class PedometerSensor extends React.Component {
                             }
                         </AnimatedCircularProgress>
 
-                        <Button onPress={() => this.changeProgressLeft(1)} block success style={{marginTop: 10, marginLeft: 30, marginRight: 40}}>
-                            <Text style={{color: "white"}}>+ 1</Text>
+                        <Button onPress={() => this.changeProgressLeft(2)} block success style={{marginTop: 10, marginLeft: 30, marginRight: 40}}>
+                            <Text style={{color: "white"}}>+ 2</Text>
                         </Button>
 
                         <Button onPress={() => this.changeProgressLeft(-1)} block danger style={{marginTop: 10, marginLeft: 30, marginRight: 40}}>
@@ -403,4 +423,6 @@ const styles = StyleSheet.create({
     }
 });
 
-Expo.registerRootComponent(PedometerSensor);
+
+
+Expo.registerRootComponent(DailyProgress);
