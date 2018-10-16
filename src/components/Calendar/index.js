@@ -18,6 +18,7 @@ export default class App extends Component {
             selectedStartDate: null,
             selectedNote: "",
             text: "",
+            selectedDate: null,
         };
         this.onDateChange = this.onDateChange.bind(this);
     }
@@ -75,14 +76,21 @@ export default class App extends Component {
         }
     };
 
+    selectDate(day) {
+        this.setState({selectedDate: day.dateString});
+    }
+
     render() {
         const { selectedStartDate, selectedNote } = this.state;
         const startDate = selectedStartDate ? selectedStartDate.toString() : '';
         return (
             <View style={styles.container}>
                 <CalendarList
+                    markedDates={{
+                        [this.state.selectedDate]: {selected: true}
+                    }}
                     // Handler which gets executed on day press. Default = undefined
-                    onDayPress={(day) => {console.log('selected day', day)}}
+                    onDayPress={(day) => {this.selectDate(day)}}
                     // Handler which gets executed on day long press. Default = undefined
                     onDayLongPress={(day) => {console.log('selected day', day)}}
                     // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
