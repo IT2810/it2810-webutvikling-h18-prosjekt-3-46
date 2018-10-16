@@ -74,7 +74,7 @@ export default class TodoList extends Component {
         this._isMounted = true;
         Keyboard.addListener(
             isAndroid ? "keyboardDidShow" : "keyboardWillShow",
-            e => this._isMounted && this.setState({ viewPadding: e.endCoordinates.height + viewPadding })
+            e => this._isMounted && this.setState({ viewPadding: e.endCoordinates.height + viewPadding - 50})
         );
 
         Keyboard.addListener(
