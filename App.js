@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, Button} from 'react-native';
 import TodoList from './src/components/TodoList';
 import Pedometer from './src/components/Pedometer';
+import Calendar from './src/components/Calendar';
+
 import { createStackNavigator } from 'react-navigation';
 
 class HomeScreen extends React.Component {
@@ -25,6 +27,10 @@ class HomeScreen extends React.Component {
               title="Go to Goals"
               onPress={() => this.props.navigation.navigate('Goals')}
           />
+          <Button
+              title="Go to Calendar"
+              onPress={() => this.props.navigation.navigate('Calendar')}
+          />
       </View>
     );
   }
@@ -39,7 +45,10 @@ export default createStackNavigator({
     },
     Goals: {
         screen: Pedometer
-    }
+    },
+    Calendar: {
+        screen: Calendar
+    },
 },
     {
         portraitOnlyMode: true

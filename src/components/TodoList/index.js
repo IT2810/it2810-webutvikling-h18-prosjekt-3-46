@@ -23,7 +23,6 @@ export default class TodoList extends Component {
         text: ""
     };
 
-
     static navigationOptions = {
         title: 'Tasks'
     };
