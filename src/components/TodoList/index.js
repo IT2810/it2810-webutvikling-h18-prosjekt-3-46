@@ -9,7 +9,8 @@ import {
     TextInput,
     Keyboard,
     Button,
-    Platform
+    Platform,
+    TouchableOpacity
 } from "react-native";
 import Swipeout from 'react-native-swipeout';
 
@@ -91,8 +92,8 @@ export default class TodoList extends Component {
     renderTask(item, index) {
         let swipeoutBtns = [
             {
-                text: 'Delete',
-                backgroundColor: 'red',
+                text: "Done",
+                backgroundColor: "#a2e55b",
                 onPress: () => {
                     this.deleteTask(index)
                 }
@@ -106,9 +107,11 @@ export default class TodoList extends Component {
                               style={styles.listSwipe}
                     >
                         <View>
-                            <Text style={styles.listItem}>
-                                {item.text}
-                            </Text>
+                            <TouchableOpacity>
+                                <Text style={styles.listItem}>
+                                    {item.text}
+                                </Text>
+                            </TouchableOpacity>
                         </View>
                     </Swipeout>
                 </View>
@@ -128,6 +131,11 @@ export default class TodoList extends Component {
                     data={this.state.tasks}
                     renderItem={({ item, index }) => this.renderTask(item, index)}
                 />
+                <View>
+                    <Text style={{color: "#8E8E8E"}}>
+                        Swipe left to complete
+                    </Text>
+                </View>
                 <View style={styles.textContainer}>
                     <TextInput
                         style={styles.textInput}

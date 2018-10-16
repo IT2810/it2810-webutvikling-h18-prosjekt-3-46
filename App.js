@@ -11,62 +11,24 @@ class HomeScreen extends React.Component {
         title: 'Main'
     };
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>We ar
-            e started boys</Text>
-        <Image source={require('./src/assets/smund.png')} style={{width: 300, height: 400}}/>
-          <Button
-              title="Go to ToDo"
-              onPress={() => this.props.navigation.navigate('ToDo')}
-          />
-          <Button
-              title="Go to Goals"
-              onPress={() => this.props.navigation.navigate('DailyProgress')}
-          />
-      </View>
-    );
-  }
+    render() {
+        return (
+            <View style={styles.container}>
+                <Text>We ar
+                    e started boys</Text>
+                <Image source={require('./src/assets/smund.png')} style={{width: 300, height: 400}}/>
+                <Button
+                    title="Go to ToDo"
+                    onPress={() => this.props.navigation.navigate('ToDo')}
+                />
+                <Button
+                    title="Go to Goals"
+                    onPress={() => this.props.navigation.navigate('DailyProgress')}
+                />
+            </View>
+        );
+    }
 }
-/*
-export default createBottomTabNavigator({
-        Home: {
-            screen: HomeScreen
-        },
-        "Tasks": {
-            screen: createStackNavigator({TodoList: {screen: TodoList}}),
-            navigationOptions: () => ({
-                tabBarIcon: ({tintColor}) => (
-                    <Icon
-                        name="ios-list-box"
-                        type="Ionicons"
-                        color={tintColor}
-                        size={10}
-                    />
-                )
-            }),
-            tabBarOptions: {
-                activeTintColor: 'tomato',
-                inactiveTintColor: 'gray',
-            }
-        },
-        "Daily Progress": {
-            screen: createStackNavigator({DailyProgress: {screen: DailyProgress}})
-        }
-    },
-    {
-        tabBarOptions: {
-                activeTintColor: '#F8F8F8', // active icon color
-                inactiveTintColor: '#586589',  // inactive icon color
-                style: {
-                backgroundColor: '#FFF' // TabBar background
-            }
-        }
-    },
-    {
-        portraitOnlyMode: true
-    });*/
 
 export default createBottomTabNavigator(
     {
