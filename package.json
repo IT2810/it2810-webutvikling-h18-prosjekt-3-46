@@ -10,10 +10,6 @@
     "test": "node_modules/.bin/jest"
   },
   "jest": {
-    "preset": "jest-expo",
-    "transformIgnorePatterns": []
-  },
-  "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {

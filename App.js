@@ -34,13 +34,15 @@ class HomeScreen extends React.Component {
             </View>
         );
     }
-};
+}
 
 export default createBottomTabNavigator(
     {
         Home: HomeScreen,
+        "Calendar": createStackNavigator({Calendar: {screen: Calendar}}),
         "Tasks": createStackNavigator({TodoList: {screen: TodoList}}),
         "Daily Progress": createStackNavigator({DailyProgress: {screen: DailyProgress}})
+
     },
     {
         navigationOptions: ({ navigation }) => ({
@@ -51,6 +53,9 @@ export default createBottomTabNavigator(
                 if (routeName === 'Home') {
                     iconName = `ios-information-circle${focused ? '' : '-outline'}`;
                     type="Ionicons";
+                } else if (routeName === 'Calendar') {
+                    iconName = `calendar${focused ? '' : '-o'}`;
+                    type="FontAwesome";
                 } else if (routeName === 'Tasks') {
                     iconName = `ios-list${focused ? '-box' : ''}`;
                     type="Ionicons";
@@ -58,7 +63,7 @@ export default createBottomTabNavigator(
                     iconName = `heart${focused ? 'beat' :  '-o'}`;
                     type = "FontAwesome";
                 }
-                return <Icon type={type} name={iconName} size={25} color={tintColor} style={{marginTop: 2, marginBottom: 2}} />;
+                return <Icon type={type} name={iconName} color={tintColor} style={{marginTop: 3, marginBottom: 1,fontSize: 28 }} />;
             },
         }),
         tabBarOptions: {

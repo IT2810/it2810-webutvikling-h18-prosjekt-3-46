@@ -22,6 +22,11 @@ export default class App extends Component {
         this.onDateChange = this.onDateChange.bind(this);
     }
 
+    static navigationOptions = {
+        title: 'Calendar'
+    };
+
+
     componentDidMount() {
         this._retrieveData()
     }
