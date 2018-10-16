@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, Button} from 'react-native';
 import TodoList from './src/components/TodoList';
 import DailyProgress from './src/components/DailyProgress';
-import { createStackNavigator } from 'react-navigation';
+import {createBottomTabNavigator, createStackNavigator} from 'react-navigation';
 import {Toast} from "native-base";
 
 class HomeScreen extends React.Component {
@@ -29,15 +29,15 @@ class HomeScreen extends React.Component {
   }
 }
 
-export default createStackNavigator({
+export default createBottomTabNavigator({
         Home: {
             screen: HomeScreen
         },
         ToDo: {
-            screen: TodoList
+            screen: createStackNavigator({TodoList: {screen: TodoList}})
         },
         DailyProgress: {
-            screen: DailyProgress
+            screen: createStackNavigator({DailyProgress: {screen: DailyProgress}})
         }
     },
     {
