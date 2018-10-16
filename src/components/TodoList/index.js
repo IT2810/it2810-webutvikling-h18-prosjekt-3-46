@@ -13,11 +13,18 @@ import {
 } from "react-native";
 import Swipeout from 'react-native-swipeout';
 
-
 const isAndroid = Platform.OS === "android";
 const viewPadding = 0;
 
 export default class TodoList extends Component {
+
+    constructor(props) {
+        super(props);
+
+        // Avoid async tasks being run after component is unmounted:
+        this._isMounted = false;
+    }
+
     state = {
         tasks: [],
         text: ""
@@ -63,17 +70,22 @@ export default class TodoList extends Component {
     };
 
     componentDidMount() {
+        this._isMounted = true;
         Keyboard.addListener(
             isAndroid ? "keyboardDidShow" : "keyboardWillShow",
-            e => this.setState({ viewPadding: e.endCoordinates.height + viewPadding })
+            e => this._isMounted && this.setState({ viewPadding: e.endCoordinates.height + viewPadding })
         );
 
         Keyboard.addListener(
             isAndroid ? "keyboardDidHide" : "keyboardWillHide",
-            () => this.setState({ viewPadding: viewPadding })
+            () => this._isMounted && this.setState({ viewPadding: viewPadding })
         );
 
-        Tasks.all(tasks => this.setState({ tasks: tasks || [] }));
+        Tasks.all(tasks => this._isMounted && this.setState({ tasks: tasks || [] }));
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     renderTask(item, index) {
