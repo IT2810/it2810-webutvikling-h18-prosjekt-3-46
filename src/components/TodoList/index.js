@@ -31,7 +31,6 @@ export default class TodoList extends Component {
         text: ""
     };
 
-
     static navigationOptions = {
         title: 'Tasks'
     };
@@ -120,7 +119,6 @@ export default class TodoList extends Component {
         )
     }
     render() {
-
         return (
             <View
                 style={[styles.container, { paddingBottom: this.state.viewPadding }]}
