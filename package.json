@@ -7,9 +7,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "test": "jest"
+    "test": "node_modules/.bin/jest"
   },
-  "jest":{
+  "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
@@ -30,7 +30,7 @@
   "devDependencies": {
     "jest": "^23.6.0",
     "jest-babel": "^1.0.1",
-    "jest-expo": "^30.0.0",
+    "jest-expo": "^22.0.0",
     "react-test-renderer": "^16.5.2"
   }
 }
