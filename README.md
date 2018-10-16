@@ -25,3 +25,6 @@ Pedometer component:
 
 React Native Modal:
 * https://github.com/react-native-community/react-native-modal
+
+React Native Calendars:
+* https://github.com/wix/react-native-calendars
