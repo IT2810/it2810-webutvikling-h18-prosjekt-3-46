@@ -2,69 +2,75 @@ import Expo from "expo";
 import React from "react";
 import { Pedometer } from "expo";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import { StyleSheet, Text, View, AsyncStorage, Alert } from "react-native";
+import {StyleSheet, Text, View, AsyncStorage, TextInput, FlatList} from "react-native";
 import { Container, Header, Content, Button, Icon} from 'native-base';
+import Modal from "react-native-modal";
 
-export default class PedometerSensor extends React.Component {
+export default class DailyProgress extends React.Component {
+    constructor(props) {
+        super(props);
+
+        // Avoid async tasks being run after component is unmounted:
+        this._isMounted = false;
+    }
     state = {
         isPedometerAvailable: "checking",
         pastStepCount: 0,
         currentStepCount: 0,
-        stepGoal: 8000,
+        goalStep: 8000,
         fill: 0,
         progressLeft: 0,
         goalLeft: 100,
         progressRight: 0,
         goalRight: 2000,
+        optionsVisible: false,
+        showToast: false
     };
 
-    static navigationOptions = {
-        title: 'Current Progression',
-        headerRight: (
-            <Button onPress={() => Alert.alert(
-                'Options',
-                'My Alert Msg',
-                [
-                    {text: 'Reset progress', onPress: () => console.log('Ask me later pressed')},
-                    {text: 'OK', onPress: () => console.log('OK Pressed')},
-                ]
-            )} transparent>
-                <Icon  name="ios-cog" type="Ionicons" />
-            </Button>
-        )
+    static navigationOptions = ({ navigation }) => {
+        const params = navigation.state.params || {};
+
+        return {
+            title: 'Daily Progress',
+            headerRight: (
+                <Button transparent onPress={params.toggleModal}>
+                    <Icon name="ios-cog" type="Ionicons"/>
+                </Button>
+            )
+        };
     };
+
+    componentWillMount() {
+        this.props.navigation.setParams({toggleModal: this._toggleModal});
+    }
 
     componentDidMount() {
+        this._isMounted = true;
         this._subscribe();
-        this._retrieveData()
+        this._retrieveData();
     }
 
     _retrieveData = async () => {
-        /*try {
-            await AsyncStorage.getItem("@MyStore:PROGRESS_1", (value) => {
-                if(value == null) {
-                    this.setState({progressLeft: 0}); } else {
-                this.setState({progressLeft: JSON.parse(value)}); //}
-                alert(JSON.parse(value));
-            }).done();
-            await AsyncStorage.getItem("@MyStore:PROGRESS_2", (value) => {
-                if(value == null) {
-                    this.setState({progressRight: 0}); } else {
-                this.setState({progressRight: JSON.parse(value)}); //}
-                alert(JSON.parse(value));
-            }).done();
-        } catch(error) {
-
-        }*/
-
         try {
+            const goalStep = await AsyncStorage.getItem('@MyStore:GOAL_STEP');
             const valueLeft = await AsyncStorage.getItem('@MyStore:PROGRESS_1');
+            const goalLeft = await AsyncStorage.getItem('@MyStore:GOAL_1');
             const valueRight = await AsyncStorage.getItem('@MyStore:PROGRESS_2');
+            const goalRight = await AsyncStorage.getItem('@MyStore:GOAL_2');
             if (valueLeft !== null) {
-                this.setState({progressLeft: JSON.parse(valueLeft)});
+                this._isMounted && this.setState({progressLeft: JSON.parse(valueLeft)});
             }
             if (valueRight !== null) {
-                this.setState({progressRight: JSON.parse(valueRight)});
+                this._isMounted && this.setState({progressRight: JSON.parse(valueRight)});
+            }
+            if (goalLeft !== null) {
+                this._isMounted && this.setState({goalLeft: JSON.parse(goalLeft)});
+            }
+            if (goalRight !== null) {
+                this._isMounted && this.setState({goalRight: JSON.parse(goalRight)});
+            }
+            if (goalStep !== null) {
+                this._isMounted && this.setState({goalStep: JSON.parse(goalStep)});
             }
         } catch (error) {
         }
@@ -73,11 +79,15 @@ export default class PedometerSensor extends React.Component {
     componentWillUnmount() {
         this._unsubscribe();
         this._saveData();
+        this._isMounted = false;
     }
 
     _saveData = () => {
         AsyncStorage.setItem("@MyStore:PROGRESS_1", JSON.stringify(this.state.progressLeft));
         AsyncStorage.setItem("@MyStore:PROGRESS_2", JSON.stringify(this.state.progressRight));
+        AsyncStorage.setItem("@MyStore:GOAL_1", JSON.stringify(this.state.goalLeft));
+        AsyncStorage.setItem("@MyStore:GOAL_2", JSON.stringify(this.state.goalRight));
+        AsyncStorage.setItem("@MyStore:GOAL_STEP", JSON.stringify(this.state.goalStep));
     };
 
     changeProgressLeft(value) {
@@ -86,12 +96,13 @@ export default class PedometerSensor extends React.Component {
             progressLeft: 0
             });
         return;
-    }
+        }
 
         let progress = this.state.progressLeft;
         this.setState({
             progressLeft: progress+value
         });
+        this.goalsReached(0,value,0);
     }
 
     changeProgressRight(value) {
@@ -106,23 +117,45 @@ export default class PedometerSensor extends React.Component {
         this.setState({
             progressRight: progress+value
         });
+        this.goalsReached(0,0,value);
+    }
+
+    goalsReached(newStepVal, newLeftVal, newRightVal) {
+        if((this.state.pastStepCount+newStepVal >= this.state.goalStep) &&
+            (this.state.progressLeft+newLeftVal >= this.state.goalLeft) &&
+            (this.state.progressRight+newRightVal >= this.state.goalRight)) {
+            // TODO
+        }
+    }
+
+    onChanged(value, type) {
+        if(type === "steps") {
+            this.setState({goalStep: value});
+        } else if(type === "left") {
+            this.setState({goalLeft: value});
+        } else if(type === "right") {
+            this.setState({goalRight: value});
+        }
+
+
     }
 
     _subscribe = () => {
         this._subscription = Pedometer.watchStepCount(result => {
-            this.setState({
+            this._isMounted && this.setState({
                 currentStepCount: result.steps
             });
+            this.goalsReached(result.steps,0,0);
         });
 
         Pedometer.isAvailableAsync().then(
             result => {
-                this.setState({
+                this._isMounted && this.setState({
                     isPedometerAvailable: String(result)
                 });
             },
             error => {
-                this.setState({
+                this._isMounted && this.setState({
                     isPedometerAvailable: "Could not get isPedometerAvailable: " + error
                 });
             }
@@ -133,10 +166,10 @@ export default class PedometerSensor extends React.Component {
         start.setDate(end.getDate()-1);
         Pedometer.getStepCountAsync(start, end).then(
             result => {
-                this.setState({ pastStepCount: result.steps });
+                this._isMounted && this.setState({ pastStepCount: result.steps });
             },
             error => {
-                this.setState({
+                this._isMounted && this.setState({
                     pastStepCount: "Could not get stepCount: " + error
                 });
             }
@@ -148,16 +181,74 @@ export default class PedometerSensor extends React.Component {
         this._subscription = null;
     };
 
+    _toggleModal = () => {
+        let temp = this.state.optionsVisible;
+        this.setState({optionsVisible: !temp});
+    };
+
+    resetProgress = () => {
+        this.setState({progressLeft: 0, progressRight: 0});
+        this._toggleModal();
+    };
+
     render() {
         return (
             <View style={styles.container}>
+                <View>
+                    <Modal isVisible={this.state.optionsVisible} style={styles.modalContent}>
+                        <View style={styles.container}>
+                            <Text style={{marginTop: 20}}>Set daily steps goal:</Text>
+                            <View style={styles.textContainer}>
+                                <TextInput
+                                    style={styles.textInput}
+                                    keyboardType = 'numeric'
+                                    onChangeText = {(val)=> this.onChanged(val, "steps")}
+                                    value = {this.state.goalStep.toString()}
+                                    returnKeyType="done"
+                                    returnKeyLabel="done"
+                                />
+                            </View>
+
+                            <Text style={{marginTop:20}}>Set daily push-up goal:</Text>
+                            <View style={styles.textContainer}>
+                                <TextInput
+                                    style={styles.textInput}
+                                    keyboardType = 'numeric'
+                                    onChangeText = {(val)=> this.onChanged(val, "left")}
+                                    value = {this.state.goalLeft.toString()}
+                                    returnKeyType="done"
+                                    returnKeyLabel="done"
+                                />
+                            </View>
+
+                            <Text style={{marginTop:20}}>Set daily calorie goal:</Text>
+                            <View style={styles.textContainer}>
+                                <TextInput
+                                    style={styles.textInput}
+                                    keyboardType = 'numeric'
+                                    onChangeText = {(val)=> this.onChanged(val, "right")}
+                                    value = {this.state.goalRight.toString()}
+                                    returnKeyType="done"
+                                    returnKeyLabel="done"
+                                />
+                            </View>
+
+                            <Button block danger onPress={this.resetProgress} style={{marginTop: 20}}>
+                                <Text style={{color: "white"}}>Reset daily Progress</Text>
+                            </Button>
+                            <Button block onPress={this._toggleModal} style={{marginTop: 20}}>
+                                <Text style={{color: "white"}}>Close</Text>
+                            </Button>
+                        </View>
+                    </Modal>
+                </View>
                 <AnimatedCircularProgress
                     size={230}
                     width={5}
                     rotation={0}
                     lineCap={"butt"}
-                    fill={((this.state.pastStepCount+this.state.currentStepCount)/this.state.stepGoal)*100}
-                    tintColor="#00e0ff"
+                    fill={((this.state.pastStepCount+this.state.currentStepCount)/this.state.goalStep)*100}
+                    tintColor={(this.state.pastStepCount+this.state.currentStepCount >= this.state.goalStep) ? "#a2e55b" : "#00e0ff"}
                     backgroundColor="#EAEAEA">
                     {
                         () => (
@@ -165,7 +256,7 @@ export default class PedometerSensor extends React.Component {
                                 <Text style={styles.progressText}>{this.state.pastStepCount+this.state.currentStepCount}</Text>
                                 <Text style={styles.goalText}>STEPS WALKED</Text>
                                 <Text style={[styles.goalText, {marginTop: 0}]}>OUT OF</Text>
-                                <Text style={[styles.goalText, {fontSize: 25}]}>{this.state.stepGoal}</Text>
+                                <Text style={[styles.goalText, {fontSize: 25}]}>{this.state.goalStep}</Text>
                                 <Text style={[styles.goalText, {fontSize: 10}]}>(past 24 hrs)</Text>
                             </View>
                         )
@@ -179,7 +270,7 @@ export default class PedometerSensor extends React.Component {
                             fill={((this.state.progressLeft)/this.state.goalLeft)*100}
                             lineCap={"butt"}
                             rotation={0}
-                            tintColor="#a2e55b"
+                            tintColor={(this.state.progressLeft >= this.state.goalLeft) ? "#a2e55b" : "#FFDF00"}
                             backgroundColor="#EAEAEA"
                             style={{marginTop: 20, marginRight: 12}}>
                             {
@@ -193,8 +284,8 @@ export default class PedometerSensor extends React.Component {
                             }
                         </AnimatedCircularProgress>
 
-                        <Button onPress={() => this.changeProgressLeft(1)} block success style={{marginTop: 10, marginLeft: 30, marginRight: 40}}>
-                            <Text style={{color: "white"}}>+ 1</Text>
+                        <Button onPress={() => this.changeProgressLeft(2)} block success style={{marginTop: 10, marginLeft: 30, marginRight: 40}}>
+                            <Text style={{color: "white"}}>+ 2</Text>
                         </Button>
 
                         <Button onPress={() => this.changeProgressLeft(-1)} block danger style={{marginTop: 10, marginLeft: 30, marginRight: 40}}>
@@ -209,7 +300,7 @@ export default class PedometerSensor extends React.Component {
                             fill={((this.state.progressRight)/this.state.goalRight)*100}
                             lineCap={"butt"}
                             rotation={0}
-                            tintColor="red"
+                            tintColor={(this.state.progressRight >= this.state.goalRight) ? "#a2e55b" : "red"}
                             backgroundColor="#EAEAEA"
                             style={{marginTop: 20, marginLeft: 12}}>
                             {
@@ -260,7 +351,8 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#fff"
+        backgroundColor: "#fff",
+        width: "100%"
 
     },
     smallProgressContainer: {
@@ -304,7 +396,33 @@ const styles = StyleSheet.create({
         letterSpacing: 1,
         paddingLeft: 1,
         color: "#8E8E8E"
+    },
+    modalContent: {
+        backgroundColor: "white",
+        padding: 22,
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 4,
+        borderColor: "rgba(0, 0, 0, 0.1)",
+        width: "90%"
+    },
+    textInput: {
+        height: 50,
+        paddingRight: 15,
+        paddingLeft: 15,
+        borderColor: "#F2F2F2",
+        borderWidth: 2,
+        borderRadius: 15,
+        backgroundColor: "white",
+        fontSize: 18
+    },
+    textContainer: {
+        backgroundColor: "white",
+        padding: 10,
+        width: "100%"
     }
 });
 
-Expo.registerRootComponent(PedometerSensor);
+
+
+Expo.registerRootComponent(DailyProgress);

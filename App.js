@@ -1,18 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Button} from 'react-native';
 import TodoList from './src/components/TodoList';
-import Pedometer from './src/components/Pedometer';
 import Calendar from './src/components/Calendar';
-
-import { createStackNavigator } from 'react-navigation';
+import DailyProgress from './src/components/DailyProgress';
+import {createBottomTabNavigator, createStackNavigator} from 'react-navigation';
+import {Icon} from "native-base";
 
 class HomeScreen extends React.Component {
 
     static navigationOptions = {
-        title: 'Current Progression'
+        title: 'Main'
     };
-  render() {
-    
 
     return (
       <View style={styles.container}>
@@ -24,8 +22,8 @@ class HomeScreen extends React.Component {
               onPress={() => this.props.navigation.navigate('ToDo')}
           />
           <Button
-              title="Go to Goals"
-              onPress={() => this.props.navigation.navigate('Goals')}
+               title="Go to Goals"
+               onPress={() => this.props.navigation.navigate('DailyProgress')}
           />
           <Button
               title="Go to Calendar"
@@ -34,25 +32,41 @@ class HomeScreen extends React.Component {
       </View>
     );
   }
-}
 
-export default createStackNavigator({
-    Home: {
-        screen: HomeScreen
+export default createBottomTabNavigator(
+    {
+        Home: HomeScreen,
+        "Tasks": createStackNavigator({TodoList: {screen: TodoList}}),
+        "Daily Progress": createStackNavigator({DailyProgress: {screen: DailyProgress}})
     },
-    ToDo: {
-        screen: TodoList
+    {
+        navigationOptions: ({ navigation }) => ({
+            tabBarIcon: ({ focused, tintColor }) => {
+                const { routeName } = navigation.state;
+                let iconName;
+                let type;
+                if (routeName === 'Home') {
+                    iconName = `ios-information-circle${focused ? '' : '-outline'}`;
+                    type="Ionicons";
+                } else if (routeName === 'Tasks') {
+                    iconName = `ios-list${focused ? '-box' : ''}`;
+                    type="Ionicons";
+                } else if (routeName === 'Daily Progress') {
+                    iconName = `heart${focused ? 'beat' :  '-o'}`;
+                    type = "FontAwesome";
+                }
+                return <Icon type={type} name={iconName} size={25} color={tintColor} style={{marginTop: 2, marginBottom: 2}} />;
+            },
+        }),
+        tabBarOptions: {
+            activeTintColor: '#007aff',
+            inactiveTintColor: 'gray',
+        },
     },
-    Goals: {
-        screen: Pedometer
-    },
-    Calendar: {
-        screen: Calendar
-    },
-},
     {
         portraitOnlyMode: true
-    });
+    }
+);
 
 const styles = StyleSheet.create({
   container: {
@@ -63,3 +77,4 @@ const styles = StyleSheet.create({
       width: "100%"
   },
 });
+
