@@ -5,8 +5,8 @@ import {
     View,
     AsyncStorage, TextInput, Platform, Keyboard
 } from 'react-native';
-import CalendarPicker from 'react-native-calendar-picker';
 import {Button} from "native-base";
+import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 
 const isAndroid = Platform.OS === "android";
 const viewPadding = 0;
@@ -80,27 +80,23 @@ export default class App extends Component {
         const startDate = selectedStartDate ? selectedStartDate.toString() : '';
         return (
             <View style={styles.container}>
-                <CalendarPicker
-                    onDateChange={this.onDateChange}
+                <CalendarList
+                    // Handler which gets executed on day press. Default = undefined
+                    onDayPress={(day) => {console.log('selected day', day)}}
+                    // Handler which gets executed on day long press. Default = undefined
+                    onDayLongPress={(day) => {console.log('selected day', day)}}
+                    // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
+                    monthFormat={'MMMM yyyy'}
+                    // Handler which gets executed when visible month changes in calendar. Default = undefined
+                    onMonthChange={(month) => {console.log('month changed', month)}}
+                    // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday.
+                    firstDay={1}
+                    // Handler which gets executed when press arrow icon left. It receive a callback can go back month
+                    onPressArrowLeft={substractMonth => substractMonth()}
+                    // Handler which gets executed when press arrow icon left. It receive a callback can go next month
+                    onPressArrowRight={addMonth => addMonth()}
+                    style={{marginLeft: 5, marginRight: 5, marginTop: 5, height: "100%"}}
                 />
-
-                <View>
-                    <Text>SELECTED DATE: { startDate }</Text>
-                </View>
-                <View>
-                    <Text>SELECTED NOTE: { selectedNote }</Text>
-                </View>
-                <View style={styles.textContainer}>
-                    <TextInput
-                        style={styles.textInput}
-                        onChangeText={this.changeTextHandler}
-                        onSubmitEditing={this.addNote}
-                        value={this.state.text}
-                        placeholder="Add a note"
-                        returnKeyType="done"
-                        returnKeyLabel="done"
-                    />
-                </View>
             </View>
         );
     }
