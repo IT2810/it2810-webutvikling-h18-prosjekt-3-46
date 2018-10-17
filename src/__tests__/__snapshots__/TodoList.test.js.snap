@@ -19,6 +19,20 @@ exports[`renders correctly 1`] = `
     ]
   }
 >
+  <View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#8E8E8E",
+        }
+      }
+    >
+      Swipe left to complete
+    </Text>
+  </View>
   <View
     style={
       Object {
