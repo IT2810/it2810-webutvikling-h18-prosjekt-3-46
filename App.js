@@ -9,28 +9,14 @@ import {Icon} from "native-base";
 class HomeScreen extends React.Component {
 
     static navigationOptions = {
-        title: 'Main'
+        title: 'Home'
     };
 
     render() {
 
         return (
             <View style={styles.container}>
-                <Text>We ar
-                    e started boys</Text>
-                <Image source={require('./src/assets/smund.png')} style={{width: 300, height: 400}}/>
-                <Button
-                    title="Go to ToDo"
-                    onPress={() => this.props.navigation.navigate('ToDo')}
-                />
-                <Button
-                    title="Go to Goals"
-                    onPress={() => this.props.navigation.navigate('DailyProgress')}
-                />
-                <Button
-                    title="Go to Calendar"
-                    onPress={() => this.props.navigation.navigate('Calendar')}
-                />
+                
             </View>
         );
     }
