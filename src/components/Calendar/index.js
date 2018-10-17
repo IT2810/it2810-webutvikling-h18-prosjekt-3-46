@@ -1,149 +1,211 @@
 import React, { Component } from 'react';
 import {
-    StyleSheet,
     Text,
     View,
-    AsyncStorage, TextInput, Platform, Keyboard
+    StyleSheet,
+    AsyncStorage,
+    TextInput
 } from 'react-native';
-import {Button} from "native-base";
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
+import {Agenda} from 'react-native-calendars';
+import { Container, Header, Content, Button, Icon} from 'native-base';
+import Modal from "react-native-modal";
 
-const isAndroid = Platform.OS === "android";
-const viewPadding = 0;
-
-export default class App extends Component {
+export default class AgendaScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedStartDate: null,
-            selectedNote: "",
-            text: "",
-            selectedDate: null,
+            items: {},
+            selectedDate: this.timeToString(new Date()),
+            visibleModal: false,
         };
-        this.onDateChange = this.onDateChange.bind(this);
     }
 
-    static navigationOptions = {
-        title: 'Calendar'
+    static navigationOptions = ({ navigation }) => {
+        const params = navigation.state.params || {};
+
+        return {
+            title: 'Calendar',
+            headerRight: (
+                <Button transparent onPress={params.toggleModal}>
+                    <Icon name="add-circle" type={"Ionicons"}/>
+                </Button>
+            )
+        };
     };
 
-
-    componentDidMount() {
-        this._retrieveData()
+    componentWillMount() {
+        this.props.navigation.setParams({toggleModal: this._toggleModal});
     }
 
-    _retrieveData = async () => {
+    render() {
+        return (
+            <View style={styles.container}>
+                <View>
+                    <Modal isVisible={this.state.visibleModal} style={styles.modalContent}>
+                        <View style={styles.smallContainer}>
+
+                            <Text style={{marginTop:20}}>Edit a note for this day: {this.state.selectedDate}</Text>
+                            <View style={styles.textContainer}>
+                                <TextInput
+                                    style={styles.textInput}
+                                    keyboardType = 'default'
+                                    returnKeyType="done"
+                                    returnKeyLabel="done"
+                                    value={(JSON.stringify(this.state.items[this.state.selectedDate]))}
+
+                                />
+                            </View>
+                            <Button block onPress={this._toggleModal} style={{marginTop: 20}}>
+                                <Text style={{color: "white"}}>Close</Text>
+                            </Button>
+                        </View>
+                    </Modal>
+                </View>
+
+                <Agenda
+                    items={this.state.items}
+                    loadItemsForMonth={this.loadItems.bind(this)}
+                    renderItem={this.renderItem.bind(this)}
+                    renderEmptyDate={this.renderEmptyDate.bind(this)}
+                    rowHasChanged={this.rowHasChanged.bind(this)}
+                    onDayPress={(day) => {this.selectDate(day)}}
+                    onDaychange={(day) => {this.selectDate(day)}}
+                    // markingType={'period'}
+                    // markedDates={{
+                    //    '2017-05-08': {textColor: '#666'},
+                    //    '2017-05-09': {textColor: '#666'},
+                    //    '2017-05-14': {startingDay: true, endingDay: true, color: 'blue'},
+                    //    '2017-05-21': {startingDay: true, color: 'blue'},
+                    //    '2017-05-22': {endingDay: true, color: 'gray'},
+                    //    '2017-05-24': {startingDay: true, color: 'gray'},
+                    //    '2017-05-25': {color: 'gray'},
+                    //    '2017-05-26': {endingDay: true, color: 'gray'}}}
+                    // monthFormat={'yyyy'}
+                    //theme={{calendarBackground: 'red', agendaKnobColor: 'green'}}
+                    //renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
+                />
+            </View>
+        );
+    }
+
+    loadItems(day) {
+        setTimeout(() => {
+            for (let i = -15; i < 50; i++) {
+                const time = day.timestamp + i * 24 * 60 * 60 * 1000;
+                const strTime = this.timeToString(time);
+                if (!this.state.items[strTime]) {
+                    this.state.items[strTime] = [];
+                    this._retrieveData(strTime);
+                }
+            }
+            //console.log(this.state.items);
+            const newItems = {};
+            Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
+            this.setState({
+                items: newItems
+            });
+        }, 1000);
+        // console.log(`Load Items for ${day.year}-${day.month}`);
+    }
+
+    renderItem(item) {
+        return (
+            <View style={[styles.item, {height: item.height}]}><Text>{item.name}</Text></View>
+        );
+    }
+
+    renderEmptyDate() {
+        return (
+            <View style={styles.emptyDate}><Text>Ingen avtaler</Text></View>
+        );
+    }
+
+    rowHasChanged(r1, r2) {
+        return r1.name !== r2.name;
+    }
+
+    timeToString(time) {
+        const date = new Date(time);
+        return date.toISOString().split('T')[0];
+    }
+
+    selectDate(day) {
+        const time = day.timestamp;
+        const strTime = this.timeToString(time);
+        this.setState({selectedDate: strTime});
+    }
+
+    _toggleModal = () => {
+        let temp = this.state.visibleModal;
+        this.setState({visibleModal: !temp});
+    };
+
+    _retrieveData = async (dateKey) => {
         try {
-            const prevDate = await AsyncStorage.getItem("@SuperKey");
-            if (prevDate !== null) {
-                this.setState({selectedStartDate: prevDate});
+            const note = await AsyncStorage.getItem(dateKey);
+            if (note !== null) {
+                this.state.items[dateKey].push({
+                    name: 'Item = ' + note,
+                    height: Math.max(50, Math.floor(Math.random() * 150))
+                });
             }
         } catch (error) {
         }
     }
 
-    componentWillUnmount() {
-        this._saveData();
-    }
-
-    _saveData = () => {
-        AsyncStorage.setItem("@SuperKey", this.state.selectedStartDate.toString());
+    _saveData = (dateKey, note) => {
+        AsyncStorage.setItem(dateKey, note);
     };
-
-    _save = () => {
-        AsyncStorage.setItem(this.state.selectedStartDate.toString(), this.state.selectedNote);
-    }
-
-    onDateChange(date) {
-        this.setState({
-            selectedStartDate: date,
-            text: "",
-        });
-    }
-
-    changeTextHandler = text => {
-        this.setState({ text: text });
-    };
-
-    addNote = () => {
-        let notEmpty = this.state.text.trim().length > 0;
-
-        if (notEmpty) {
-            this.setState(
-                {selectedNote: this.state.text}
-            );
-            this._save();
-        }
-    };
-
-    selectDate(day) {
-        this.setState({selectedDate: day.dateString});
-    }
-
-    render() {
-        const { selectedStartDate, selectedNote } = this.state;
-        const startDate = selectedStartDate ? selectedStartDate.toString() : '';
-        return (
-            <View style={styles.container}>
-                <CalendarList
-                    markedDates={{
-                        [this.state.selectedDate]: {selected: true}
-                    }}
-                    // Handler which gets executed on day press. Default = undefined
-                    onDayPress={(day) => {this.selectDate(day)}}
-                    // Handler which gets executed on day long press. Default = undefined
-                    onDayLongPress={(day) => {console.log('selected day', day)}}
-                    // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
-                    monthFormat={'MMMM yyyy'}
-                    // Handler which gets executed when visible month changes in calendar. Default = undefined
-                    onMonthChange={(month) => {console.log('month changed', month)}}
-                    // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday.
-                    firstDay={1}
-                    // Handler which gets executed when press arrow icon left. It receive a callback can go back month
-                    onPressArrowLeft={substractMonth => substractMonth()}
-                    // Handler which gets executed when press arrow icon left. It receive a callback can go next month
-                    onPressArrowRight={addMonth => addMonth()}
-                    style={{marginLeft: 5, marginRight: 5, marginTop: 5, height: "100%"}}
-                />
-            </View>
-        );
-    }
 }
 
 const styles = StyleSheet.create({
+    item: {
+        backgroundColor: 'white',
+        flex: 1,
+        borderRadius: 5,
+        padding: 10,
+        marginRight: 10,
+        marginTop: 17
+    },
+    emptyDate: {
+        height: 15,
+        flex:1,
+        paddingTop: 30
+    },
     container: {
         flex: 1,
-        backgroundColor: '#FFFFFF',
-        marginTop: 0,
-    },
-    smallContainer: {
-        flexDirection: 'row',
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#fff"
+        width: "100%"
 
     },
-    buttonColumn: {
-        flexDirection: 'column',
+    smallContainer: {
+        flex: 1,
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#fff"
+        backgroundColor: "#fff",
+        width: "100%"
+    },
+    textContainer: {
+        backgroundColor: "white",
+        padding: 10,
+        width: "100%"
+    },
+    modalContent: {
+        backgroundColor: "white",
+        padding: 22,
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 4,
+        borderColor: "rgba(0, 0, 0, 0.1)",
+        width: "90%"
     },
     textInput: {
         height: 50,
         paddingRight: 15,
         paddingLeft: 15,
         borderColor: "#F2F2F2",
-        borderWidth: isAndroid ? 0 : 2,
-        width: "100%",
+        borderWidth: 2,
         borderRadius: 15,
         backgroundColor: "white",
-        fontSize: 18,
-
-    },
-    textContainer: {
-        backgroundColor: "#EAEAEA",
-        width: "100%",
-        padding: 10,
+        fontSize: 18
     },
 });
