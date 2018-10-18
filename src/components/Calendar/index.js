@@ -4,7 +4,9 @@ import {
     View,
     StyleSheet,
     AsyncStorage,
-    TextInput
+    TextInput,
+    TouchableWithoutFeedback,
+    Keyboard
 } from 'react-native';
 import {Agenda} from 'react-native-calendars';
 import { Button, Icon} from 'native-base';
@@ -28,7 +30,7 @@ export default class AgendaScreen extends Component {
             title: 'Calendar',
             headerRight: (
                 <Button transparent onPress={params.toggleModal}>
-                    <Icon name="add-circle" type={"Ionicons"}/>
+                    <Icon name="pencil" type={"FontAwesome"}/>
                 </Button>
             )
         };
@@ -43,26 +45,37 @@ export default class AgendaScreen extends Component {
             <View style={styles.container}>
                 <View>
                     <Modal isVisible={this.state.visibleModal} style={styles.modalContent}>
-                        <View style={styles.smallContainer}>
 
-                            <Text style={{marginTop:20}}>Edit a note for this day: {this.state.selectedDate}</Text>
-                            <View style={styles.textContainer}>
-                                <TextInput
-                                    style={styles.textInput}
-                                    keyboardType = 'default'
-                                    returnKeyType="done"
-                                    returnKeyLabel="done"
-                                    value={ this.itemData(this.state.items[this.state.selectedDate]) }
-                                    onChangeText={(text) => this.setState({currentText: text})}
-                                />
+                        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+                            <View style={styles.smallContainer}>
+                                <Text style={{fontSize: 30, fontWeight: "bold"}}>{this.getParsedDate(this.state.selectedDate)}</Text>
+                                <Text style={{marginTop: 30}}>Edit a note for this day:</Text>
+                                <View style={styles.textContainer}>
+                                    <TextInput
+                                        style={styles.textInput}
+                                        multiline={true}
+                                        keyboardType = 'default'
+                                        returnKeyType="done"
+                                        returnKeyLabel="done"
+                                        placeholder={"What are your plans?"}
+                                        value={ this.state.items[this.state.selectedDate] === undefined ||
+                                                this.state.items[this.state.selectedDate].length === 0 ?
+                                                '' : this.itemData(this.state.items[this.state.selectedDate])
+                                        }
+                                        onChangeText={(text) => this.setState({currentText: text})}
+                                    />
+                                </View>
+                                <Button block success onPress={() => this.addText(false)} style={{marginTop: 20}}>
+                                    <Text style={{color: "white"}}>Add Note</Text>
+                                </Button>
+                                <Button block danger onPress={() => this.addText(true)} style={{marginTop: 20}}>
+                                    <Text style={{color: "white"}}>Remove Note</Text>
+                                </Button>
+                                <Button block onPress={this._toggleModal} style={{marginTop: 20}}>
+                                    <Text style={{color: "white"}}>Close</Text>
+                                </Button>
                             </View>
-                            <Button block success onPress={this.addText} style={{marginTop: 20}}>
-                                <Text style={{color: "white"}}>Add Note</Text>
-                            </Button>
-                            <Button block onPress={this._toggleModal} style={{marginTop: 20}}>
-                                <Text style={{color: "white"}}>Close</Text>
-                            </Button>
-                        </View>
+                        </TouchableWithoutFeedback>
                     </Modal>
                 </View>
 
@@ -77,6 +90,11 @@ export default class AgendaScreen extends Component {
                 />
             </View>
         );
+    }
+
+    getParsedDate(date){
+        var dateArray = String(date).split('-');
+        return parseInt(dateArray[2]) + "." + parseInt(dateArray[1]) + "." + parseInt(dateArray[0]);
     }
 
     loadItems(day) {
@@ -154,10 +172,10 @@ export default class AgendaScreen extends Component {
         this.setState({visibleModal: !temp});
     };
 
-    addText = () => {
+    addText(deleteText) {
         let temp = this.state.visibleModal;
         this.setState({visibleModal: !temp});
-        if(this.state.currentText !== "") {
+        if(this.state.currentText !== "" && deleteText === false) {
             this._saveData(this.state.selectedDate, this.state.currentText);
         } else {
             AsyncStorage.removeItem(this.state.selectedDate);
@@ -228,9 +246,10 @@ const styles = StyleSheet.create({
         width: "90%"
     },
     textInput: {
-        height: 50,
+        height: 150,
         paddingRight: 15,
         paddingLeft: 15,
+        paddingTop: 15,
         borderColor: "#F2F2F2",
         borderWidth: 2,
         borderRadius: 15,
