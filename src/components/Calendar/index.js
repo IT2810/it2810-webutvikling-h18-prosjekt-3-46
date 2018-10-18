@@ -157,7 +157,12 @@ export default class AgendaScreen extends Component {
     addText = () => {
         let temp = this.state.visibleModal;
         this.setState({visibleModal: !temp});
-        this._saveData(this.state.selectedDate, this.state.currentText);
+        if(this.state.currentText !== "") {
+            this._saveData(this.state.selectedDate, this.state.currentText);
+        } else {
+            AsyncStorage.removeItem(this.state.selectedDate);
+            console.log("removed");
+        }
         this._retrieveData(this.state.selectedDate);
         this.loadItem(this.state.selectedDate);
     }
@@ -165,8 +170,8 @@ export default class AgendaScreen extends Component {
     _retrieveData = async (dateKey) => {
         try {
             const note = await AsyncStorage.getItem(dateKey);
+            this.state.items[dateKey] = [];
             if (note !== null) {
-                this.state.items[dateKey] = [];
                 this.state.items[dateKey].push({
                     name: note,
                     height: Math.max(50, Math.floor(Math.random() * 150))
