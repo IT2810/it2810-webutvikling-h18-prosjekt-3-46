@@ -54,16 +54,16 @@ export default createBottomTabNavigator(
                     iconName = `ios-information-circle${focused ? '' : '-outline'}`;
                     type="Ionicons";
                 } else if (routeName === 'Calendar') {
-                    iconName = `calendar${focused ? '' : '-o'}`;
-                    type="FontAwesome";
+                    iconName = `ios-calendar${focused ? '' : ''}`;
+                    type="Ionicons";
                 } else if (routeName === 'Tasks') {
-                    iconName = `ios-list${focused ? '-box' : ''}`;
+                    iconName = `ios-list${focused ? '' : ''}`;
                     type="Ionicons";
                 } else if (routeName === 'Daily Progress') {
-                    iconName = `heart${focused ? 'beat' :  '-o'}`;
-                    type = "FontAwesome";
+                    iconName = `ios-body${focused ? '' :  ''}`;
+                    type = "Ionicons";
                 }
-                return <Icon type={type} name={iconName} color={tintColor} style={{marginTop: 3, marginBottom: 1,fontSize: 28 }} />;
+                return <Icon type={type} name={iconName} color={tintColor} style={{marginTop: 3, marginBottom: 1, fontSize: 28, color: `${focused ? '#007aff' : 'gray' }`}} />;
             },
         }),
         tabBarOptions: {
