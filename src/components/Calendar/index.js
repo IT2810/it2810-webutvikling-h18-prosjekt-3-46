@@ -48,7 +48,7 @@ export default class AgendaScreen extends Component {
 
                         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
                             <View style={styles.smallContainer}>
-                                <Text style={{fontSize: 30, fontWeight: "bold"}}>{this.getParsedDate(this.state.selectedDate)}</Text>
+                                <Text style={{fontSize: 30, fontWeight: "bold", letterSpacing: 3}}>{this.getParsedDate(this.state.selectedDate)}</Text>
                                 <Text style={{marginTop: 30}}>Edit a note for this day:</Text>
                                 <View style={styles.textContainer}>
                                     <TextInput
@@ -173,8 +173,7 @@ export default class AgendaScreen extends Component {
     };
 
     addText(deleteText) {
-        let temp = this.state.visibleModal;
-        this.setState({visibleModal: !temp});
+        this._toggleModal();
         if(this.state.currentText !== "" && deleteText === false) {
             this._saveData(this.state.selectedDate, this.state.currentText);
         } else {
