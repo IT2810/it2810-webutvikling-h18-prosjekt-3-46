@@ -87,6 +87,12 @@ export default class AgendaScreen extends Component {
                     rowHasChanged={this.rowHasChanged.bind(this)}
                     onDayPress={(day) => {this.selectDate(day)}}
                     onDayChange={(day) => {this.selectDate(day)}}
+                    theme={{
+                        agendaTodayColor: '#007aff',
+                        selectedDayBackgroundColor: '#007aff',
+                        dotColor: '#007aff',
+                        todayTextColor: '#007aff',
+                    }}
                 />
             </View>
         );
