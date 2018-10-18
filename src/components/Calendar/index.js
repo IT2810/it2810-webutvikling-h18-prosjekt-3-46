@@ -7,7 +7,7 @@ import {
     TextInput
 } from 'react-native';
 import {Agenda} from 'react-native-calendars';
-import { Container, Header, Content, Button, Icon} from 'native-base';
+import { Button, Icon} from 'native-base';
 import Modal from "react-native-modal";
 
 export default class AgendaScreen extends Component {
@@ -17,6 +17,7 @@ export default class AgendaScreen extends Component {
             items: {},
             selectedDate: this.timeToString(new Date()),
             visibleModal: false,
+            currentText: "",
         };
     }
 
@@ -51,10 +52,13 @@ export default class AgendaScreen extends Component {
                                     keyboardType = 'default'
                                     returnKeyType="done"
                                     returnKeyLabel="done"
-                                    value={(JSON.stringify(this.state.items[this.state.selectedDate]))}
-
+                                    value={ this.itemData(this.state.items[this.state.selectedDate]) }
+                                    onChangeText={(text) => this.setState({currentText: text})}
                                 />
                             </View>
+                            <Button block onPress={this.addText} style={{marginTop: 20}}>
+                                <Text style={{color: "white"}}>Add Note</Text>
+                            </Button>
                             <Button block onPress={this._toggleModal} style={{marginTop: 20}}>
                                 <Text style={{color: "white"}}>Close</Text>
                             </Button>
@@ -69,20 +73,7 @@ export default class AgendaScreen extends Component {
                     renderEmptyDate={this.renderEmptyDate.bind(this)}
                     rowHasChanged={this.rowHasChanged.bind(this)}
                     onDayPress={(day) => {this.selectDate(day)}}
-                    onDaychange={(day) => {this.selectDate(day)}}
-                    // markingType={'period'}
-                    // markedDates={{
-                    //    '2017-05-08': {textColor: '#666'},
-                    //    '2017-05-09': {textColor: '#666'},
-                    //    '2017-05-14': {startingDay: true, endingDay: true, color: 'blue'},
-                    //    '2017-05-21': {startingDay: true, color: 'blue'},
-                    //    '2017-05-22': {endingDay: true, color: 'gray'},
-                    //    '2017-05-24': {startingDay: true, color: 'gray'},
-                    //    '2017-05-25': {color: 'gray'},
-                    //    '2017-05-26': {endingDay: true, color: 'gray'}}}
-                    // monthFormat={'yyyy'}
-                    //theme={{calendarBackground: 'red', agendaKnobColor: 'green'}}
-                    //renderDay={(day, item) => (<Text>{day ? day.day: 'item'}</Text>)}
+                    //onDaychange={(day) => {this.selectDate(day)}}
                 />
             </View>
         );
@@ -96,16 +87,29 @@ export default class AgendaScreen extends Component {
                 if (!this.state.items[strTime]) {
                     this.state.items[strTime] = [];
                     this._retrieveData(strTime);
+
                 }
             }
-            //console.log(this.state.items);
             const newItems = {};
             Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
             this.setState({
                 items: newItems
             });
         }, 1000);
-        // console.log(`Load Items for ${day.year}-${day.month}`);
+    }
+
+    loadItem(stringDate) {
+        setTimeout(() => {
+                if (!this.state.items[stringDate]) {
+                    this.state.items[stringDate] = [];
+                    this._retrieveData(stringDate);
+                }
+            const newItems = {};
+            Object.keys(this.state.items).forEach(key => {newItems[key] = this.state.items[key];});
+            this.setState({
+                items: newItems
+            });
+        }, 1000);
     }
 
     renderItem(item) {
@@ -129,10 +133,20 @@ export default class AgendaScreen extends Component {
         return date.toISOString().split('T')[0];
     }
 
+    itemData(item) {
+        if(item === undefined) {
+            return "Ingen avtaler";
+        }
+        if(item.length === 0) {
+            return "Ingen avtaler";
+        }
+        return item[0].name;
+    }
+
     selectDate(day) {
-        const time = day.timestamp;
-        const strTime = this.timeToString(time);
-        this.setState({selectedDate: strTime});
+        this.setState({selectedDate: day.dateString,
+                        currentText: this.itemData(this.state.items[this.state.selectedDate])
+        });
     }
 
     _toggleModal = () => {
@@ -140,12 +154,21 @@ export default class AgendaScreen extends Component {
         this.setState({visibleModal: !temp});
     };
 
+    addText = () => {
+        let temp = this.state.visibleModal;
+        this.setState({visibleModal: !temp});
+        this._saveData(this.state.selectedDate, this.state.currentText);
+        this._retrieveData(this.state.selectedDate);
+        this.loadItem(this.state.selectedDate);
+    }
+
     _retrieveData = async (dateKey) => {
         try {
             const note = await AsyncStorage.getItem(dateKey);
             if (note !== null) {
+                this.state.items[dateKey] = [];
                 this.state.items[dateKey].push({
-                    name: 'Item = ' + note,
+                    name: note,
                     height: Math.max(50, Math.floor(Math.random() * 150))
                 });
             }
@@ -154,6 +177,7 @@ export default class AgendaScreen extends Component {
     }
 
     _saveData = (dateKey, note) => {
+        AsyncStorage.removeItem(dateKey);
         AsyncStorage.setItem(dateKey, note);
     };
 }
