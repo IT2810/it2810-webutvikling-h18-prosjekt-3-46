@@ -2,8 +2,8 @@ import Expo from "expo";
 import React from "react";
 import { Pedometer } from "expo";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import {StyleSheet, Text, View, AsyncStorage, TextInput, FlatList} from "react-native";
-import { Container, Header, Content, Button, Icon} from 'native-base';
+import {StyleSheet, Text, View, AsyncStorage, TextInput} from "react-native";
+import { Button, Icon} from 'native-base';
 import Modal from "react-native-modal";
 
 export default class DailyProgress extends React.Component {
@@ -254,9 +254,8 @@ export default class DailyProgress extends React.Component {
                         () => (
                             <View style={styles.progressInfo}>
                                 <Text style={styles.progressText}>{this.state.pastStepCount+this.state.currentStepCount}</Text>
-                                <Text style={styles.goalText}>STEPS WALKED</Text>
-                                <Text style={[styles.goalText, {marginTop: 0}]}>OUT OF</Text>
-                                <Text style={[styles.goalText, {fontSize: 25}]}>{this.state.goalStep}</Text>
+                                <Text style={[styles.goalText, {fontSize: 20}]}>/ {this.state.goalStep}</Text>
+                                <Text style={[styles.goalText, {marginTop: 0}]}>STEPS WALKED</Text>
                                 <Text style={[styles.goalText, {fontSize: 10}]}>(past 24 hrs)</Text>
                             </View>
                         )
@@ -272,7 +271,7 @@ export default class DailyProgress extends React.Component {
                             rotation={0}
                             tintColor={(this.state.progressLeft >= this.state.goalLeft) ? "#a2e55b" : "#FFDF00"}
                             backgroundColor="#EAEAEA"
-                            style={{marginTop: 20, marginRight: 12}}>
+                            style={{margin: 10}}>
                             {
                                 () => (
                                     <View style={styles.progressInfo}>
@@ -283,14 +282,17 @@ export default class DailyProgress extends React.Component {
                                 )
                             }
                         </AnimatedCircularProgress>
+                        <View style={{flexDirection: 'row',
+                            justifyContent: "center",
+                            alignItems: "center"}}>
+                            <Button onPress={() => this.changeProgressLeft(2)} block success rounded style={styles.progressButton}>
+                                <Text style={{color: "white"}}>+ 2</Text>
+                            </Button>
 
-                        <Button onPress={() => this.changeProgressLeft(2)} block success style={{marginTop: 10, marginLeft: 30, marginRight: 40}}>
-                            <Text style={{color: "white"}}>+ 2</Text>
-                        </Button>
-
-                        <Button onPress={() => this.changeProgressLeft(-1)} block danger style={{marginTop: 10, marginLeft: 30, marginRight: 40}}>
-                            <Text style={{color: "white"}}>- 1</Text>
-                        </Button>
+                            <Button onPress={() => this.changeProgressLeft(-1)} block danger rounded style={styles.progressButton}>
+                                <Text style={{color: "white"}}>- 1</Text>
+                            </Button>
+                        </View>
                     </View>
 
                     <View style={styles.smallProgressContainerColumn}>
@@ -302,49 +304,35 @@ export default class DailyProgress extends React.Component {
                             rotation={0}
                             tintColor={(this.state.progressRight >= this.state.goalRight) ? "#a2e55b" : "red"}
                             backgroundColor="#EAEAEA"
-                            style={{marginTop: 20, marginLeft: 12}}>
+                            style={{margin: 10}}>
                             {
                                 () => (
                                     <View style={styles.progressInfo}>
                                         <Text style={styles.progressTextSmall}>{this.state.progressRight}</Text>
-                                        <Text style={styles.goalTextSmall}>/ {this.state.goalRight} kcal</Text>
+                                        <Text style={styles.goalTextSmall}>/ {this.state.goalRight}</Text>
+                                        <Text style={styles.goalTextSmall}>KCAL</Text>
                                     </View>
                                 )
                             }
                         </AnimatedCircularProgress>
+                        <View style={{flexDirection: 'row',
+                            justifyContent: "center",
+                            alignItems: "center"
+                            }}>
+                            <Button onPress={() => this.changeProgressRight(100)} success rounded style={styles.progressButton}>
+                                <Text style={{color: "white"}}>+ 100</Text>
+                            </Button>
 
-                        <Button onPress={() => this.changeProgressRight(100)} block success style={{marginTop: 10, marginLeft: 40, marginRight: 30}}>
-                            <Text style={{color: "white"}}>+ 100</Text>
-                        </Button>
-
-                        <Button onPress={() => this.changeProgressRight(-50)} block danger style={{marginTop: 10, marginLeft: 40, marginRight: 30}}>
-                            <Text style={{color: "white"}}>- 50</Text>
-                        </Button>
+                            <Button onPress={() => this.changeProgressRight(-50)} danger rounded style={styles.progressButton}>
+                                <Text style={{color: "white"}}>- 50</Text>
+                            </Button>
+                        </View>
                     </View>
                 </View>
             </View>
         );
     }
 }
-
-let Progress = {
-    convertToArrayOfObject(progress, callback) {
-        return callback(
-            progress ? progress.split("||").map((data, i) => ({ key: i, text: data })) : []
-        );
-    },
-    convertToStringWithSeparators(progress) {
-        return progress.map(data => data.text).join("||");
-    },
-    all(callback) {
-        return AsyncStorage.getItem("PROGRESS", (err, progress) =>
-            this.convertToArrayOfObject(progress, callback)
-        );
-    },
-    save(progress) {
-        AsyncStorage.setItem("PROGRESS", this.convertToStringWithSeparators(progress));
-    }
-};
 
 const styles = StyleSheet.create({
     container: {
@@ -420,6 +408,14 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         padding: 10,
         width: "100%"
+    },
+    progressButton: {
+        padding: 10,
+        marginLeft: 4,
+        marginRight: 4,
+        justifyContent: "center",
+        alignItems: "center",
+        flex: 0.4
     }
 });
 

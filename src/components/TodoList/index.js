@@ -8,7 +8,6 @@ import {
     AsyncStorage,
     TextInput,
     Keyboard,
-    Button,
     Platform,
     TouchableOpacity
 } from "react-native";
