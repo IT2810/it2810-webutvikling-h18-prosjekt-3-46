@@ -36,11 +36,12 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-jest": "^23.6.0",
     "babel-preset-react-native": "^4.0.1",
     "jest": "^23.6.0",
     "jest-babel": "^1.0.1",
-    "babel-jest": "^23.6.0",
     "jest-expo": "^30.0.0",
+    "react-live-clock": "^2.0.3",
     "react-test-renderer": "^16.5.2"
   }
 }
