@@ -56,7 +56,7 @@ export default class AgendaScreen extends Component {
                                     onChangeText={(text) => this.setState({currentText: text})}
                                 />
                             </View>
-                            <Button block onPress={this.addText} style={{marginTop: 20}}>
+                            <Button block success onPress={this.addText} style={{marginTop: 20}}>
                                 <Text style={{color: "white"}}>Add Note</Text>
                             </Button>
                             <Button block onPress={this._toggleModal} style={{marginTop: 20}}>
@@ -73,7 +73,7 @@ export default class AgendaScreen extends Component {
                     renderEmptyDate={this.renderEmptyDate.bind(this)}
                     rowHasChanged={this.rowHasChanged.bind(this)}
                     onDayPress={(day) => {this.selectDate(day)}}
-                    //onDaychange={(day) => {this.selectDate(day)}}
+                    onDayChange={(day) => {this.selectDate(day)}}
                 />
             </View>
         );

@@ -2,8 +2,8 @@ import Expo from "expo";
 import React from "react";
 import { Pedometer } from "expo";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import {StyleSheet, Text, View, AsyncStorage, TextInput, FlatList} from "react-native";
-import { Container, Header, Content, Button, Icon} from 'native-base';
+import {StyleSheet, Text, View, AsyncStorage, TextInput} from "react-native";
+import { Button, Icon} from 'native-base';
 import Modal from "react-native-modal";
 
 export default class DailyProgress extends React.Component {
@@ -285,11 +285,11 @@ export default class DailyProgress extends React.Component {
                         <View style={{flexDirection: 'row',
                             justifyContent: "center",
                             alignItems: "center"}}>
-                            <Button onPress={() => this.changeProgressLeft(2)} block success style={styles.progressButton}>
+                            <Button onPress={() => this.changeProgressLeft(2)} block success rounded style={styles.progressButton}>
                                 <Text style={{color: "white"}}>+ 2</Text>
                             </Button>
 
-                            <Button onPress={() => this.changeProgressLeft(-1)} block danger style={styles.progressButton}>
+                            <Button onPress={() => this.changeProgressLeft(-1)} block danger rounded style={styles.progressButton}>
                                 <Text style={{color: "white"}}>- 1</Text>
                             </Button>
                         </View>
@@ -319,11 +319,11 @@ export default class DailyProgress extends React.Component {
                             justifyContent: "center",
                             alignItems: "center"
                             }}>
-                            <Button onPress={() => this.changeProgressRight(100)} success style={styles.progressButton}>
+                            <Button onPress={() => this.changeProgressRight(100)} success rounded style={styles.progressButton}>
                                 <Text style={{color: "white"}}>+ 100</Text>
                             </Button>
 
-                            <Button onPress={() => this.changeProgressRight(-50)} danger style={styles.progressButton}>
+                            <Button onPress={() => this.changeProgressRight(-50)} danger rounded style={styles.progressButton}>
                                 <Text style={{color: "white"}}>- 50</Text>
                             </Button>
                         </View>
