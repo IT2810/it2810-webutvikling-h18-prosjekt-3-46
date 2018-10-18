@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity} from 'react-native';
 
-class HomeScreen extends React.Component {
+export default class HomeScreen extends React.Component {
    constructor() {
        super()
        this.state = {
@@ -32,7 +32,7 @@ class HomeScreen extends React.Component {
        return (
            <View style={styles.container}>
                <ImageBackground
-                   source={require('./src/assets/background.jpg')}
+                   source={require('../../assets/background.jpg')}
                    imageStyle={{resizeMode: 'stretch'}}
                    style={styles.image}>
                    <TouchableOpacity onPress={this.toggleNewQuote}>

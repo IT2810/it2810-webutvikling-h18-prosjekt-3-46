@@ -3,7 +3,7 @@ import {
     StyleSheet,
     Text,
     View,
-    AsyncStorage, TextInput, Platform, Keyboard
+    AsyncStorage, TextInput, Platform
 } from 'react-native';
 import CalendarPicker from 'react-native-calendar-picker';
 import {Button} from "native-base";
