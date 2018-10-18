@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
     Text,
     View,
-    AsyncStorage, TextInput, Platform
+    AsyncStorage, TextInput,
+    StyleSheet
 } from 'react-native';
 import {Agenda} from 'react-native-calendars';
 import { Button, Icon} from 'native-base';
