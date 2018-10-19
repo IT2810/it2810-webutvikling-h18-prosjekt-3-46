@@ -28,3 +28,6 @@ React Native Modal:
 
 React Native Calendars:
 * https://github.com/wix/react-native-calendars
+
+React Native Easy Toast
+* https://github.com/crazycodeboy/react-native-easy-toast
