@@ -319,7 +319,8 @@ export default class DailyProgress extends React.Component {
                     width={5}
                     rotation={0}
                     lineCap={"butt"}
-                    fill={((this.state.pastStepCount+this.state.currentStepCount)/this.state.goalStep)*100}
+                    fill={((this.state.pastStepCount+this.state.currentStepCount)/this.state.goalStep)*100 > 100 ?
+                        100 : ((this.state.pastStepCount+this.state.currentStepCount)/this.state.goalStep)*100}
                     tintColor={(this.state.pastStepCount+this.state.currentStepCount >= this.state.goalStep) ? "#a2e55b" : "#00e0ff"}
                     backgroundColor="#EAEAEA">
                     {
@@ -338,7 +339,8 @@ export default class DailyProgress extends React.Component {
                         <AnimatedCircularProgress
                             size={150}
                             width={5}
-                            fill={((this.state.progressLeft)/this.state.goalLeft)*100}
+                            fill={((this.state.progressLeft)/this.state.goalLeft)*100 > 100 ?
+                                100 : ((this.state.progressLeft)/this.state.goalLeft)*100}
                             lineCap={"butt"}
                             rotation={0}
                             tintColor={(this.state.progressLeft >= this.state.goalLeft) ? "#a2e55b" : "#FFDF00"}
@@ -371,7 +373,8 @@ export default class DailyProgress extends React.Component {
                         <AnimatedCircularProgress
                             size={150}
                             width={5}
-                            fill={((this.state.progressRight)/this.state.goalRight)*100}
+                            fill={((this.state.progressRight)/this.state.goalRight)*100 > 100 ?
+                            100 : ((this.state.progressRight)/this.state.goalRight)*100}
                             lineCap={"butt"}
                             rotation={0}
                             tintColor={(this.state.progressRight >= this.state.goalRight) ? "#a2e55b" : "red"}
