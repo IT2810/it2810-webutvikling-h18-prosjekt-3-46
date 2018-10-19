@@ -3,6 +3,8 @@
 ## Valg og løsninger
 - Vår PIMM-applikasjon består av fire forskjellige skjermer: En startskjerm (HomeScreen), kalender (Calendar), gjøremålsliste (Todo) og en skjerm med oversikt over personlige mål (DailyProgress).
 
+- For UI-elementer har vi benyttet oss av biblioteket `NativeBase` som gir oss mange grunnleggende komponenter som vi har brukt i tillegg til React Natives standard UI-elementer. Eksempler på Komponenter vi har benyttet oss fra dette biblioteket er `Icon`, `Button` og `Text`
+
 - Startskjermen vår består av et bakgrunnsbilde og inneholder en liste med inspirerende sitater som endres ved trykk. Den viser også nåværende dag, dato og klokkeslett. Dette valgte vi fordi vi tenkte at en tilfeldig liste med inspirerende sitater passer bra til å være "startskjermen" på en motivasjonsapp.
 
 - For kalenderen vår benyttet vi en en tredjeparts-modul: `react-native-calendars`. Fra denne modulen importerte vi en Agenda komponent som enkelt ga oss mulighet for å legge til en notis eller en agenda for en gitt dag. Den er også enkel å navigere seg frem i, samt at den også er oversiktlig da den merker av alle dager som har en notis festet til seg. Vi benyttet oss også av Modal-komponenten som vi importerte fra react-native-modal. Den ga oss ekstra rom for å implementere tekstbokser og knapper i forbindelse med å fjerne/legge til notiser.
@@ -86,8 +88,11 @@ Skann QR-koden som vises i kommandolinjen med Expo-appen(Android), eller med kam
 Applikasjonen er ment å fungere som en Personal Information and Motivation Manager for mobil, og den gjør det mulig for brukeren å sette seg personlige mål, den fungerer som en kalender, og man kan legge inn gjøremål. For kalenderfunksjonaliteten kan man legge inn ulike avtaler eller lignende for datoer i fremtiden. 
 
 - `Calendar`: Denne fungerer både som en kalender og som en agenda med funksjonalitet for innlegging av planer for en gitt dag. En kan både navigere seg måned for måned, eller dag for dag. Dette justeres ved å velge en gitt dag når du er i månedsmodus, eller ved å trykke på den grå streken når du er i dagsmodus. Vi har også lagt til funksjonalitet for endring og sletting av allerede eksisterende notater.
+
 - `Tasks`: Med denne kan du som bruker legge ting du skal gjøre eller få gjort til i en liste med todos og fjerne de når du er ferdig med dem. for å legge til nye oppgaver skriver du inn i tekstfeltet nederst på skjermen, og for å fjerne noe swiper du de til venstre og trykker på "Done".
+
 - `Daily Progress`: Her har vi laget funksjonalitet for å fylle inn daglige mål for antall skritt man skal gå, antall push-ups og antall kalorier man skal få i seg. Ved å bruke modalmenyen som vises øverst på skjermen kan man enkelt sette seg mål, og resette dagens framgang. Man kan dog ikke starte skrittelleren om igjen, dette fordi den henter ut antall skritt gått fra mobilens innebygde skritteller.
+
 - `Home Screen`: Her har vi ikke gjort så mye spennende, men vi har lagt inn en komponent som viser tilfeldige quotes, ut i fra en liste med predefinerte quotes. Ved å trykke på quoten får man en ny, tilfeldig quote. I tillegg viser den hvilken ukedag, måned og dato det er, pluss klokkeslett. 
 
 ## Navigering
