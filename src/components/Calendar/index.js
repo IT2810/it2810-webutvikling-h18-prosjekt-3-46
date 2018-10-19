@@ -281,7 +281,7 @@ export default class AgendaScreen extends Component {
             if (note !== null) {
                 this.state.items[dateKey].push({
                     name: note,
-                    height: Math.max(50, Math.floor(Math.random() * 150))
+                    height: Math.max(100, Math.floor(Math.random() * 200))
                 });
             }
         } catch (error) {
@@ -302,13 +302,16 @@ const styles = StyleSheet.create({
         flex: 1,
         borderRadius: 5,
         padding: 10,
-        marginRight: 10,
-        marginTop: 17
+        marginRight: 15,
+        marginTop: 25,
+        marginBottom: 10
     },
     emptyDate: {
         flex:1,
-        paddingTop: 30,
+        paddingTop: 35,
         marginRight: 10,
+        height: 100,
+        marginBottom: 20
     },
     container: {
         flex: 1,
