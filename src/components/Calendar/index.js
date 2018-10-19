@@ -28,6 +28,27 @@ export default class AgendaScreen extends Component {
             visibleModal: false,
             // Currently selected note
             currentText: "",
+
+            // List of inspirational quotes for use in on empty dates in the calendar
+            quotes: [
+                "Don't judge each day by the harvest you reap but by the seeds that you plant. ",
+                "Whatever you are, be a good one.",
+                "Don’t wait. The time will never be just right.",
+                "Do what you can, with what you have, where you are.",
+                "Being glamorous is about strength and confidence. It's black and white - dramatic. You have to be strong.",
+                "If you dream it, you can do it.",
+                "Write it on your heart that every day is the best day in the year. ",
+                "Every moment is a fresh beginning.",
+                "Everything you’ve ever wanted is on the other side of fear. ",
+                "Begin at the beginning… and go on till you come to the end: then stop.",
+                "Make each day your masterpiece.",
+                "You cannot tailor-make the situations in life but you can tailor-make the attitudes to fit those situations.",
+                "The day is what you make it! So why not make it a great one?",
+                "To be the best, you must be able to handle the worst.",
+                "Believe and act as if it were impossible to fail.",
+                "You must be the change you wish to see in the world.",
+                "The greatest discovery of all time is that a person can change his future by merely changing his attitude."
+            ],
         };
     }
 
@@ -38,8 +59,10 @@ export default class AgendaScreen extends Component {
         return {
             title: 'Calendar',
             headerRight: (
+
                 <Button transparent onPress={params.toggleModal}>
-                    <Icon name="pencil" type={"FontAwesome"}/>
+                    <Text style={{color: '#007aff', fontSize: 16}}>Edit</Text>
+                    <Icon name="pencil" style={{color: '#007aff', marginLeft: 7}} type={"FontAwesome"}/>
                 </Button>
             )
         };
@@ -88,6 +111,8 @@ export default class AgendaScreen extends Component {
                                 <View style={styles.textContainer}>
                                     <TextInput
                                         style={styles.textInput}
+                                        multiline={true}
+                                        numberOfLines={5}
                                         keyboardType = 'default'
                                         returnKeyType="done"
                                         returnKeyLabel="done"
@@ -187,14 +212,16 @@ export default class AgendaScreen extends Component {
     // Every non-empty note gets represented as a simple Text-component.
     renderItem(item) {
         return (
-            <View style={[styles.item, {height: item.height}]}><Text>{item.name}</Text></View>
+            <View style={[styles.item, {minHeight: item.height}]}><Text>{item.name}</Text></View>
         );
     }
 
-    // Every empty note gets representet as a Text-component with the text "Ingen avtaler"
+    // Every empty note gets represented as a Text-component with the a random Inspiration Quote
     renderEmptyDate() {
+        let rand = this.state.quotes[Math.floor(Math.random() * this.state.quotes.length)];
+
         return (
-            <View style={styles.emptyDate}><Text>Ingen avtaler</Text></View>
+            <View style={styles.emptyDate}><Text style={{color: "#ccc"}}>“{rand}”</Text></View>
         );
     }
 
@@ -211,11 +238,12 @@ export default class AgendaScreen extends Component {
 
     // Returns the text/note for a given day
     itemData(item) {
+
         if(item === undefined) {
-            return "Ingen avtaler";
+            return "";
         }
         if(item.length === 0) {
-            return "Ingen avtaler";
+            return "";
         }
         return item[0].name;
     }
@@ -278,9 +306,9 @@ const styles = StyleSheet.create({
         marginTop: 17
     },
     emptyDate: {
-        height: 15,
         flex:1,
-        paddingTop: 30
+        paddingTop: 30,
+        marginRight: 10,
     },
     container: {
         flex: 1,

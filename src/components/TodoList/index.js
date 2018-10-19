@@ -41,7 +41,8 @@ export default class TodoList extends Component {
         // Right Header-button.
         headerRight: (
             <Button transparent onPress={() => Alert.alert("Info", "Swipe left on a task in order to remove it.")}>
-                <Icon name="ios-information-circle-outline" type="Ionicons"/>
+                <Text style={{color: '#007aff', fontSize: 16}}>Info</Text>
+                <Icon name="ios-information-circle-outline" style={{color: '#007aff', marginLeft: 7}} type="Ionicons"/>
             </Button>
         )
     };
