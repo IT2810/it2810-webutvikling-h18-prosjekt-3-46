@@ -24,7 +24,9 @@ export default class HomeScreen extends React.Component {
                "You must be the change you wish to see in the world.",
                "The greatest discovery of all time is that a person can change his future by merely changing his attitude."
            ],
-           displayText: "You must be the change you wish to see in the world."
+           displayText: "You must be the change you wish to see in the world.",
+           currentDay: "12:04",
+           firstLoad: true,
        };
    };
 
@@ -65,8 +67,13 @@ export default class HomeScreen extends React.Component {
    };
 
     getDate() {
-            let date = new Date();
+            if (this.state.firstLoad === true) {
+                this.setState({firstLoad: false});
+                return this.state.currentDay;
+            } else {
+                let date = new Date();
             return (date.getHours() < 10 ? "0" : "") + date.getHours() + ":" + (date.getMinutes() < 10 ? "0" : "") + date.getMinutes();
+            }
    }
 }
 
