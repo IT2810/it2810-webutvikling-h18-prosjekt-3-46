@@ -34,7 +34,32 @@ I dette prosjektet har vi benyttet oss av følgende teknologier
 - react-native-calendars
 - native-base
 - react-native-modal
-- Med mer?????????????????????
+- react-native-swipeout
+- react
+- react-native-circular-progress
+- expo
+
+#
+
+## Hvordan kjøre prosjektet
+#### 1. Klone eller last ned Github prosjektet og installer alle modulene
+Bruk kommandolinjen, velg mappen du ønsker å legge prosjektet i og skriv inn:
+```cmd
+> git clone git@github.com:IT2810/it2810-webutvikling-h18-prosjekt-3-46.git
+cd it2810-webutvikling-h18-prosjekt-3-46 
+> npm install
+```
+
+#### 2.	Last ned og installer appen Expo
+```cmd
+> npm install -g expo-cli
+```
+
+#### 3.	Start Expo
+```cmd
+> expo start
+```
+Skann QR-koden som vises i kommandolinjen med Expo-appen(Android), eller med kamera på iPhone. Expo finnes på Play store eller App store.
 
 #
 
@@ -43,7 +68,11 @@ Applikasjonen er ment å fungere som en Personal Information and Motivation Mana
 
 - Calendar: Denne fungerer både som en kalender og som en agenda med funksjonalitet for innlegging av planer for en gitt dag. En kan både navigere seg måned for måned, eller dag for dag. Dette justeres ved å velge en gitt dag når du er i månedsmodus, eller ved å trykke på den grå streken når du er i dagsmodus. Vi har også lagt til funksjonalitet for endring og sletting av allerede eksisterende notater.
 - Tasks: Med denne kan du som bruker legge ting du skal gjøre eller få gjort til i en liste med todos og fjerne de når du er ferdig med dem. for å legge til nye oppgaver skriver du inn i tekstfeltet nederst på skjermen, og for å fjerne noe swiper du de til venstre og trykker på "Done".
-- Daily Progress: Her har vi laget funksjonalitet for å fylle inn daglige mål for antall skritt man skal gå, antall push-ups og antall kalorier man skal få i seg. Ved å bruke modalmenyen som vises øverst på skjermen kan man enkelt sette seg mål, og resette dagens framgang. Man kan dog ikke starte skrittelleren om igjen, dette fordi den henter ut antall skritt fra mobilen selv.
+- Daily Progress: Her har vi laget funksjonalitet for å fylle inn daglige mål for antall skritt man skal gå, antall push-ups og antall kalorier man skal få i seg. Ved å bruke modalmenyen som vises øverst på skjermen kan man enkelt sette seg mål, og resette dagens framgang. Man kan dog ikke starte skrittelleren om igjen, dette fordi den henter ut antall skritt gått fra mobilens innebygde skritteller.
+- Home Screen: Her har vi ikke gjort så mye spennende, men vi har lagt inn en komponent som viser tilfeldige quotes, ut i fra en liste med predefinerte quotes. Ved å trykke på quoten får man en ny, tilfeldig quote. I tillegg viser den hvilken ukedag, måned og dato det er, pluss klokkeslett. 
+
+## Navigering
+Appen vår bruker BottomTabNavigator med en StackNavigator for å håndtere navigasjon mellom de ulike skjermene. Appen åpner med hva vi kaller HomeScreen, som tilbyr motiverende quotes til brukeren. På bunnen av skjermen tilbyr vi brukeren en meny for å navigere seg mellom skjermene. 
 
 #
 
@@ -57,5 +86,5 @@ I dette prosjektet har vi utviklet ved hjelp av issue-tracking på Github. For h
 #
 
 ## Testing
-- I dette prosjektet har vi ikke fått til å teste så mye som vi gjerne skulle ha gjort, men årsaken til det ligger mye i begrensninger ved Jest. For fremtidig testing ville vi nok heller ha testet mer systematisk. Vi har nå brukt snapshot-testing mens vi utviklet noen av komponentene våre, og det ville vi gjort i fremtiden også. Vi har ikke fått til så mye enhetstesting som vi ønsket, og det er noe vi gjerne skulle ha fått til. 
-
+- I dette prosjektet har vi ikke fått til å teste så mye som vi gjerne skulle ha gjort, men årsaken til det ligger mye i begrensninger ved Jest. For fremtidig testing ville vi nok heller ha testet mer systematisk. Vi har nå brukt snapshot-testing mens vi utviklet noen av komponentene våre, og det ville vi gjort i fremtiden også. Vi har ikke fått til så mye enhetstesting som vi ønsket, og det er noe vi gjerne skulle ha fått til. Underveis i prosjektet har vi kontinuerlig gjennomført testing på Android- og iPhone-mobiler gjennom prosjektet, for å sikre at den har lik funksjonalitet på disse.
+- For framtidig utvikling ville vi nok ha testet på en annen måte. Vi hadde problemer med at noen av komponentene våre var vanskelige å teste, og at jest ikke hadde tilstrekkelig testingfunksjonalitet som vi klarte å bruke. I fremtiden skulle vi gjerne ha fått til mer enhetstesting og testing av state. 

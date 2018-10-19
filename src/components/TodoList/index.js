@@ -10,9 +10,12 @@ import {
     Keyboard,
     Platform,
     TouchableOpacity,
-    StatusBar
+    StatusBar,
+    Alert
 } from "react-native";
 import Swipeout from 'react-native-swipeout';
+import Toast, {DURATION} from 'react-native-easy-toast'
+import {Button, Icon} from "native-base";
 
 const isAndroid = Platform.OS === "android";
 const viewPadding = 0;
@@ -31,14 +34,62 @@ export default class TodoList extends Component {
         text: ""
     };
 
+    // React Navigation configuration
     static navigationOptions = {
-        title: 'Tasks'
+        title: 'Tasks',
+
+        // Right Header-button.
+        headerRight: (
+            <Button transparent onPress={() => Alert.alert("Info", "Swipe left on a task in order to remove it.")}>
+                <Icon name="ios-information-circle-outline" type="Ionicons"/>
+            </Button>
+        )
     };
 
+
+    // LIFECYCLE METHODS
+
+    componentDidMount() {
+        this._isMounted = true;
+
+        // Move position of textInput if Keyboard is shown.
+        Keyboard.addListener(
+            isAndroid ? "keyboardDidShow" : "keyboardWillShow",
+            e => this._isMounted && this.setState({ viewPadding: e.endCoordinates.height + viewPadding - 50})
+        );
+
+        Keyboard.addListener(
+            isAndroid ? "keyboardDidHide" : "keyboardWillHide",
+            () => this._isMounted && this.setState({ viewPadding: viewPadding })
+        );
+
+        // Set internal list of tasks (in state) if component is mounted. Gets items from AsyncStorage
+        Tasks.all(tasks => this._isMounted && this.setState({ tasks: tasks || [] }));
+
+        // Changes the color of the status bar to fit with the displayed content
+        if (this.props.navigation === undefined) {
+
+        }else {
+            this._navListener = this.props.navigation.addListener('didFocus', () => {
+                StatusBar.setBarStyle('default');
+            });
+        }
+    }
+
+    componentWillUnmount() {
+        this._navListener.remove();
+        this._isMounted = false;
+    }
+
+    // END LIFECYCLE METHODS
+
+
+    // Update internal text-state as TextInput is written to.
     changeTextHandler = text => {
         this.setState({ text: text });
     };
 
+    // Handler that is run when the user adds a task.
     addTask = () => {
         let notEmpty = this.state.text.trim().length > 0;
 
@@ -56,6 +107,7 @@ export default class TodoList extends Component {
         }
     };
 
+    // Handler that is run when the user deletes a task.
     deleteTask = i => {
         this.setState(
             prevState => {
@@ -67,38 +119,15 @@ export default class TodoList extends Component {
             },
             () => Tasks.save(this.state.tasks)
         );
+        this.refs.toast.show('Good job!', 2000);
     };
 
-    componentDidMount() {
-        this._isMounted = true;
-        Keyboard.addListener(
-            isAndroid ? "keyboardDidShow" : "keyboardWillShow",
-            e => this._isMounted && this.setState({ viewPadding: e.endCoordinates.height + viewPadding - 50})
-        );
-
-        Keyboard.addListener(
-            isAndroid ? "keyboardDidHide" : "keyboardWillHide",
-            () => this._isMounted && this.setState({ viewPadding: viewPadding })
-        );
-
-        Tasks.all(tasks => this._isMounted && this.setState({ tasks: tasks || [] }));
-
-        // Changes the color of the status bar to fit with the displayed content
-        this._navListener = this.props.navigation.addListener('didFocus', () => {
-            StatusBar.setBarStyle('dark-content');
-        });
-    }
-
-    componentWillUnmount() {
-        this._navListener.remove();
-        this._isMounted = false;
-    }
-
+    // Render a single task with corresponding swipeout-component
     renderTask(item, index) {
         let swipeoutBtns = [
             {
                 text: "Done",
-                backgroundColor: "#a2e55b",
+                backgroundColor: "#5cb85c",
                 onPress: () => {
                     this.deleteTask(index)
                 }
@@ -124,6 +153,8 @@ export default class TodoList extends Component {
             </View>
         )
     }
+
+
     render() {
         return (
             <View style={[styles.container, { paddingBottom: this.state.viewPadding }]}>
@@ -134,9 +165,6 @@ export default class TodoList extends Component {
                     renderItem={({ item, index }) => this.renderTask(item, index)}
                 />
                 <View>
-                    <Text style={{color: "#8E8E8E"}}>
-                        Swipe left to complete
-                    </Text>
                 </View>
                 <View style={styles.textContainer}>
                     <TextInput
@@ -147,14 +175,26 @@ export default class TodoList extends Component {
                         placeholder="Add Tasks"
                         returnKeyType="done"
                         returnKeyLabel="done"
+                        underlineColorAndroid='transparent'
                     />
                 </View>
+                <Toast ref="toast"
+                       style={{backgroundColor:"#5cb85c"}}
+                       position='center'
+                       fadeInDuration={400}
+                       fadeOutDuration={900}
+                       opacity={1}
+                       textStyle={{color:'white', fontSize: 18, padding: 7,
+                           paddingLeft: 19, paddingRight: 19}}
+                />
             </View>
         );
     }
 
 }
 
+// Retrieve data from AsyncStorage. The list of tasks is stored as a String and is then
+// parsed (by splitting) into an Array for setting the internal State.
 let Tasks = {
     convertToArrayOfObject(tasks, callback) {
         return callback(

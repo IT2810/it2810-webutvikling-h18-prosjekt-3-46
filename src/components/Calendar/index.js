@@ -55,9 +55,13 @@ export default class AgendaScreen extends Component {
 
     // Changes the color of the status bar to fit with the displayed content
     componentDidMount() {
-        this._navListener = this.props.navigation.addListener('didFocus', () => {
-            StatusBar.setBarStyle('dark-content');
-        });
+        if (this.props.navigation === undefined) {
+
+        } else {
+            this._navListener = this.props.navigation.addListener('didFocus', () => {
+                StatusBar.setBarStyle('default');
+            });
+        }
     }
 
     componentWillUnmount() {
@@ -84,9 +88,11 @@ export default class AgendaScreen extends Component {
                                     <TextInput
                                         style={styles.textInput}
                                         multiline={true}
+                                        numberOfLines={5}
                                         keyboardType = 'default'
                                         returnKeyType="done"
                                         returnKeyLabel="done"
+                                        underlineColorAndroid='transparent'
                                         placeholder={"What are your plans?"}
                                         /* If this day has no corresponding note => no value
                                            If this day has a corresponding note => the value is set to this note */

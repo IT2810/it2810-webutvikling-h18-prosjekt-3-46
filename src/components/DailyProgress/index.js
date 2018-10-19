@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { Button, Icon} from 'native-base';
 import Modal from "react-native-modal";
+import Toast from "react-native-easy-toast";
 
 export default class DailyProgress extends React.Component {
     constructor(props) {
@@ -58,7 +59,7 @@ export default class DailyProgress extends React.Component {
 
         // Changes the color of the status bar to fit with the displayed content
         this._navListener = this.props.navigation.addListener('didFocus', () => {
-            StatusBar.setBarStyle('dark-content');
+            StatusBar.setBarStyle('default');
         });
     }
 
@@ -72,36 +73,41 @@ export default class DailyProgress extends React.Component {
 
     _retrieveData = async () => {
         try {
-            const goalStep = await AsyncStorage.getItem('@MyStore:GOAL_STEP');
-            const valueLeft = await AsyncStorage.getItem('@MyStore:PROGRESS_1');
-            const goalLeft = await AsyncStorage.getItem('@MyStore:GOAL_1');
-            const valueRight = await AsyncStorage.getItem('@MyStore:PROGRESS_2');
-            const goalRight = await AsyncStorage.getItem('@MyStore:GOAL_2');
-            if (valueLeft !== null) {
-                this._isMounted && this.setState({progressLeft: JSON.parse(valueLeft)});
+            const goalStep = JSON.parse(await AsyncStorage.getItem('GOAL_STEP'));
+            const valueLeft = JSON.parse(await AsyncStorage.getItem('PROGRESS_LEFT'));
+            const goalLeft = JSON.parse(await AsyncStorage.getItem('GOAL_1'));
+            const valueRight = JSON.parse(await AsyncStorage.getItem('PROGRESS_RIGHT'));
+            const goalRight = JSON.parse(await AsyncStorage.getItem('GOAL_2'));
+
+            if (valueLeft !== null && valueLeft !== undefined) {
+                this._isMounted && this.setState({progressLeft: valueLeft});
             }
-            if (valueRight !== null) {
-                this._isMounted && this.setState({progressRight: JSON.parse(valueRight)});
+            if (valueRight !== null && valueRight !== undefined) {
+                this._isMounted && this.setState({progressRight: valueRight});
             }
-            if (goalLeft !== null) {
-                this._isMounted && this.setState({goalLeft: JSON.parse(goalLeft)});
+            if (goalLeft !== null && goalLeft !== undefined) {
+                this._isMounted && this.setState({goalLeft: goalLeft});
             }
-            if (goalRight !== null) {
-                this._isMounted && this.setState({goalRight: JSON.parse(goalRight)});
+            if (goalRight !== null && goalRight !== undefined) {
+                this._isMounted && this.setState({goalRight: goalRight});
             }
-            if (goalStep !== null) {
-                this._isMounted && this.setState({goalStep: JSON.parse(goalStep)});
+            if (goalStep !== null && goalStep !== undefined) {
+                this._isMounted && this.setState({goalStep: goalStep});
             }
         } catch (error) {
         }
     };
 
     _saveData = () => {
-        AsyncStorage.setItem("@MyStore:PROGRESS_1", JSON.stringify(this.state.progressLeft));
-        AsyncStorage.setItem("@MyStore:PROGRESS_2", JSON.stringify(this.state.progressRight));
-        AsyncStorage.setItem("@MyStore:GOAL_1", JSON.stringify(this.state.goalLeft));
-        AsyncStorage.setItem("@MyStore:GOAL_2", JSON.stringify(this.state.goalRight));
-        AsyncStorage.setItem("@MyStore:GOAL_STEP", JSON.stringify(this.state.goalStep));
+        AsyncStorage.setItem("PROGRESS_LEFT", JSON.stringify(this.state.progressLeft));
+        AsyncStorage.setItem("PROGRESS_RIGHT", JSON.stringify(this.state.progressRight));
+        AsyncStorage.setItem("GOAL_1", JSON.stringify(this.state.goalLeft));
+        AsyncStorage.setItem("GOAL_2", JSON.stringify(this.state.goalRight));
+        AsyncStorage.setItem("GOAL_STEP", JSON.stringify(this.state.goalStep));
+    };
+
+    _saveItem = (item, value) => {
+        AsyncStorage.setItem(item, JSON.stringify(value));
     };
 
     changeProgressLeft(value) {
@@ -117,6 +123,7 @@ export default class DailyProgress extends React.Component {
             progressLeft: progress+value
         });
         this.goalsReached(0,value,0);
+        this._saveItem("PROGRESS_LEFT", progress+value);
     }
 
     changeProgressRight(value) {
@@ -132,23 +139,28 @@ export default class DailyProgress extends React.Component {
             progressRight: progress+value
         });
         this.goalsReached(0,0,value);
+        this._saveItem("PROGRESS_RIGHT", progress+value);
     }
 
     goalsReached(newStepVal, newLeftVal, newRightVal) {
         if((this.state.pastStepCount+newStepVal >= this.state.goalStep) &&
             (this.state.progressLeft+newLeftVal >= this.state.goalLeft) &&
             (this.state.progressRight+newRightVal >= this.state.goalRight)) {
-            // TODO
+
+            this.refs.toast.show('You reached your daily goals, well done!', 2000);
         }
     }
 
     onChanged(value, type) {
         if(type === "steps") {
             this.setState({goalStep: value});
+            this._saveItem("GOAL_STEP", value);
         } else if(type === "left") {
             this.setState({goalLeft: value});
+            this._saveItem("GOAL_1", value);
         } else if(type === "right") {
             this.setState({goalRight: value});
+            this._saveItem("GOAL_2", value);
         }
 
 
@@ -220,6 +232,7 @@ export default class DailyProgress extends React.Component {
                                     value = {this.state.goalStep.toString()}
                                     returnKeyType="done"
                                     returnKeyLabel="done"
+                                    underlineColorAndroid='transparent'
                                 />
                             </View>
 
@@ -232,6 +245,7 @@ export default class DailyProgress extends React.Component {
                                     value = {this.state.goalLeft.toString()}
                                     returnKeyType="done"
                                     returnKeyLabel="done"
+                                    underlineColorAndroid='transparent'
                                 />
                             </View>
 
@@ -244,6 +258,7 @@ export default class DailyProgress extends React.Component {
                                     value = {this.state.goalRight.toString()}
                                     returnKeyType="done"
                                     returnKeyLabel="done"
+                                    underlineColorAndroid='transparent'
                                 />
                             </View>
 
@@ -300,11 +315,11 @@ export default class DailyProgress extends React.Component {
                             justifyContent: "center",
                             alignItems: "center"}}>
                             <Button onPress={() => this.changeProgressLeft(2)} block success rounded style={styles.progressButton}>
-                                <Text style={{color: "white"}}>+ 2</Text>
+                                <Text style={{color: "white"}}>+2</Text>
                             </Button>
 
                             <Button onPress={() => this.changeProgressLeft(-1)} block danger rounded style={styles.progressButton}>
-                                <Text style={{color: "white"}}>- 1</Text>
+                                <Text style={{color: "white"}}>-1</Text>
                             </Button>
                         </View>
                     </View>
@@ -334,15 +349,25 @@ export default class DailyProgress extends React.Component {
                             alignItems: "center"
                             }}>
                             <Button onPress={() => this.changeProgressRight(100)} success rounded style={styles.progressButton}>
-                                <Text style={{color: "white"}}>+ 100</Text>
+                                <Text style={{color: "white"}}>+100</Text>
                             </Button>
 
                             <Button onPress={() => this.changeProgressRight(-50)} danger rounded style={styles.progressButton}>
-                                <Text style={{color: "white"}}>- 50</Text>
+                                <Text style={{color: "white"}}>-50</Text>
                             </Button>
                         </View>
                     </View>
                 </View>
+                <Toast ref="toast"
+                       style={{backgroundColor:"#5cb85c"}}
+                       position='top'
+                       positionValue={250}
+                       fadeInDuration={400}
+                       fadeOutDuration={900}
+                       opacity={1}
+                       textStyle={{color:'white', fontSize: 15, padding: 7,
+                           paddingLeft: 15, paddingRight: 15}}
+                />
             </View>
         );
     }
@@ -424,12 +449,11 @@ const styles = StyleSheet.create({
         width: "100%"
     },
     progressButton: {
-        padding: 10,
-        marginLeft: 4,
-        marginRight: 4,
+        marginLeft: 3,
+        marginRight: 3,
         justifyContent: "center",
         alignItems: "center",
-        flex: 0.4
+        flex: 0.45
     }
 });
 
