@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import TodoList from './src/components/TodoList';
-import Calendar from './src/components/Calendar';
-import DailyProgress from './src/components/DailyProgress';
-import HomeScreen from './src/components/HomeScreen';
+import TodoList from './src/screens/TodoList';
+import Calendar from './src/screens/Calendar';
+import DailyProgress from './src/screens/DailyProgress';
+import HomeScreen from './src/screens/HomeScreen';
 import {createBottomTabNavigator, createStackNavigator} from 'react-navigation';
 import {Icon} from "native-base";
 
