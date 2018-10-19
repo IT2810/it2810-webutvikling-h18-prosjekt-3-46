@@ -16,6 +16,9 @@
 
 - I prosjekt 3 av IT2810 Webutvikling har vi laget en React Native applikasjon ved hjelp av Expo. Expo er en open source tjeneste som bygger på React Native, og hjelper utvikleren å utvikle til både Android og iOS ved hjelp av Javascript og React. 
 
+* Mappestruktur:
+  Vi har plassert de forskjellige sidene i React Navigation i mappen `/screens/`
+
 
 #
 
@@ -94,5 +97,8 @@ I dette prosjektet har vi utviklet ved hjelp av issue-tracking på Github. For h
 - iPhone 6s
 - Motorola Moto G6 Plus
 - One Plus 6T
+<<<<<<< HEAD
 
 #
+=======
+>>>>>>> d6b4a53ef3b00239f03d99be770d9c089f996f16

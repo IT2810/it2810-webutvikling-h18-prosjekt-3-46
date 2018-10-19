@@ -46,7 +46,8 @@ export default class DailyProgress extends React.Component {
             // Setup a right header-button
             headerRight: (
                 <Button transparent onPress={params.toggleModal}>
-                    <Icon name="ios-cog" type="Ionicons"/>
+                    <Text style={{color: '#007aff', fontSize: 16}}>Config</Text>
+                    <Icon name="ios-cog" style={{color: '#007aff', marginLeft: 7}} type="Ionicons"/>
                 </Button>
             )
         };
@@ -348,11 +349,11 @@ export default class DailyProgress extends React.Component {
                             justifyContent: "center",
                             alignItems: "center"}}>
                             <Button onPress={() => this.changeProgressLeft(2)} block success rounded style={styles.progressButton}>
-                                <Text style={{color: "white"}}>+2</Text>
+                                <Text style={{color: "white", fontSize: 11}}>+2</Text>
                             </Button>
 
                             <Button onPress={() => this.changeProgressLeft(-1)} block danger rounded style={styles.progressButton}>
-                                <Text style={{color: "white"}}>-1</Text>
+                                <Text style={{color: "white", fontSize: 11}}>-1</Text>
                             </Button>
                         </View>
                     </View>
@@ -382,11 +383,11 @@ export default class DailyProgress extends React.Component {
                             alignItems: "center"
                             }}>
                             <Button onPress={() => this.changeProgressRight(100)} success rounded style={styles.progressButton}>
-                                <Text style={{color: "white"}}>+100</Text>
+                                <Text style={{color: "white", fontSize: 11}}>+100</Text>
                             </Button>
 
                             <Button onPress={() => this.changeProgressRight(-50)} danger rounded style={styles.progressButton}>
-                                <Text style={{color: "white"}}>-50</Text>
+                                <Text style={{color: "white", fontSize: 11}}>-50</Text>
                             </Button>
                         </View>
                     </View>
