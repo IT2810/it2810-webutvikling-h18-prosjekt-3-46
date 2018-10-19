@@ -25,12 +25,7 @@ export default class HomeScreen extends React.Component {
                "The greatest discovery of all time is that a person can change his future by merely changing his attitude."
            ],
            displayText: "You must be the change you wish to see in the world.",
-<<<<<<< HEAD
-           currentDay: "12:04",
-           firstLoad: true,
-=======
            curTime: new Date()
->>>>>>> 6ffa43cfc73f407f153c9c848e76a8859a500321
        };
    };
 

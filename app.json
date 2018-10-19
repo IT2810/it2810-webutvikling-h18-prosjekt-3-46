@@ -8,12 +8,12 @@
     "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/icon.png",
+    "icon": "./src/assets/splash.png",
     "splash": {
-      "image": "./src/assets/icon.png",
+      "image": "./src/assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff",
-      "backgroundImage": "./src/assets/icon.png"
+      "backgroundImage": "./src/assets/splash.png"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
