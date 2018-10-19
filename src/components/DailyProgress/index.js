@@ -2,7 +2,14 @@ import Expo from "expo";
 import React from "react";
 import { Pedometer } from "expo";
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import {StyleSheet, Text, View, AsyncStorage, TextInput} from "react-native";
+import {
+    StyleSheet,
+    Text,
+    View,
+    AsyncStorage,
+    TextInput,
+    StatusBar
+} from "react-native";
 import { Button, Icon} from 'native-base';
 import Modal from "react-native-modal";
 
@@ -48,7 +55,20 @@ export default class DailyProgress extends React.Component {
         this._isMounted = true;
         this._subscribe();
         this._retrieveData();
+
+        // Changes the color of the status bar to fit with the displayed content
+        this._navListener = this.props.navigation.addListener('didFocus', () => {
+            StatusBar.setBarStyle('dark-content');
+        });
     }
+
+    componentWillUnmount() {
+        this._unsubscribe();
+        this._saveData();
+        this._navListener.remove();
+        this._isMounted = false;
+    }
+
 
     _retrieveData = async () => {
         try {
@@ -75,12 +95,6 @@ export default class DailyProgress extends React.Component {
         } catch (error) {
         }
     };
-
-    componentWillUnmount() {
-        this._unsubscribe();
-        this._saveData();
-        this._isMounted = false;
-    }
 
     _saveData = () => {
         AsyncStorage.setItem("@MyStore:PROGRESS_1", JSON.stringify(this.state.progressLeft));
