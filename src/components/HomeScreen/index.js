@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, StatusBar} from 'react-native';
+import { Icon } from 'native-base';
 
 export default class HomeScreen extends React.Component {
    constructor() {
@@ -52,9 +53,7 @@ export default class HomeScreen extends React.Component {
    render() {
        return (
            <View style={styles.container}>
-               <StatusBar
-                   barStyle="light-content"
-               />
+               <StatusBar barStyle="light-content" />
                <ImageBackground
                    source={require('../../assets/background.jpg')}
                    imageStyle={{resizeMode: 'stretch'}}
@@ -65,10 +64,18 @@ export default class HomeScreen extends React.Component {
 
                    </View>
                    <TouchableOpacity onPress={this.toggleNewQuote} style={{marginBottom: 70, height: "50%", justifyContent: "center"}}>
-                       <View style={{backgroundColor:'rgba(0, 0, 0, 0.65)', padding:20, borderRadius: 15, width: "90%"}}>
-                           <Text style={styles.paragraph}>
+                       <View style={{backgroundColor:'rgba(0, 0, 0, 0.75)', padding:20, borderRadius: 15, width: "90%"}}>
+                           <Text style={[styles.paragraph, {opacity: 0.95}]}>
                                “{this.state.displayText}”
                            </Text>
+                           <Icon type="MaterialCommunityIcons" name="gesture-tap" style={{
+                               position: 'absolute',
+                               color: "white",
+                               fontSize: 28,
+                               opacity: 0.85,
+                               right: 4,
+                               bottom: 4
+                           }} />
                        </View>
                    </TouchableOpacity>
                </ImageBackground>
@@ -77,6 +84,7 @@ export default class HomeScreen extends React.Component {
        
    }
 
+   // Toggle the random selection of a new "Quote of the Day" to be displayed
    toggleNewQuote = () => {
        var rand = this.state.quotes[Math.floor(Math.random() * this.state.quotes.length)];
        if (rand===this.state.displayText) {
@@ -90,7 +98,7 @@ export default class HomeScreen extends React.Component {
             let date = this.state.curTime;
             let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
             let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-            return [days[date.getDay()] + " " + months[date.getMonth()] + ". " + date.getDate(),
+            return [days[date.getDay()] + ", " + months[date.getMonth()] + " " + date.getDate(),
                     (date.getHours() < 10 ? "0" : "") + date.getHours() + ":" +
                     (date.getMinutes() < 10 ? "0" : "") + date.getMinutes()];
    }
@@ -99,27 +107,28 @@ export default class HomeScreen extends React.Component {
 
 
 const styles = StyleSheet.create({
-   container: {
-     flex: 1,
-     alignItems: 'stretch',
-     justifyContent: 'center',
-   },
-   image: {
-     flexGrow:1,
-     height:'100%',
-     width:null,
-     alignItems: 'center',
-     justifyContent:'center',
-   },
-   paragraph: {
-     textAlign: 'center',
-     color: 'white',
-     fontSize: 30,
+    container: {
+         flex: 1,
+         alignItems: 'stretch',
+         justifyContent: 'center',
+    },
+    image: {
+         flexGrow:1,
+         height:'100%',
+         width:null,
+         alignItems: 'center',
+         justifyContent:'center',
+    },
+    paragraph: {
+        textAlign: 'center',
+        color: 'white',
+        fontSize: 30,
+        opacity: 0.9
      
-   },
+    },
     clock: {
-       fontSize: 70,
-        letterSpacing: 3
+        fontSize: 70,
+        letterSpacing: 1
     },
     day: {
         fontSize: 40,

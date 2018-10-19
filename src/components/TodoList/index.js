@@ -10,9 +10,12 @@ import {
     Keyboard,
     Platform,
     TouchableOpacity,
-    StatusBar
+    StatusBar,
+    Alert
 } from "react-native";
 import Swipeout from 'react-native-swipeout';
+import Toast, {DURATION} from 'react-native-easy-toast'
+import {Button, Icon} from "native-base";
 
 const isAndroid = Platform.OS === "android";
 const viewPadding = 0;
@@ -32,7 +35,12 @@ export default class TodoList extends Component {
     };
 
     static navigationOptions = {
-        title: 'Tasks'
+        title: 'Tasks',
+        headerRight: (
+            <Button transparent onPress={() => Alert.alert("Info", "Swipe left on a task in order to remove it.")}>
+                <Icon name="ios-information-circle-outline" type="Ionicons"/>
+            </Button>
+        )
     };
 
     changeTextHandler = text => {
@@ -67,6 +75,7 @@ export default class TodoList extends Component {
             },
             () => Tasks.save(this.state.tasks)
         );
+        this.refs.toast.show('Good job!', 2000);
     };
 
     componentDidMount() {
@@ -85,7 +94,7 @@ export default class TodoList extends Component {
 
         // Changes the color of the status bar to fit with the displayed content
         this._navListener = this.props.navigation.addListener('didFocus', () => {
-            StatusBar.setBarStyle('dark-content');
+            StatusBar.setBarStyle('default');
         });
     }
 
@@ -98,7 +107,7 @@ export default class TodoList extends Component {
         let swipeoutBtns = [
             {
                 text: "Done",
-                backgroundColor: "#a2e55b",
+                backgroundColor: "#5cb85c",
                 onPress: () => {
                     this.deleteTask(index)
                 }
@@ -134,9 +143,6 @@ export default class TodoList extends Component {
                     renderItem={({ item, index }) => this.renderTask(item, index)}
                 />
                 <View>
-                    <Text style={{color: "#8E8E8E"}}>
-                        Swipe left to complete
-                    </Text>
                 </View>
                 <View style={styles.textContainer}>
                     <TextInput
@@ -147,8 +153,18 @@ export default class TodoList extends Component {
                         placeholder="Add Tasks"
                         returnKeyType="done"
                         returnKeyLabel="done"
+                        underlineColorAndroid='transparent'
                     />
                 </View>
+                <Toast ref="toast"
+                       style={{backgroundColor:"#5cb85c"}}
+                       position='center'
+                       fadeInDuration={400}
+                       fadeOutDuration={900}
+                       opacity={1}
+                       textStyle={{color:'white', fontSize: 18, padding: 7,
+                           paddingLeft: 19, paddingRight: 19}}
+                />
             </View>
         );
     }
