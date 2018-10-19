@@ -146,6 +146,7 @@ Til tross for dette har vi valgt å ikke mellomlagre data i et eget nivå. Dette
 ## Utviklingsmetode
 Helt i begynnelsen av prosjektet vårt satte vi oss ned i lag og tegnet hvordan vi ønsket at applikasjonen skulle se ut. Dette gjorde det veldig enkelt å velge tredjepartskomponenter som passet vår visjon.
 I dette prosjektet har vi utviklet ved hjelp av issue-tracking på Github. For hvert issue vi har laget, har vi laget en tilsvarende branch hvor vi arbeider med issuet. Dette gjør det veldig enkelt for oss å hoppe mellom branches uten konflikter, samt at ikke flere trenger å jobbe på samme branch. Vi opplevde at det ga oss langt færre merge-konflikter enn hva vi fikk på sist prosjekt, der vi til tider var både to og tre personer på samme branch. Vi laget dermed en development-branch som vi videre inn i feature-branches som vi hver for oss jobbet på. Etterhvert som vi løste issues merget vi featurebranchene sammen med development-branchen som vi til slutt merget tilbake til masterbranchen igjen. Dette er en arbeidsmetode som er svært inspirert etter GitFlow WorkFlow, som lar oss skille ny kode fra kode vi anser oss som ferdig med.
+
 #
 
 ## Testing
