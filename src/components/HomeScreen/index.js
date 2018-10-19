@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, StatusBar} f
 
 export default class HomeScreen extends React.Component {
    constructor() {
-       super()
+       super();
        this.state = {
            quotes: [
                "Don't judge each day by the harvest you reap but by the seeds that you plant. ",
