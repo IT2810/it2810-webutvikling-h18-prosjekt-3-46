@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
    },
     clock: {
        fontSize: 70,
-        letterSpacing: 5
+        letterSpacing: 3
     },
     day: {
         fontSize: 40,
