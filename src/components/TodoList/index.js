@@ -67,9 +67,13 @@ export default class TodoList extends Component {
         Tasks.all(tasks => this._isMounted && this.setState({ tasks: tasks || [] }));
 
         // Changes the color of the status bar to fit with the displayed content
-        this._navListener = this.props.navigation.addListener('didFocus', () => {
-            StatusBar.setBarStyle('default');
-        });
+        if (this.props.navigation === undefined) {
+
+        }else {
+            this._navListener = this.props.navigation.addListener('didFocus', () => {
+                StatusBar.setBarStyle('default');
+            });
+        }
     }
 
     componentWillUnmount() {

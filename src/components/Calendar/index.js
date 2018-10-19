@@ -55,9 +55,13 @@ export default class AgendaScreen extends Component {
 
     // Changes the color of the status bar to fit with the displayed content
     componentDidMount() {
-        this._navListener = this.props.navigation.addListener('didFocus', () => {
-            StatusBar.setBarStyle('default');
-        });
+        if (this.props.navigation === undefined) {
+
+        } else {
+            this._navListener = this.props.navigation.addListener('didFocus', () => {
+                StatusBar.setBarStyle('default');
+            });
+        }
     }
 
     componentWillUnmount() {
