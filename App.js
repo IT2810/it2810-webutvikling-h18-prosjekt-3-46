@@ -8,7 +8,9 @@ import {createBottomTabNavigator, createStackNavigator} from 'react-navigation';
 import {Icon} from "native-base";
 
 
-
+// Navigation configuration. Our implementation uses React Navigation with a TabNavigator, where
+// we have nested a StackNavigator inside some of the screens, in order to get access to both a header and
+// Tab-bar on the bottom
 export default createBottomTabNavigator(
     {
         Home: HomeScreen,
@@ -18,6 +20,7 @@ export default createBottomTabNavigator(
 
     },
     {
+        // Set icon color and version depending on whether the tab is currently focused or not
         navigationOptions: ({ navigation }) => ({
             tabBarIcon: ({ focused, tintColor }) => {
                 const { routeName } = navigation.state;
@@ -40,6 +43,7 @@ export default createBottomTabNavigator(
             },
         }),
         tabBarOptions: {
+            // Blue for focused tab, gray otherwise
             activeTintColor: '#007aff',
             inactiveTintColor: 'gray',
         },
@@ -49,6 +53,8 @@ export default createBottomTabNavigator(
     }
 );
 
+
+// StyleSheet
 const styles = StyleSheet.create({
     container: {
       flex: 1,
