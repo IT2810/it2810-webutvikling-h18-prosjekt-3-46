@@ -139,7 +139,6 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 30,
         opacity: 0.9
-     
     },
     clock: {
         fontSize: 70,

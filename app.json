@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "schnoodle",
-    "description": "This project is really great.",
+    "description": "A project made for IT2810.",
     "slug": "schnoodle",
     "privacy": "public",
     "sdkVersion": "30.0.0",
