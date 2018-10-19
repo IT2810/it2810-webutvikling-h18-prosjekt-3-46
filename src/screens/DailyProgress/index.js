@@ -222,6 +222,7 @@ export default class DailyProgress extends React.Component {
                 this._isMounted && this.setState({
                     isPedometerAvailable: "Could not get isPedometerAvailable: " + error
                 });
+                alert("Could not get Pedometer:" + error);
             }
         );
 
