@@ -58,7 +58,11 @@ export default class DailyProgress extends React.Component {
 
     componentWillMount() {
         // Send toggleModal-method to Right Header-button as navigationOptions have no access to {this}
-        this.props.navigation.setParams({toggleModal: this._toggleModal});
+        if (this.props.navigation === undefined) {
+
+        } else{
+            this.props.navigation.setParams({toggleModal: this._toggleModal});
+        }
     }
 
     componentDidMount() {
@@ -67,9 +71,13 @@ export default class DailyProgress extends React.Component {
         this._retrieveData();
 
         // Changes the color of the status bar to fit with the displayed content
-        this._navListener = this.props.navigation.addListener('didFocus', () => {
-            StatusBar.setBarStyle('default');
-        });
+        if (this.props.navigation===undefined) {
+
+        } else {
+            this._navListener = this.props.navigation.addListener('didFocus', () => {
+                StatusBar.setBarStyle('default');
+            });
+        }
     }
 
     // Unsubscribe from all subscriptions, remove listeners and save data to AsyncStorage.

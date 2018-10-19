@@ -1,0 +1,1118 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for screens/Calendar/index.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">screens/Calendar</a> index.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">20% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>13/65</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">15% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>3/20</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">27.59% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>8/29</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">20.63% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>13/63</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component } from 'react';
+import {
+    Text,
+    View,
+    StyleSheet,
+    AsyncStorage,
+    TextInput,
+    TouchableWithoutFeedback,
+    Keyboard,
+    StatusBar,
+} from 'react-native';
+import {Agenda} from 'react-native-calendars';
+import { Button, Icon} from 'native-base';
+import Modal from "react-native-modal";
+&nbsp;
+/* Agendascreen. Provides as a calendar where the days in the calendar has corresponding notes.
+   You can both add, edit and delete the notes as you please. */
+export default class AgendaScreen extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            // Dates with corresponding notes
+            items: {},
+            // The currently selected date. Default: today
+            selectedDate: this.timeToString(new Date()),
+            // Toggles visibility of the modal
+            visibleModal: false,
+            // Currently selected note
+            currentText: "",
+&nbsp;
+            // List of inspirational quotes for use in on empty dates in the calendar
+            quotes: [
+                "Don't judge each day by the harvest you reap but by the seeds that you plant. ",
+                "Whatever you are, be a good one.",
+                "Don’t wait. The time will never be just right.",
+                "Do what you can, with what you have, where you are.",
+                "Being glamorous is about strength and confidence. It's black and white - dramatic. You have to be strong.",
+                "If you dream it, you can do it.",
+                "Write it on your heart that every day is the best day in the year. ",
+                "Every moment is a fresh beginning.",
+                "Everything you’ve ever wanted is on the other side of fear. ",
+                "Begin at the beginning… and go on till you come to the end: then stop.",
+                "Make each day your masterpiece.",
+                "You cannot tailor-make the situations in life but you can tailor-make the attitudes to fit those situations.",
+                "The day is what you make it! So why not make it a great one?",
+                "To be the best, you must be able to handle the worst.",
+                "Believe and act as if it were impossible to fail.",
+                "You must be the change you wish to see in the world.",
+                "The greatest discovery of all time is that a person can change his future by merely changing his attitude."
+            ],
+        };
+    }
+&nbsp;
+&nbsp;
+    static navigationOptions = <span class="fstat-no" title="function not covered" >({</span> navigation }) =&gt; {
+        const params = <span class="cstat-no" title="statement not covered" >navigation.state.params || {};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return {</span>
+            title: 'Calendar',
+            headerRight: (
+&nbsp;
+                &lt;Button transparent onPress={params.toggleModal}&gt;
+                    &lt;Text style={{color: '#007aff', fontSize: 16}}&gt;Edit&lt;/Text&gt;
+                    &lt;Icon name="pencil" style={{color: '#007aff', marginLeft: 7}} type={"FontAwesome"}/&gt;
+                &lt;/Button&gt;
+            )
+        };
+    };
+&nbsp;
+    componentWillMount() {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (this.props.navigation === undefined) {
+&nbsp;
+        } else {
+<span class="cstat-no" title="statement not covered" >            this.props.navigation.setParams({toggleModal: this._toggleModal});</span>
+        }
+    }
+&nbsp;
+&nbsp;
+    // Changes the color of the status bar to fit with the displayed content
+    componentDidMount() {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (this.props.navigation === undefined) {
+&nbsp;
+        } else {
+<span class="cstat-no" title="statement not covered" >            this._navListener = this.props.navigation.addListener('didFocus', <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                StatusBar.setBarStyle('default');</span>
+            });
+        }
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    co</span>mponentWillUnmount() {
+<span class="cstat-no" title="statement not covered" >        this._navListener.remove();</span>
+    }
+&nbsp;
+    render() {
+        return (
+            &lt;View style={styles.container}&gt;
+                &lt;View&gt;
+                    &lt;Modal
+                        // Makes the modal appear and disappear
+                        isVisible={this.state.visibleModal}
+                        // Style applied to the modal
+                        style={styles.modalContent}&gt;
+                        &lt;TouchableWithoutFeedback
+                            // Makes the keyboard disappear when a press is registered outside of the keyboard
+                            onPress={Keyboard.dismiss}
+                            accessible={false}&gt;
+                            &lt;View style={styles.smallContainer}&gt;
+                                &lt;Text style={{fontSize: 30, fontWeight: "bold", letterSpacing: 3}}&gt;{this.getParsedDate(this.state.selectedDate)}&lt;/Text&gt;
+                                &lt;Text style={{marginTop: 30}}&gt;Edit a note for this day:&lt;/Text&gt;
+                                &lt;View style={styles.textContainer}&gt;
+                                    &lt;TextInput
+                                        style={styles.textInput}
+                                        multiline={true}
+                                        numberOfLines={5}
+                                        keyboardType = 'default'
+                                        returnKeyType="done"
+                                        returnKeyLabel="done"
+                                        underlineColorAndroid='transparent'
+                                        placeholder={"What are your plans?"}
+                                        /* If this day has no corresponding note =&gt; no value
+                                           If this day has a corresponding note =&gt; the value is set to this note */
+                                        value={ /*this.state.items[this.state.selectedDate] === undefined ||
+                                                this.state.items[this.state.selectedDate].length === 0 ?
+                                                '' : */this.itemData(this.state.items[this.state.selectedDate])
+                                        }
+                                        onChangeText={<span class="fstat-no" title="function not covered" >(t</span>ext) =&gt; <span class="cstat-no" title="statement not covered" >this.setState({currentText: text})}</span>
+                                    /&gt;
+                                &lt;/View&gt;
+                                &lt;Button block success onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >this.addText(false)}</span> style={{marginTop: 20}}&gt;
+                                    &lt;Text style={{color: "white"}}&gt;Add Note&lt;/Text&gt;
+                                &lt;/Button&gt;
+                                &lt;Button block danger onPress={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >this.addText(true)}</span> style={{marginTop: 20}}&gt;
+                                    &lt;Text style={{color: "white"}}&gt;Remove Note&lt;/Text&gt;
+                                &lt;/Button&gt;
+                                &lt;Button block onPress={this._toggleModal} style={{marginTop: 20}}&gt;
+                                    &lt;Text style={{color: "white"}}&gt;Close&lt;/Text&gt;
+                                &lt;/Button&gt;
+                            &lt;/View&gt;
+                        &lt;/TouchableWithoutFeedback&gt;
+                    &lt;/Modal&gt;
+                &lt;/View&gt;
+&nbsp;
+                &lt;Agenda
+                    /* The list of items that have to be displayed in agenda. If you want to render item as empty date
+                       the value of date key has to be an empty array []. If there exists no value for date key it is
+                       considered that the date in question is not yet loaded */
+                    items={this.state.items}
+                    // callback that gets called when items for a certain month should be loaded (month became visible)
+                    loadItemsForMonth={this.loadItems.bind(this)}
+                    // specify how each item should be rendered in agenda
+                    renderItem={this.renderItem.bind(this)}
+                    // specify how empty date content with no items should be rendered
+                    renderEmptyDate={this.renderEmptyDate.bind(this)}
+                    // specify your item comparison function for increased performance
+                    rowHasChanged={this.rowHasChanged.bind(this)}
+                    // callback that gets called on day press
+                    onDayPress={<span class="fstat-no" title="function not covered" >(d</span>ay) =&gt; {<span class="cstat-no" title="statement not covered" >this.selectDate(day)}</span>}
+                    // callback that gets called when day changes while scrolling agenda list
+                    onDayChange={<span class="fstat-no" title="function not covered" >(d</span>ay) =&gt; {<span class="cstat-no" title="statement not covered" >this.selectDate(day)}</span>}
+                    // agenda themes
+                    theme={{
+                        agendaTodayColor: '#007aff',
+                        selectedDayBackgroundColor: '#007aff',
+                        dotColor: '#007aff',
+                        todayTextColor: '#007aff',
+                    }}
+                /&gt;
+            &lt;/View&gt;
+        );
+    }
+&nbsp;
+    getParsedDate(date){
+        let dateArray = String(date).split('-');
+        return parseInt(dateArray[2]) + "." + parseInt(dateArray[1]) + "." + parseInt(dateArray[0]);
+    }
+&nbsp;
+    // Renders a predefined amount of dates with corresponding texts/notes.
+    loadItems(day) {
+        setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >            for (let i = -15; i &lt; 50; i++) {</span>
+                const time = <span class="cstat-no" title="statement not covered" >day.timestamp + i * 24 * 60 * 60 * 1000;</span>
+                const strTime = <span class="cstat-no" title="statement not covered" >this.timeToString(time);</span>
+<span class="cstat-no" title="statement not covered" >                if (!this.state.items[strTime]) {</span>
+<span class="cstat-no" title="statement not covered" >                    this.state.items[strTime] = [];</span>
+<span class="cstat-no" title="statement not covered" >                    this._retrieveData(strTime);</span>
+                }
+            }
+            const newItems = <span class="cstat-no" title="statement not covered" >{};</span>
+<span class="cstat-no" title="statement not covered" >            Object.keys(this.state.items).forEach(<span class="fstat-no" title="function not covered" >ke</span>y =&gt; {<span class="cstat-no" title="statement not covered" >newItems[key] = this.state.items[key];}</span>);</span>
+<span class="cstat-no" title="statement not covered" >            this.setState({</span>
+                items: newItems
+            });
+        }, 1000);
+    }
+&nbsp;
+    // Renders one date with corresponding text/note
+<span class="fstat-no" title="function not covered" >    lo</span>adItem(stringDate) {
+<span class="cstat-no" title="statement not covered" >        setTimeout(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                if (!this.state.items[stringDate]) {</span>
+<span class="cstat-no" title="statement not covered" >                    this.state.items[stringDate] = [];</span>
+<span class="cstat-no" title="statement not covered" >                    this._retrieveData(stringDate);</span>
+                }
+            const newItems = <span class="cstat-no" title="statement not covered" >{};</span>
+<span class="cstat-no" title="statement not covered" >            Object.keys(this.state.items).forEach(<span class="fstat-no" title="function not covered" >ke</span>y =&gt; {<span class="cstat-no" title="statement not covered" >newItems[key] = this.state.items[key];}</span>);</span>
+<span class="cstat-no" title="statement not covered" >            this.setState({</span>
+                items: newItems
+            });
+        }, 1000);
+    }
+&nbsp;
+    // Every non-empty note gets represented as a simple Text-component.
+<span class="fstat-no" title="function not covered" >    re</span>nderItem(item) {
+<span class="cstat-no" title="statement not covered" >        return (</span>
+            &lt;View style={[styles.item, {minHeight: item.height}]}&gt;&lt;Text&gt;{item.name}&lt;/Text&gt;&lt;/View&gt;
+        );
+    }
+&nbsp;
+    // Every empty note gets represented as a Text-component with the a random Inspiration Quote
+<span class="fstat-no" title="function not covered" >    re</span>nderEmptyDate() {
+        let rand = <span class="cstat-no" title="statement not covered" >this.state.quotes[Math.floor(Math.random() * this.state.quotes.length)];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return (</span>
+            &lt;View style={styles.emptyDate}&gt;&lt;Text style={{color: "#ccc"}}&gt;“{rand}”&lt;/Text&gt;&lt;/View&gt;
+        );
+    }
+&nbsp;
+    // Checks if row has changed
+<span class="fstat-no" title="function not covered" >    ro</span>wHasChanged(r1, r2) {
+<span class="cstat-no" title="statement not covered" >        return r1.name !== r2.name;</span>
+    }
+&nbsp;
+    // Converts a dateobjekt to a string
+    timeToString(time) {
+        const date = new Date(time);
+        return date.toISOString().split('T')[0];
+    }
+&nbsp;
+    // Returns the text/note for a given day
+    itemData(item) {
+&nbsp;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if(item === undefined) {
+            return "";
+        }
+<span class="cstat-no" title="statement not covered" >        if(item.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >            return "";</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return item[0].name;</span>
+    }
+&nbsp;
+    // Updates currently selected date and corresponding text/note
+<span class="fstat-no" title="function not covered" >    se</span>lectDate(day) {
+<span class="cstat-no" title="statement not covered" >        this.setState({selectedDate: day.dateString,</span>
+                        currentText: this.itemData(this.state.items[this.state.selectedDate])
+        });
+    }
+&nbsp;
+    // Toggles visibility of the modal-component
+    _toggleModal = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+        let temp = <span class="cstat-no" title="statement not covered" >this.state.visibleModal;</span>
+<span class="cstat-no" title="statement not covered" >        this.setState({visibleModal: !temp});</span>
+    };
+&nbsp;
+    // Handles the adding and deletion of a text/note for a given day
+<span class="fstat-no" title="function not covered" >    ad</span>dText(deleteText) {
+<span class="cstat-no" title="statement not covered" >        this._toggleModal();</span>
+<span class="cstat-no" title="statement not covered" >        if(this.state.currentText !== "" &amp;&amp; deleteText === false) {</span>
+<span class="cstat-no" title="statement not covered" >            this._saveData(this.state.selectedDate, this.state.currentText);</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >            AsyncStorage.removeItem(this.state.selectedDate);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        this._retrieveData(this.state.selectedDate);</span>
+<span class="cstat-no" title="statement not covered" >        this.loadItem(this.state.selectedDate);</span>
+    }
+&nbsp;
+    // Retrieves previously asynchronously stored data
+    _retrieveData = <span class="fstat-no" title="function not covered" >as</span>ync (dateKey) =&gt; {
+<span class="cstat-no" title="statement not covered" >        try {</span>
+            const note = <span class="cstat-no" title="statement not covered" >await AsyncStorage.getItem(dateKey);</span>
+<span class="cstat-no" title="statement not covered" >            this.state.items[dateKey] = [];</span>
+<span class="cstat-no" title="statement not covered" >            if (note !== null) {</span>
+<span class="cstat-no" title="statement not covered" >                this.state.items[dateKey].push({</span>
+                    name: note,
+                    height: Math.max(100, Math.floor(Math.random() * 200))
+                });
+            }
+        } catch (error) {
+        }
+    }
+&nbsp;
+    // Saves the data asynchronously
+    _saveData = <span class="fstat-no" title="function not covered" >(d</span>ateKey, note) =&gt; {
+<span class="cstat-no" title="statement not covered" >        AsyncStorage.removeItem(dateKey);</span>
+<span class="cstat-no" title="statement not covered" >        AsyncStorage.setItem(dateKey, note);</span>
+    };
+&nbsp;
+}
+&nbsp;
+const styles = StyleSheet.create({
+    item: {
+        backgroundColor: 'white',
+        flex: 1,
+        borderRadius: 5,
+        padding: 10,
+        marginRight: 15,
+        marginTop: 25,
+        marginBottom: 10
+    },
+    emptyDate: {
+        flex:1,
+        paddingTop: 35,
+        marginRight: 10,
+        height: 100,
+        marginBottom: 20
+    },
+    container: {
+        flex: 1,
+        width: "100%"
+&nbsp;
+    },
+    smallContainer: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#fff",
+        width: "100%"
+    },
+    textContainer: {
+        backgroundColor: "white",
+        padding: 10,
+        width: "100%"
+    },
+    modalContent: {
+        backgroundColor: "white",
+        padding: 22,
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 4,
+        borderColor: "rgba(0, 0, 0, 0.1)",
+        width: "90%"
+    },
+    textInput: {
+        height: 150,
+        paddingRight: 15,
+        paddingLeft: 15,
+        paddingTop: 15,
+        borderColor: "#F2F2F2",
+        borderWidth: 2,
+        borderRadius: 15,
+        backgroundColor: "white",
+        fontSize: 18
+    },
+});</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Oct 19 2018 23:05:13 GMT+0200 (Central European Summer Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

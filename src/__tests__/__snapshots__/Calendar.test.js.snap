@@ -147,21 +147,17 @@ exports[`renders correctly 1`] = `
               returnKeyLabel="done"
               returnKeyType="done"
               style={
-                Array [
-                  Object {
-                    "backgroundColor": "white",
-                    "borderColor": "#F2F2F2",
-                    "borderRadius": 15,
-                    "borderWidth": 2,
-                    "fontSize": 18,
-                    "paddingLeft": 15,
-                    "paddingRight": 15,
-                    "paddingTop": 15,
-                  },
-                  Object {
-                    "height": 150,
-                  },
-                ]
+                Object {
+                  "backgroundColor": "white",
+                  "borderColor": "#F2F2F2",
+                  "borderRadius": 15,
+                  "borderWidth": 2,
+                  "fontSize": 18,
+                  "height": 150,
+                  "paddingLeft": 15,
+                  "paddingRight": 15,
+                  "paddingTop": 15,
+                }
               }
               underlineColorAndroid="transparent"
               value=""
