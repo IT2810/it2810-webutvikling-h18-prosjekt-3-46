@@ -85,6 +85,13 @@ exports[`renders correctly 1`] = `
         swipeThreshold={100}
       >
         <View
+          accessible={false}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
           style={
             Object {
               "alignItems": "center",
@@ -101,12 +108,25 @@ exports[`renders correctly 1`] = `
             ellipsizeMode="tail"
             style={
               Object {
-                "marginTop": 20,
+                "fontSize": 30,
+                "fontWeight": "bold",
+                "letterSpacing": 3,
               }
             }
           >
-            Edit a note for this day: 
-            2018-10-19
+            19.10.2018
+          </Text>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "marginTop": 30,
+              }
+            }
+          >
+            Edit a note for this day:
           </Text>
           <View
             style={
@@ -120,7 +140,9 @@ exports[`renders correctly 1`] = `
             <TextInput
               allowFontScaling={true}
               keyboardType="default"
+              multiline={true}
               onChangeText={[Function]}
+              placeholder="What are your plans?"
               returnKeyLabel="done"
               returnKeyType="done"
               style={
@@ -130,12 +152,13 @@ exports[`renders correctly 1`] = `
                   "borderRadius": 15,
                   "borderWidth": 2,
                   "fontSize": 18,
-                  "height": 50,
+                  "height": 150,
                   "paddingLeft": 15,
                   "paddingRight": 15,
+                  "paddingTop": 15,
                 }
               }
-              value="Ingen avtaler"
+              value=""
             />
           </View>
           <View
@@ -185,6 +208,55 @@ exports[`renders correctly 1`] = `
               }
             >
               Add Note
+            </Text>
+          </View>
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "alignSelf": "stretch",
+                "backgroundColor": "#d9534f",
+                "borderBottomWidth": null,
+                "borderColor": "#007aff",
+                "borderLeftWidth": null,
+                "borderRadius": 5,
+                "borderRightWidth": null,
+                "borderTopWidth": null,
+                "borderWidth": undefined,
+                "elevation": 2,
+                "flexDirection": "row",
+                "height": 45,
+                "justifyContent": "center",
+                "marginTop": 20,
+                "opacity": 1,
+                "paddingBottom": 6,
+                "paddingTop": 6,
+                "shadowColor": undefined,
+                "shadowOffset": undefined,
+                "shadowOpacity": undefined,
+                "shadowRadius": undefined,
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "white",
+                }
+              }
+            >
+              Remove Note
             </Text>
           </View>
           <View

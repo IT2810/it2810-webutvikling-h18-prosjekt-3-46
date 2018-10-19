@@ -38,7 +38,7 @@ export default class AgendaScreen extends Component {
 
     componentWillMount() {
         if (this.props.navigation === undefined) {
-
+            
         } else {
             this.props.navigation.setParams({toggleModal: this._toggleModal});
         }
