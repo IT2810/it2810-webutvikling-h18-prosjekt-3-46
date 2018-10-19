@@ -32,7 +32,6 @@ export default class HomeScreen extends React.Component {
        title: 'Home'
    };
 
-
    render() {
        return (
            <View style={styles.container}>
@@ -40,10 +39,13 @@ export default class HomeScreen extends React.Component {
                    source={require('../../assets/background.jpg')}
                    imageStyle={{resizeMode: 'stretch'}}
                    style={styles.image}>
-                   <TouchableOpacity onPress={this.toggleNewQuote}>
+                   <View style={{padding:20, marginBottom: 70, marginTop: 40, width: "90%", flex: 1}}>
+                        <Text style={[styles.paragraph, {fontSize: 60, letterSpacing: 4}]}>{this.getDate()}</Text>
+                   </View>
+                   <TouchableOpacity onPress={this.toggleNewQuote} style={{marginBottom: 100, height: "50%", justifyContent: "center"}}>
                        <View style={{backgroundColor:'rgba(0, 0, 0, 0.65)', padding:20, borderRadius: 15, width: "90%"}}>
                            <Text style={styles.paragraph}>
-                               {this.state.displayText}
+                               “{this.state.displayText}”
                            </Text>
                        </View>
                    </TouchableOpacity>
@@ -60,6 +62,11 @@ export default class HomeScreen extends React.Component {
        } else {
            this.setState({displayText: rand});
        }
+   };
+
+    getDate() {
+            let date = new Date();
+            return (date.getHours() < 10 ? "0" : "") + date.getHours() + ":" + (date.getMinutes() < 10 ? "0" : "") + date.getMinutes();
    }
 }
 
