@@ -43,14 +43,18 @@ export default class HomeScreen extends React.Component {
 
    // Changes the color of the status bar to fit with the displayed content
     componentDidMount() {
-        this._navListener = this.props.navigation.addListener('didFocus', () => {
-            StatusBar.setBarStyle('light-content');
-        });
-        setInterval( () => {
-            this.setState({
-                curTime : new Date()
-            })
-        },10000);
+        if (this.props.navigation === undefined) {
+
+        } else {
+            this._navListener = this.props.navigation.addListener('didFocus', () => {
+                StatusBar.setBarStyle('light-content');
+            });
+            setInterval( () => {
+                this.setState({
+                    curTime : new Date()
+                })
+            },10000);
+        }
     }
 
     componentWillUnmount() {

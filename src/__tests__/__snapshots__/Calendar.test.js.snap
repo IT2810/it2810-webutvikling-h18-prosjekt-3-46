@@ -141,6 +141,7 @@ exports[`renders correctly 1`] = `
               allowFontScaling={true}
               keyboardType="default"
               multiline={true}
+              numberOfLines={5}
               onChangeText={[Function]}
               placeholder="What are your plans?"
               returnKeyLabel="done"
@@ -158,6 +159,7 @@ exports[`renders correctly 1`] = `
                   "paddingTop": 15,
                 }
               }
+              underlineColorAndroid="transparent"
               value=""
             />
           </View>
