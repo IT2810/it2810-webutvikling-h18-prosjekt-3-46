@@ -64,17 +64,17 @@ export default class HomeScreen extends React.Component {
 
                    </View>
                    <TouchableOpacity onPress={this.toggleNewQuote} style={{marginBottom: 70, height: "50%", justifyContent: "center"}}>
-                       <View style={{backgroundColor:'rgba(0, 0, 0, 0.65)', padding:20, borderRadius: 15, width: "90%"}}>
-                           <Text style={styles.paragraph}>
+                       <View style={{backgroundColor:'rgba(0, 0, 0, 0.75)', padding:20, borderRadius: 15, width: "90%"}}>
+                           <Text style={[styles.paragraph, {opacity: 0.95}]}>
                                “{this.state.displayText}”
                            </Text>
                            <Icon type="MaterialCommunityIcons" name="gesture-tap" style={{
                                position: 'absolute',
                                color: "white",
-                               fontSize: 27,
-                               opacity: 0.7,
-                               right: 3,
-                               bottom: 3
+                               fontSize: 28,
+                               opacity: 0.85,
+                               right: 4,
+                               bottom: 4
                            }} />
                        </View>
                    </TouchableOpacity>
@@ -107,26 +107,27 @@ export default class HomeScreen extends React.Component {
 
 
 const styles = StyleSheet.create({
-   container: {
-     flex: 1,
-     alignItems: 'stretch',
-     justifyContent: 'center',
-   },
-   image: {
-     flexGrow:1,
-     height:'100%',
-     width:null,
-     alignItems: 'center',
-     justifyContent:'center',
-   },
-   paragraph: {
-     textAlign: 'center',
-     color: 'white',
-     fontSize: 30,
+    container: {
+         flex: 1,
+         alignItems: 'stretch',
+         justifyContent: 'center',
+    },
+    image: {
+         flexGrow:1,
+         height:'100%',
+         width:null,
+         alignItems: 'center',
+         justifyContent:'center',
+    },
+    paragraph: {
+        textAlign: 'center',
+        color: 'white',
+        fontSize: 30,
+        opacity: 0.9
      
-   },
+    },
     clock: {
-       fontSize: 70,
+        fontSize: 70,
         letterSpacing: 1
     },
     day: {
