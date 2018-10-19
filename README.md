@@ -1,15 +1,25 @@
 # it2810-webutvikling-h18-prosjekt-3-gruppe--46
 
+## Beskrivelse av applikasjonen
+- Vår PIMM-applikasjon består av fire forskjellige skjermer: startskjerm (Homescreen), kalender (Calender), liste med gjøremål (Todo) og en skjerm med personlige mål (DailyProgress).
+
+
 - I prosjekt 3 av IT2810 Webutvikling har vi lageet en React Native applikasjon ved hjelp av Expo. Expo er en open source tjeneste som bygger på React Native, og hjelper utvikleren å utvikle til både Android og iOS ved hjelp av Javascript og React. 
 
 - For dette prosjektet har vi brukt følgende teknologier
 
 #
 
-## Avhengigheter
-I dette prosjektet har vi brukt følgende teknologi
+## Teknologier
+I dette prosjektet har vi benyttet oss av følgende teknologier
 - Expo
 - Jest
+- React Native
+- AsyncStorage
+
+#
+
+## Avhengigheter
 - react-navigation
 - react-native-calendars
 - native-base
