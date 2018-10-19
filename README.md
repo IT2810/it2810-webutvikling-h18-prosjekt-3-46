@@ -7,7 +7,7 @@
 
 - For kalenderen vår benyttet vi en en tredjeparts-modul: `react-native-calendars`. Fra denne modulen importerte vi en Agenda komponent som enkelt ga oss mulighet for å legge til en notis eller en agenda for en gitt dag. Den er også enkel å navigere seg frem i, samt at den også er oversiktlig da den merker av alle dager som har en notis festet til seg. Vi benyttet oss også av Modal-komponenten som vi importerte fra react-native-modal. Den ga oss ekstra rom for å implementere tekstbokser og knapper i forbindelse med å fjerne/legge til notiser.
 
-- For gjøremålslisten benyttet vi tredjeparts-modulen: `react-native-swipeout` som vi importerte Swipeout-komponenten fra. #MAGNUS FORKLAR
+- For gjøremålslisten benyttet vi tredjeparts-modulen: `react-native-swipeout` hvor vi importerte Swipeout-komponenten fra. Vi benyttet i tillegg et kodeeksempel fra Codeburst som grunnlag for selve listen (kilde nederst). Swipeout-komponenten omkapsler liste-elementet, og støtter også flere swipeout-knapper, dersom man skulle ønske det.
 
 - For skjermen som holder oversikt over personlige mål har vi valgt å implementere en skritteller som funksjonalitet utover normal React-Native UI problematikk. Vi implementerte også en måte å holde oversikt over antall konsumerte kalorier iløpet av en dag samt antall utførte push-ups. For å få til dette har vi benyttet oss av Pedometer-komponenten fra Expo API-et. Samt en AnimatedCircularProgress-komponent fra `react-native-circular-progress`. Vi har også her benyttet oss av Modal-komponenten for å tilby innstillinger av skritteleren, kalorimåleren og push-up måleren.
 
