@@ -7,7 +7,8 @@ import {
     TextInput,
     TouchableWithoutFeedback,
     Keyboard,
-    StatusBar
+    StatusBar,
+    Platform
 } from 'react-native';
 import {Agenda} from 'react-native-calendars';
 import { Button, Icon} from 'native-base';
@@ -86,7 +87,7 @@ export default class AgendaScreen extends Component {
                                 <Text style={{marginTop: 30}}>Edit a note for this day:</Text>
                                 <View style={styles.textContainer}>
                                     <TextInput
-                                        style={[styles.textInput,  {height: Platform.OS === 'android' ? 300 : 150}]}
+                                        style={styles.textInput}
                                         multiline={true}
                                         numberOfLines={5}
                                         keyboardType = 'default'
@@ -310,6 +311,7 @@ const styles = StyleSheet.create({
         width: "90%"
     },
     textInput: {
+        height: 150,
         paddingRight: 15,
         paddingLeft: 15,
         paddingTop: 15,
