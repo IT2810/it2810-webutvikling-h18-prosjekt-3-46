@@ -82,7 +82,7 @@ export default class AgendaScreen extends Component {
                                 <Text style={{marginTop: 30}}>Edit a note for this day:</Text>
                                 <View style={styles.textContainer}>
                                     <TextInput
-                                        style={styles.textInput}
+                                        style={[styles.textInput,  {height: Platform.OS === 'android' ? 300 : 150}]}
                                         multiline={true}
                                         numberOfLines={5}
                                         keyboardType = 'default'
@@ -306,7 +306,6 @@ const styles = StyleSheet.create({
         width: "90%"
     },
     textInput: {
-        height: 150,
         paddingRight: 15,
         paddingLeft: 15,
         paddingTop: 15,
