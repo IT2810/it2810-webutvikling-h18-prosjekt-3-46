@@ -38,7 +38,7 @@ Punkter som er verdt å merke seg i denne oversikten:
 * `/__tests__` - Inneholder alle tester, blant annet snapshot-tester
 
 
-#
+
 
 ## Teknologier
 I dette prosjektet har vi benyttet oss av følgende teknologier
@@ -47,7 +47,7 @@ I dette prosjektet har vi benyttet oss av følgende teknologier
 - React Native
 - AsyncStorage
 
-#
+
 
 ## Avhengigheter
 - `react-navigation`
