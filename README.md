@@ -16,8 +16,16 @@
 
 - I prosjekt 3 av IT2810 Webutvikling har vi laget en React Native applikasjon ved hjelp av Expo. Expo er en open source tjeneste som bygger på React Native, og hjelper utvikleren å utvikle til både Android og iOS ved hjelp av Javascript og React. 
 
-* Mappestruktur:
-  Vi har plassert de forskjellige sidene i React Navigation i mappen `/screens/`
+- Mappestruktur:
+  Vi har plassert de forskjellige sidene i React Navigation i mappen `/screens/`. Her ligger de forskjellige Screen-komponentene, navngitt vha. Pascal Case. Selve mappen har navnet på komponenten og filen som inneholder komponenten ligger heter `index.js`, for enkelt oppslag.
+├───assets\
+├───screens\
+│   ├───Calendar
+│   ├───DailyProgress
+│   ├───HomeScreen
+│   └───TodoList
+└───__tests__
+    └───__snapshots__
 
 
 #
@@ -78,10 +86,58 @@ Appen vår bruker `BottomTabNavigator` med en `StackNavigator` for å håndtere 
 
 #
 
-## Teknologi
+## Teknologier med tutorials
 Som beskrevet ovenfor er applikasjonen utviklet med Expo og React Native. Vi lagrer all data/tilstander ved hjelp av AsyncStorage. For å demonstrere noe som går utover "basic React Native UI-problematikk" valgte vi å implementere skritteller. Vi har også testet med Jest. Vi har vært flittige i bruk av tredjepartskomponenter og biblioteker, og det har gjort det veldig greit for oss å få komponenter som egner seg for vår bruk, uten at vi må bruke så veldig lang tid på å utvikle komponentene fra bunn selv.
 
-#
+### Tutorial for Agenda-komponent:
+
+Grundig dokumentasjon for denne komponenten kan finnes [her.](https://github.com/wix/react-native-calendars)
+
+Man installerer modulen fra github ved hjelp av kommandoen ``` npm install --save react-native-calendars ``` Etter dette inkluderer man denne kodesnutten i starten av koden sin for å importere komponenten:  ``` import { Agenda } from 'react-native-calendars'; ``` Deretter kan en benytte ``` Agenda ``` - taggen i klassens renderfunksjon for å ta i bruk komponenten.
+
+Agenda-komponenten kommer med mange properties man kan manipulere for å tilpasse både funksjonaliteten og utseendet til komponenten. Vi har kun inkludert de mest relevante i vår kode. De viktigste av disse nevnes her:
+ - ``` items ``` - Liste av notatene som tilhører en gitt dag. Hvis innholdet er lik [] bettyr det vi ikke ikke har noe notat for denne dagen.
+ - ``` renderItem ``` - Her spesifiserer du hvordan et ikke-tomt notat skal rendres.
+ - ``` renderEmptyDate ``` - Her spesifiserer du hvordan et tomt notat skal rendres.
+ - ``` onDayPress ``` - Her kan du spesifisere hva som skal skje hver gang du trykker på den dag.
+ - ``` onDayChange ``` - Her kan du spesifisere hva som skal skje hver gang en dag endres ved at du scroller deg nedover i agendaen. Vi satt dette til å være akkurat samme hendelse som ved onDaypress. Altså at nåværende valgt dato i state endres.
+
+
+
+
+###React-native-elements
+
+  React-native-elements er et rammeverk for react native. Det fungere som et bibliotek, der man enkelt kan importere ulike komponenter. Innstallasjon gjøres via npm. Kommandoen for å innstallere er: npm i react-native-elements eks: <Button title='BUTTON' /> Slik kan man enkelt legge til en knapp. En fin ting med RNE er at man enkelt kan legge til innebygde variabler. Dersom man vil ha en større knapp kan man legge inn large eks:
+  
+  <Button
+    large
+    rightIcon={{name: 'code'}}
+    title='LARGE WITH RIGHT ICON' />
+  Her har man også lagt ved et icon på høyre side av knappen. Dersom man ønsker å style komponentene gjøres dette på samme måte som med andre komponenter, man legger inn style={styles.myStyling}
+  
+  Annet eksempel som er praktisk: <Text h1>Heading 1</Text> Dette returnere da en heading h1.
+  
+  NB Noe vi fant ut i løpet av utviklingsperioden er at RNE ikke har så bra støtte til Android. For å bruke forrige eksempel, fungere dette strålende med iPhone, mens på Android overstyrerer tagen all ekstern styling. Så om du har lagt inn en spesiell font eller fontsize vil ikke dette vises på android, kun på iOS.
+  
+  For mer informasjon om RNE og en oversikt over de ulike komponentene, se: https://react-native-training.github.io/react-native-elements/docs/0.19.1/overview.html
+
+
+###Expo - pedometer
+
+Vi har valg å bruke pedometer i vårt prosjekt. Koden hentet vi fra https://docs.expo.io/versions/latest/sdk/pedometer Komponenten fungere slik at den henter data fra helse-appen innebygd i telefonen. Det vil si Google fit eller Apple Helse. Vi bruker hvor mange steg du har gått i løpet av de siste 24-timene, og har satt et mål på at du skal gå 10 000 steg hver dag. Deretter “rendrer” vi en “progress-bar” som viser hvor langt du har igjen for å nå målet ditt og hvor mange kcal og km du har beveget deg. For beregninger har vi brukt generelle mål, dvs 0.04 kcals per steg og et at steg er 0.7m
+
+Siden dette er et Expo prosjekt følges begge komponentene med i prosjektet og trenger dermed kun å importeres.
+
+
+###AsyncStorage:
+
+
+AsyncStorage er en enkel og asynkron lagringsløsning som lagrer verdier på nøkkelattributter. Verdiene blir lagret lokalt slik at de ikke slettes om appen lukkes. AsyncStorage har flere metoder, men vi benyttet oss kun av .setItem(key, value) og .getItem(key, value). Disse metodene fungerer asynkront med resten av koden og returnerer et Promise-objekt. Dette objektet blir omgjort til de dataene som er lagret om de blir funnet og det ikke oppstår noe problem.
+
+Når vi startet opp med Prosjekt 3 visste vi ingenting om React Native og heller ikke om AsyncStorage. På React Natives egen dokumentasjon står følgende:
+
+“It is recommended that you use an abstraction on top of AsyncStorage instead of AsyncStorage directly for anything more than light usage since it operates globally.”
+Det anbefales altså å mellomlagre data i et eget nivå så man slipper å gjøre kall opp mot AsyncStorage gjevnlig. Vi leste rundt og ser for oss at Redux kunne vært en løsning som ville gjort dette prosjektet mye enklere. Vi valgte å ikke bruke Redux ettersom det ikke var et krav og vi ikke visste hvilke fordeler det ville gitt før vi var i sluttfasen av prosjektet.
 
 ## Utviklingsmetode
 Helt i begynnelsen av prosjektet vårt satte vi oss ned i lag og tegnet hvordan vi ønsket at applikasjonen skulle se ut. Dette gjorde det veldig enkelt å velge tredjepartskomponenter som passet vår visjon.
