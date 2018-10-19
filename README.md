@@ -18,6 +18,8 @@
 
 - Mappestruktur:
   Vi har plassert de forskjellige sidene i React Navigation i mappen `/screens/`. Her ligger de forskjellige Screen-komponentene, navngitt vha. Pascal Case. Selve mappen har navnet på komponenten og filen som inneholder komponenten ligger heter `index.js`, for enkelt oppslag.\
+  
+```
 ├App.js
 ├───assets\
 ├───screens\
@@ -27,7 +29,7 @@
 │   └───TodoList\
 └───__tests__\
     └───__snapshots__
-
+```
 
 #
 
