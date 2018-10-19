@@ -88,8 +88,6 @@ export default class AgendaScreen extends Component {
                                 <View style={styles.textContainer}>
                                     <TextInput
                                         style={styles.textInput}
-                                        multiline={true}
-                                        numberOfLines={5}
                                         keyboardType = 'default'
                                         returnKeyType="done"
                                         returnKeyLabel="done"
@@ -97,9 +95,9 @@ export default class AgendaScreen extends Component {
                                         placeholder={"What are your plans?"}
                                         /* If this day has no corresponding note => no value
                                            If this day has a corresponding note => the value is set to this note */
-                                        value={ this.state.items[this.state.selectedDate] === undefined ||
+                                        value={ /*this.state.items[this.state.selectedDate] === undefined ||
                                                 this.state.items[this.state.selectedDate].length === 0 ?
-                                                '' : this.itemData(this.state.items[this.state.selectedDate])
+                                                '' : */this.itemData(this.state.items[this.state.selectedDate])
                                         }
                                         onChangeText={(text) => this.setState({currentText: text})}
                                     />
