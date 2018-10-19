@@ -31,10 +31,10 @@
     └───__snapshots__
 ```
 Punkter som er verdt å merke seg i denne oversikten:
-* App.js - hovedfilen som inneholder bla. TabNavigator for å vise Screens
-* /assets - Inneholder bildefiler
-* /screens - Inneholder de forskjellige Screens
-* /__tests__ - Inneholder alle tester, blant annet snapshot-tester
+* `App.js` - hovedfilen som inneholder bla. TabNavigator for å vise Screens
+* `/assets` - Inneholder bildefiler
+* `/screens` - Inneholder de forskjellige Screens
+* `/__tests__` - Inneholder alle tester, blant annet snapshot-tester
 
 
 #
