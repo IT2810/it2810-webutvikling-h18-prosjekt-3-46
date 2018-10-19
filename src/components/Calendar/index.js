@@ -6,7 +6,8 @@ import {
     AsyncStorage,
     TextInput,
     TouchableWithoutFeedback,
-    Keyboard
+    Keyboard,
+    StatusBar
 } from 'react-native';
 import {Agenda} from 'react-native-calendars';
 import { Button, Icon} from 'native-base';
@@ -45,9 +46,22 @@ export default class AgendaScreen extends Component {
 
     componentWillMount() {
         if (this.props.navigation === undefined) {
+
         } else {
             this.props.navigation.setParams({toggleModal: this._toggleModal});
         }
+    }
+
+
+    // Changes the color of the status bar to fit with the displayed content
+    componentDidMount() {
+        this._navListener = this.props.navigation.addListener('didFocus', () => {
+            StatusBar.setBarStyle('dark-content');
+        });
+    }
+
+    componentWillUnmount() {
+        this._navListener.remove();
     }
 
     render() {
