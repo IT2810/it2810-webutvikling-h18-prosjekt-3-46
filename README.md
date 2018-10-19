@@ -3,11 +3,13 @@
 ## Valg og løsninger
 - Vår PIMM-applikasjon består av fire forskjellige skjermer: En startskjerm (HomeScreen), kalender (Calendar), gjøremålsliste (Todo) og en skjerm med oversikt over personlige mål (DailyProgress).
 
+- For UI-elementer har vi benyttet oss av biblioteket `NativeBase` som gir oss mange grunnleggende komponenter som vi har brukt i tillegg til React Natives standard UI-elementer. Eksempler på Komponenter vi har benyttet oss fra dette biblioteket er `Icon`, `Button` og `Text`
+
 - Startskjermen vår består av et bakgrunnsbilde og inneholder en liste med inspirerende sitater som endres ved trykk. Den viser også nåværende dag, dato og klokkeslett. Dette valgte vi fordi vi tenkte at en tilfeldig liste med inspirerende sitater passer bra til å være "startskjermen" på en motivasjonsapp.
 
 - For kalenderen vår benyttet vi en en tredjeparts-modul: `react-native-calendars`. Fra denne modulen importerte vi en Agenda komponent som enkelt ga oss mulighet for å legge til en notis eller en agenda for en gitt dag. Den er også enkel å navigere seg frem i, samt at den også er oversiktlig da den merker av alle dager som har en notis festet til seg. Vi benyttet oss også av Modal-komponenten som vi importerte fra react-native-modal. Den ga oss ekstra rom for å implementere tekstbokser og knapper i forbindelse med å fjerne/legge til notiser.
 
-- For gjøremålslisten benyttet vi tredjeparts-modulen: `react-native-swipeout` som vi importerte Swipeout-komponenten fra. #MAGNUS FORKLAR
+- For gjøremålslisten benyttet vi tredjeparts-modulen: `react-native-swipeout` hvor vi importerte Swipeout-komponenten fra. Vi benyttet i tillegg et kodeeksempel fra Codeburst som grunnlag for selve listen (kilde nederst). Swipeout-komponenten omkapsler liste-elementet, og støtter også flere swipeout-knapper, dersom man skulle ønske det.
 
 - For skjermen som holder oversikt over personlige mål har vi valgt å implementere en skritteller som funksjonalitet utover normal React-Native UI problematikk. Vi implementerte også en måte å holde oversikt over antall konsumerte kalorier iløpet av en dag samt antall utførte push-ups. For å få til dette har vi benyttet oss av Pedometer-komponenten fra Expo API-et. Samt en AnimatedCircularProgress-komponent fra `react-native-circular-progress`. Vi har også her benyttet oss av Modal-komponenten for å tilby innstillinger av skritteleren, kalorimåleren og push-up måleren.
 
@@ -17,14 +19,23 @@
 - I prosjekt 3 av IT2810 Webutvikling har vi laget en React Native applikasjon ved hjelp av Expo. Expo er en open source tjeneste som bygger på React Native, og hjelper utvikleren å utvikle til både Android og iOS ved hjelp av Javascript og React. 
 - Mappestruktur:
   Vi har plassert de forskjellige sidene i React Navigation i mappen `/screens/`. Her ligger de forskjellige Screen-komponentene, navngitt vha. Pascal Case. Selve mappen har navnet på komponenten og filen som inneholder komponenten ligger heter `index.js`, for enkelt oppslag.
-├───assets\
-├───screens\
+  
+```
+├───App.js
+├───assets
+├───screens
 │   ├───Calendar
 │   ├───DailyProgress
 │   ├───HomeScreen
 │   └───TodoList
 └───__tests__
     └───__snapshots__
+```
+Punkter som er verdt å merke seg i denne oversikten:
+* `App.js` - hovedfilen som inneholder bla. TabNavigator for å vise Screens
+* `/assets` - Inneholder bildefiler
+* `/screens` - Inneholder de forskjellige Screens
+* `/__tests__` - Inneholder alle tester, blant annet snapshot-tester
 
 
 #
@@ -75,13 +86,19 @@ Skann QR-koden som vises i kommandolinjen med Expo-appen(Android), eller med kam
 ## Hvordan bruke appen
 Applikasjonen er ment å fungere som en Personal Information and Motivation Manager for mobil, og den gjør det mulig for brukeren å sette seg personlige mål, den fungerer som en kalender, og man kan legge inn gjøremål. For kalenderfunksjonaliteten kan man legge inn ulike avtaler eller lignende for datoer i fremtiden. 
 
-- Calendar: Denne fungerer både som en kalender og som en agenda med funksjonalitet for innlegging av planer for en gitt dag. En kan både navigere seg måned for måned, eller dag for dag. Dette justeres ved å velge en gitt dag når du er i månedsmodus, eller ved å trykke på den grå streken når du er i dagsmodus. Vi har også lagt til funksjonalitet for endring og sletting av allerede eksisterende notater.
-- Tasks: Med denne kan du som bruker legge ting du skal gjøre eller få gjort til i en liste med todos og fjerne de når du er ferdig med dem. for å legge til nye oppgaver skriver du inn i tekstfeltet nederst på skjermen, og for å fjerne noe swiper du de til venstre og trykker på "Done".
-- Daily Progress: Her har vi laget funksjonalitet for å fylle inn daglige mål for antall skritt man skal gå, antall push-ups og antall kalorier man skal få i seg. Ved å bruke modalmenyen som vises øverst på skjermen kan man enkelt sette seg mål, og resette dagens framgang. Man kan dog ikke starte skrittelleren om igjen, dette fordi den henter ut antall skritt gått fra mobilens innebygde skritteller.
-- Home Screen: Her har vi ikke gjort så mye spennende, men vi har lagt inn en komponent som viser tilfeldige quotes, ut i fra en liste med predefinerte quotes. Ved å trykke på quoten får man en ny, tilfeldig quote. I tillegg viser den hvilken ukedag, måned og dato det er, pluss klokkeslett. 
+- `Calendar`: Denne fungerer både som en kalender og som en agenda med funksjonalitet for innlegging av planer for en gitt dag. En kan både navigere seg måned for måned, eller dag for dag. Dette justeres ved å velge en gitt dag når du er i månedsmodus, eller ved å trykke på den grå streken når du er i dagsmodus. Vi har også lagt til funksjonalitet for endring og sletting av allerede eksisterende notater.
+
+- `Tasks`: Med denne kan du som bruker legge ting du skal gjøre eller få gjort til i en liste med todos og fjerne de når du er ferdig med dem. for å legge til nye oppgaver skriver du inn i tekstfeltet nederst på skjermen, og for å fjerne noe swiper du de til venstre og trykker på "Done".
+
+- `Daily Progress`: Her har vi laget funksjonalitet for å fylle inn daglige mål for antall skritt man skal gå, antall push-ups og antall kalorier man skal få i seg. Ved å bruke modalmenyen som vises øverst på skjermen kan man enkelt sette seg mål, og resette dagens framgang. Man kan dog ikke starte skrittelleren om igjen, dette fordi den henter ut antall skritt gått fra mobilens innebygde skritteller.
+
+- `Home Screen`: Her har vi ikke gjort så mye spennende, men vi har lagt inn en komponent som viser tilfeldige quotes, ut i fra en liste med predefinerte quotes. Ved å trykke på quoten får man en ny, tilfeldig quote. I tillegg viser den hvilken ukedag, måned og dato det er, pluss klokkeslett. 
 
 ## Navigering
-Appen vår bruker `BottomTabNavigator` med en `StackNavigator` for å håndtere navigasjon mellom de ulike skjermene. Appen åpner med hva vi kaller HomeScreen, som tilbyr motiverende quotes til brukeren. På bunnen av skjermen tilbyr vi brukeren en meny for å navigere seg mellom skjermene. 
+Appen vår bruker `BottomTabNavigator` for å håndtere navigasjon mellom de ulike skjermene. I tillegg til dette har vi i hver `screen` i `TabNavigator` (med unntak av `HomeScreen`) nøstet en `StackNavigator` for å gjøre det mulig å vise både en `Header` øverst i tillegg til en `bottomTabNavigator` nederst. Videre bruker vi denne headeren for å vise forskjellige brukervalg i hver enkelt screen, som for eksempel "Instillinger" i `DailyProgress`.
+
+Appen åpner med hva vi kaller HomeScreen, som tilbyr motiverende quotes til brukeren. 
+På bunnen av skjermen tilbyr vi brukeren en meny for å navigere seg mellom skjermene. Hver screen rendres først når brukeren trykker seg inn på den, men forblir deretter lastet inn i minnet resten av økten.
 
 #
 
@@ -146,6 +163,7 @@ I dette prosjektet har vi utviklet ved hjelp av issue-tracking på Github. For h
 ## Testing
 - I dette prosjektet har vi ikke fått til å teste så mye som vi gjerne skulle ha gjort, men årsaken til det ligger mye i begrensninger ved Jest. For fremtidig testing ville vi nok heller ha testet mer systematisk. Vi har nå brukt snapshot-testing mens vi utviklet komponentene våre, og det vil vi gjøre i fremtiden også. Vi har ikke fått til så mye enhetstesting som vi ønsket, og det er noe vi gjerne skulle ha fått til. Underveis i prosjektet har vi kontinuerlig gjennomført testing på Android- og iPhone-mobiler gjennom prosjektet, for å sikre at den har lik funksjonalitet på disse.
 - For framtidig utvikling ville vi nok ha testet på en annen måte. Vi hadde problemer med at noen av komponentene våre var vanskelige å teste, og at jest ikke hadde tilstrekkelig testingfunksjonalitet som vi klarte å bruke. I fremtiden skulle vi gjerne ha fått til mer enhetstesting og testing av state. Vi ville også ha testet grenseverdier der det er hensiktsmessig, samt testet for nullverdier og verdier forbi grenseverdiene våre.
+- Angående kompabilitet mellom forskjellige enheter er prosjektet for det meste testet i iOS, som en naturlig konsekvens av at vi alle kun eier iPhone. Vi har forsøkt å bruke Android-emulator via Android Studio men med begrenset suksess som følge av ytelsesproblemer og feil i konfigurasjon som har vært utfordrende å løse. Vi har lånt enheter av andre grupper for å få gjort litt kjapp testing, men denne har ikke vært gjennomgående. Gjennom vår avsluttende testing har vi oppdaget enkelte mindre ting som vises feil på Android selv om det fungerer i iOS. Eksempelvis vil teksten i TextInput-komponenten i Calendar screenen gjøre teksten man skriver inn usynlig. Videre testing viste likevel at teksten ble lagret, men dette er et eksempel på ting som har vært utfordrende å oppdage som følge av mangel på lett tilgjengelig Android-enheter.
 #### Appen er testet på følgende enheter
 - iPhone 8
 - iPhone 7
