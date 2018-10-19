@@ -9,7 +9,8 @@ import {
     TextInput,
     Keyboard,
     Platform,
-    TouchableOpacity
+    TouchableOpacity,
+    StatusBar
 } from "react-native";
 import Swipeout from 'react-native-swipeout';
 
@@ -81,9 +82,15 @@ export default class TodoList extends Component {
         );
 
         Tasks.all(tasks => this._isMounted && this.setState({ tasks: tasks || [] }));
+
+        // Changes the color of the status bar to fit with the displayed content
+        this._navListener = this.props.navigation.addListener('didFocus', () => {
+            StatusBar.setBarStyle('dark-content');
+        });
     }
 
     componentWillUnmount() {
+        this._navListener.remove();
         this._isMounted = false;
     }
 
@@ -119,9 +126,7 @@ export default class TodoList extends Component {
     }
     render() {
         return (
-            <View
-                style={[styles.container, { paddingBottom: this.state.viewPadding }]}
-            >
+            <View style={[styles.container, { paddingBottom: this.state.viewPadding }]}>
                 <FlatList
                     keyExtractor = { (item, index) => index.toString() }
                     style={styles.list}

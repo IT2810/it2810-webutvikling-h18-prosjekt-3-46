@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, StatusBar} from 'react-native';
 
 export default class HomeScreen extends React.Component {
    constructor() {
@@ -19,7 +19,8 @@ export default class HomeScreen extends React.Component {
                "You must be the change you wish to see in the world.",
                "The greatest discovery of all time is that a person can change his future by merely changing his attitude."
            ],
-           displayText: "You must be the change you wish to see in the world."
+           displayText: "You must be the change you wish to see in the world.",
+           curTime: new Date()
        };
    };
 
@@ -27,17 +28,38 @@ export default class HomeScreen extends React.Component {
        title: 'Home'
    };
 
+   // Changes the color of the status bar to fit with the displayed content
+    componentDidMount() {
+        this._navListener = this.props.navigation.addListener('didFocus', () => {
+            StatusBar.setBarStyle('light-content');
+        });
+        setInterval( () => {
+            this.setState({
+                curTime : new Date()
+            })
+        },10000);
+    }
+
+    componentWillUnmount() {
+        this._navListener.remove();
+    }
+
    render() {
        return (
            <View style={styles.container}>
+               <StatusBar
+                   barStyle="light-content"
+               />
                <ImageBackground
                    source={require('../../assets/background.jpg')}
                    imageStyle={{resizeMode: 'stretch'}}
                    style={styles.image}>
                    <View style={{padding:20, marginBottom: 70, marginTop: 40, width: "90%", flex: 1}}>
-                        <Text style={[styles.paragraph, {fontSize: 60, letterSpacing: 4}]}>{this.getDate()}</Text>
+                       <Text style={[styles.paragraph, styles.day]}>{this.getDate()[0]}</Text>
+                       <Text style={[styles.paragraph, styles.clock]}>{this.getDate()[1]}</Text>
+
                    </View>
-                   <TouchableOpacity onPress={this.toggleNewQuote} style={{marginBottom: 100, height: "50%", justifyContent: "center"}}>
+                   <TouchableOpacity onPress={this.toggleNewQuote} style={{marginBottom: 70, height: "50%", justifyContent: "center"}}>
                        <View style={{backgroundColor:'rgba(0, 0, 0, 0.65)', padding:20, borderRadius: 15, width: "90%"}}>
                            <Text style={styles.paragraph}>
                                “{this.state.displayText}”
@@ -53,15 +75,19 @@ export default class HomeScreen extends React.Component {
    toggleNewQuote = () => {
        var rand = this.state.quotes[Math.floor(Math.random() * this.state.quotes.length)];
        if (rand===this.state.displayText) {
-           this.toggleNewQuote
+           this.toggleNewQuote();
        } else {
            this.setState({displayText: rand});
        }
    };
 
     getDate() {
-            let date = new Date();
-            return (date.getHours() < 10 ? "0" : "") + date.getHours() + ":" + (date.getMinutes() < 10 ? "0" : "") + date.getMinutes();
+            let date = this.state.curTime;
+            let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+            let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+            return [days[date.getDay()] + " " + months[date.getMonth()] + ". " + date.getDate(),
+                    (date.getHours() < 10 ? "0" : "") + date.getHours() + ":" +
+                    (date.getMinutes() < 10 ? "0" : "") + date.getMinutes()];
    }
 }
 
@@ -86,4 +112,12 @@ const styles = StyleSheet.create({
      fontSize: 30,
      
    },
+    clock: {
+       fontSize: 70,
+        letterSpacing: 5
+    },
+    day: {
+        fontSize: 40,
+        marginBottom: 5
+    }
  });
