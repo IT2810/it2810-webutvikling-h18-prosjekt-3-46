@@ -16,6 +16,17 @@
 
 - I prosjekt 3 av IT2810 Webutvikling har vi laget en React Native applikasjon ved hjelp av Expo. Expo er en open source tjeneste som bygger på React Native, og hjelper utvikleren å utvikle til både Android og iOS ved hjelp av Javascript og React. 
 
+- Mappestruktur:
+  Vi har plassert de forskjellige sidene i React Navigation i mappen `/screens/`. Her ligger de forskjellige Screen-komponentene, navngitt vha. Pascal Case. Selve mappen har navnet på komponenten og filen som inneholder komponenten ligger heter `index.js`, for enkelt oppslag.
+├───assets\
+├───screens\
+│   ├───Calendar
+│   ├───DailyProgress
+│   ├───HomeScreen
+│   └───TodoList
+└───__tests__
+    └───__snapshots__
+
 
 #
 
@@ -134,11 +145,16 @@ I dette prosjektet har vi utviklet ved hjelp av issue-tracking på Github. For h
 #
 
 ## Testing
-- I dette prosjektet har vi ikke fått til å teste så mye som vi gjerne skulle ha gjort, men årsaken til det ligger mye i begrensninger ved Jest. For fremtidig testing ville vi nok heller ha testet mer systematisk. Vi har nå brukt snapshot-testing mens vi utviklet noen av komponentene våre, og det ville vi gjort i fremtiden også. Vi har ikke fått til så mye enhetstesting som vi ønsket, og det er noe vi gjerne skulle ha fått til. Underveis i prosjektet har vi kontinuerlig gjennomført testing på Android- og iPhone-mobiler gjennom prosjektet, for å sikre at den har lik funksjonalitet på disse.
-- For framtidig utvikling ville vi nok ha testet på en annen måte. Vi hadde problemer med at noen av komponentene våre var vanskelige å teste, og at jest ikke hadde tilstrekkelig testingfunksjonalitet som vi klarte å bruke. I fremtiden skulle vi gjerne ha fått til mer enhetstesting og testing av state. 
+- I dette prosjektet har vi ikke fått til å teste så mye som vi gjerne skulle ha gjort, men årsaken til det ligger mye i begrensninger ved Jest. For fremtidig testing ville vi nok heller ha testet mer systematisk. Vi har nå brukt snapshot-testing mens vi utviklet komponentene våre, og det vil vi gjøre i fremtiden også. Vi har ikke fått til så mye enhetstesting som vi ønsket, og det er noe vi gjerne skulle ha fått til. Underveis i prosjektet har vi kontinuerlig gjennomført testing på Android- og iPhone-mobiler gjennom prosjektet, for å sikre at den har lik funksjonalitet på disse.
+- For framtidig utvikling ville vi nok ha testet på en annen måte. Vi hadde problemer med at noen av komponentene våre var vanskelige å teste, og at jest ikke hadde tilstrekkelig testingfunksjonalitet som vi klarte å bruke. I fremtiden skulle vi gjerne ha fått til mer enhetstesting og testing av state. Vi ville også ha testet grenseverdier der det er hensiktsmessig, samt testet for nullverdier og verdier forbi grenseverdiene våre.
 #### Appen er testet på følgende enheter
 - iPhone 8
 - iPhone 7
 - iPhone 6s
 - Motorola Moto G6 Plus
 - One Plus 6T
+<<<<<<< HEAD
+
+#
+=======
+>>>>>>> d6b4a53ef3b00239f03d99be770d9c089f996f16

@@ -46,7 +46,8 @@ export default class DailyProgress extends React.Component {
             // Setup a right header-button
             headerRight: (
                 <Button transparent onPress={params.toggleModal}>
-                    <Icon name="ios-cog" type="Ionicons"/>
+                    <Text style={{color: '#007aff', fontSize: 16}}>Config</Text>
+                    <Icon name="ios-cog" style={{color: '#007aff', marginLeft: 7}} type="Ionicons"/>
                 </Button>
             )
         };

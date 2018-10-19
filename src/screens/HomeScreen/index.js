@@ -99,7 +99,7 @@ export default class HomeScreen extends React.Component {
 
     // Toggle the random selection of a new "Quote of the Day" to be displayed
     toggleNewQuote = () => {
-        var rand = this.state.quotes[Math.floor(Math.random() * this.state.quotes.length)];
+        let rand = this.state.quotes[Math.floor(Math.random() * this.state.quotes.length)];
          if (rand===this.state.displayText) {
              this.toggleNewQuote();
          } else {
@@ -139,7 +139,6 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 30,
         opacity: 0.9
-     
     },
     clock: {
         fontSize: 70,
