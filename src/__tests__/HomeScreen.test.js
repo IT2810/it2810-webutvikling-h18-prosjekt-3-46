@@ -1,6 +1,6 @@
 import React from 'react';
 
-import HomeScreen from '../components/HomeScreen/index';
+import HomeScreen from '../screens/HomeScreen/index';
 import renderer from 'react-test-renderer';
 import moment from 'moment';
 

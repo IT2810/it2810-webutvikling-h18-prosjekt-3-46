@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Calendar from '../components/Calendar/index';
+import Calendar from '../screens/Calendar/index';
 import renderer from 'react-test-renderer';
 import moment from 'moment';
 

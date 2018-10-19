@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TodoList from '../components/TodoList/index';
+import TodoList from '../screens/TodoList/index';
 import renderer from 'react-test-renderer';
 
 
