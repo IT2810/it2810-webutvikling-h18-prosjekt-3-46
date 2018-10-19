@@ -17,19 +17,25 @@
 - I prosjekt 3 av IT2810 Webutvikling har vi laget en React Native applikasjon ved hjelp av Expo. Expo er en open source tjeneste som bygger på React Native, og hjelper utvikleren å utvikle til både Android og iOS ved hjelp av Javascript og React. 
 
 - Mappestruktur:
-  Vi har plassert de forskjellige sidene i React Navigation i mappen `/screens/`. Her ligger de forskjellige Screen-komponentene, navngitt vha. Pascal Case. Selve mappen har navnet på komponenten og filen som inneholder komponenten ligger heter `index.js`, for enkelt oppslag.\
+  Vi har plassert de forskjellige sidene i React Navigation i mappen `/screens/`. Her ligger de forskjellige Screen-komponentene, navngitt vha. Pascal Case. Selve mappen har navnet på komponenten og filen som inneholder komponenten ligger heter `index.js`, for enkelt oppslag.
   
 ```
-├App.js
-├───assets\
-├───screens\
-│   ├───Calendar\
-│   ├───DailyProgress\
-│   ├───HomeScreen\
-│   └───TodoList\
-└───__tests__\
+├───App.js
+├───assets
+├───screens
+│   ├───Calendar
+│   ├───DailyProgress
+│   ├───HomeScreen
+│   └───TodoList
+└───__tests__
     └───__snapshots__
 ```
+Punkter som er verdt å merke seg i denne oversikten:
+* App.js - hovedfilen som inneholder bla. TabNavigator for å vise Screens
+* /assets - Inneholder bildefiler
+* /screens - Inneholder de forskjellige Screens
+* /__tests__ - Inneholder alle tester, blant annet snapshot-tester
+
 
 #
 
