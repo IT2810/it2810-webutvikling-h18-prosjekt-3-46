@@ -15,7 +15,6 @@
 
 
 - I prosjekt 3 av IT2810 Webutvikling har vi laget en React Native applikasjon ved hjelp av Expo. Expo er en open source tjeneste som bygger på React Native, og hjelper utvikleren å utvikle til både Android og iOS ved hjelp av Javascript og React. 
-
 - Mappestruktur:
   Vi har plassert de forskjellige sidene i React Navigation i mappen `/screens/`. Her ligger de forskjellige Screen-komponentene, navngitt vha. Pascal Case. Selve mappen har navnet på komponenten og filen som inneholder komponenten ligger heter `index.js`, for enkelt oppslag.
 ├───assets\
@@ -73,7 +72,7 @@ Skann QR-koden som vises i kommandolinjen med Expo-appen(Android), eller med kam
 
 #
 
-## Funksjonalitet
+## Hvordan bruke appen
 Applikasjonen er ment å fungere som en Personal Information and Motivation Manager for mobil, og den gjør det mulig for brukeren å sette seg personlige mål, den fungerer som en kalender, og man kan legge inn gjøremål. For kalenderfunksjonaliteten kan man legge inn ulike avtaler eller lignende for datoer i fremtiden. 
 
 - Calendar: Denne fungerer både som en kalender og som en agenda med funksjonalitet for innlegging av planer for en gitt dag. En kan både navigere seg måned for måned, eller dag for dag. Dette justeres ved å velge en gitt dag når du er i månedsmodus, eller ved å trykke på den grå streken når du er i dagsmodus. Vi har også lagt til funksjonalitet for endring og sletting av allerede eksisterende notater.
@@ -115,7 +114,7 @@ Agenda-komponenten kommer med mange properties man kan manipulere for å tilpass
     title='LARGE WITH RIGHT ICON' />
   Her har man også lagt ved et icon på høyre side av knappen. Dersom man ønsker å style komponentene gjøres dette på samme måte som med andre komponenter, man legger inn style={styles.myStyling}
   
-  Annet eksempel som er praktisk: <Text h1>Heading 1</Text> Dette returnere da en heading h1.
+  Annet eksempel som er praktisk: <Text h1>Heading 1</Text> Dette returnerer da en heading h1.
   
   NB Noe vi fant ut i løpet av utviklingsperioden er at RNE ikke har så bra støtte til Android. For å bruke forrige eksempel, fungere dette strålende med iPhone, mens på Android overstyrerer tagen all ekstern styling. Så om du har lagt inn en spesiell font eller fontsize vil ikke dette vises på android, kun på iOS.
   
@@ -153,8 +152,3 @@ I dette prosjektet har vi utviklet ved hjelp av issue-tracking på Github. For h
 - iPhone 6s
 - Motorola Moto G6 Plus
 - One Plus 6T
-<<<<<<< HEAD
-
-#
-=======
->>>>>>> d6b4a53ef3b00239f03d99be770d9c089f996f16
