@@ -50,7 +50,7 @@ export default class AgendaScreen extends Component {
     // Changes the color of the status bar to fit with the displayed content
     componentDidMount() {
         this._navListener = this.props.navigation.addListener('didFocus', () => {
-            StatusBar.setBarStyle('dark-content');
+            StatusBar.setBarStyle('default');
         });
     }
 
@@ -72,9 +72,11 @@ export default class AgendaScreen extends Component {
                                     <TextInput
                                         style={styles.textInput}
                                         multiline={true}
+                                        numberOfLines={5}
                                         keyboardType = 'default'
                                         returnKeyType="done"
                                         returnKeyLabel="done"
+                                        underlineColorAndroid='transparent'
                                         placeholder={"What are your plans?"}
                                         value={ this.state.items[this.state.selectedDate] === undefined ||
                                                 this.state.items[this.state.selectedDate].length === 0 ?

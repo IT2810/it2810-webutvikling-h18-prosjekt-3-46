@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, StatusBar} from 'react-native';
+import { Icon } from 'native-base';
 
 export default class HomeScreen extends React.Component {
    constructor() {
@@ -52,9 +53,7 @@ export default class HomeScreen extends React.Component {
    render() {
        return (
            <View style={styles.container}>
-               <StatusBar
-                   barStyle="light-content"
-               />
+               <StatusBar barStyle="light-content" />
                <ImageBackground
                    source={require('../../assets/background.jpg')}
                    imageStyle={{resizeMode: 'stretch'}}
@@ -69,6 +68,14 @@ export default class HomeScreen extends React.Component {
                            <Text style={styles.paragraph}>
                                “{this.state.displayText}”
                            </Text>
+                           <Icon type="MaterialCommunityIcons" name="gesture-tap" style={{
+                               position: 'absolute',
+                               color: "white",
+                               fontSize: 27,
+                               opacity: 0.7,
+                               right: 3,
+                               bottom: 3
+                           }} />
                        </View>
                    </TouchableOpacity>
                </ImageBackground>
@@ -77,6 +84,7 @@ export default class HomeScreen extends React.Component {
        
    }
 
+   // Toggle the random selection of a new "Quote of the Day" to be displayed
    toggleNewQuote = () => {
        var rand = this.state.quotes[Math.floor(Math.random() * this.state.quotes.length)];
        if (rand===this.state.displayText) {
@@ -90,7 +98,7 @@ export default class HomeScreen extends React.Component {
             let date = this.state.curTime;
             let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
             let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-            return [days[date.getDay()] + " " + months[date.getMonth()] + ". " + date.getDate(),
+            return [days[date.getDay()] + ", " + months[date.getMonth()] + " " + date.getDate(),
                     (date.getHours() < 10 ? "0" : "") + date.getHours() + ":" +
                     (date.getMinutes() < 10 ? "0" : "") + date.getMinutes()];
    }
