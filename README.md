@@ -91,7 +91,10 @@ Applikasjonen er ment å fungere som en Personal Information and Motivation Mana
 - Home Screen: Her har vi ikke gjort så mye spennende, men vi har lagt inn en komponent som viser tilfeldige quotes, ut i fra en liste med predefinerte quotes. Ved å trykke på quoten får man en ny, tilfeldig quote. I tillegg viser den hvilken ukedag, måned og dato det er, pluss klokkeslett. 
 
 ## Navigering
-Appen vår bruker `BottomTabNavigator` med en `StackNavigator` for å håndtere navigasjon mellom de ulike skjermene. Appen åpner med hva vi kaller HomeScreen, som tilbyr motiverende quotes til brukeren. På bunnen av skjermen tilbyr vi brukeren en meny for å navigere seg mellom skjermene. 
+Appen vår bruker `BottomTabNavigator` for å håndtere navigasjon mellom de ulike skjermene. I tillegg til dette har vi i hver `screen` i `TabNavigator` (med unntak av `HomeScreen`) nøstet en `StackNavigator` for å gjøre det mulig å vise både en `Header` øverst i tillegg til en `bottomTabNavigator` nederst. Videre bruker vi denne headeren for å vise forskjellige brukervalg i hver enkelt screen, som for eksempel "Instillinger" i `DailyProgress`.
+
+Appen åpner med hva vi kaller HomeScreen, som tilbyr motiverende quotes til brukeren. 
+På bunnen av skjermen tilbyr vi brukeren en meny for å navigere seg mellom skjermene. Hver screen rendres først når brukeren trykker seg inn på den, men forblir deretter lastet inn i minnet resten av økten.
 
 #
 
