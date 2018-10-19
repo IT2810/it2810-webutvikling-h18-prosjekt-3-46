@@ -7,6 +7,11 @@ export default class HomeScreen extends React.Component {
        this.state = {
            quotes: [
                "Don't judge each day by the harvest you reap but by the seeds that you plant. ",
+               "Whatever you are, be a good one.",
+               "Don’t wait. The time will never be just right.",
+               "Do what you can, with what you have, where you are.",
+               "Being glamorous is about strength and confidence. It's black and white - dramatic. You have to be strong.",
+               "If you dream it, you can do it.",
                "Write it on your heart that every day is the best day in the year. ",
                "Every moment is a fresh beginning.",
                "Everything you’ve ever wanted is on the other side of fear. ",
