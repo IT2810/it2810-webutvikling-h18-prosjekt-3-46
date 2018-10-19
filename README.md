@@ -124,14 +124,14 @@ Agenda-komponenten kommer med mange properties man kan manipulere for å tilpass
 
 #
 
-### Pedometer
+### Tutorial for Pedometer
 
 Vi har valgt å implementere skritteller i vårt prosjekt. Koden hentet vi fra https://docs.expo.io/versions/latest/sdk/pedometer. Komponenten henter ut antall skritt gått fra mobilens innebygde skritteller(Helse-appen på iPhone og Google Fit på Android). Vi henter skritt 24 timer tilbake i tid. Ved hjelp av `react-native-circular-progress` viser vi fram fremgangen man har på å gå antall skritt i løpet av en dag. 
 Dette var lett å implementere, siden Expo tilbyr denne komponenten.
 
 #
 
-### AsyncStorage:
+### Tutorial for AsyncStorage:
 
 AsyncStorage er en lagringsløsning som asynkront lagrer verdier på nøkkelattributter. Alle verdier som lagres ved hjelp av AsyncStorage lagres lokalt. Dette bettyr a de ikke vil mistes om appen lukkes. AsyncStorage tilbyr mange ulike metoder, men de viktigste – som vi benyttet oss av – er ```setItem(Key, value)``` og ```getItem(key)```. Det er disse to metodene som henholdsvis lagrer data og henter de ut igjen. De opptrer asynkront med resten av koden og returnerer et Promise-objekt som blir omgjort til de dataene som er lagret. Dette skjer kun dersom dataene blir funnet og det ikke oppstår et problem i forbindelse med dette.
 
