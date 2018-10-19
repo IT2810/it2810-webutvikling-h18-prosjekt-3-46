@@ -1,0 +1,1393 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#fff",
+      "flex": 1,
+      "justifyContent": "center",
+      "width": "100%",
+    }
+  }
+>
+  <View>
+    <Modal
+      animationType="none"
+      hardwareAccelerated={false}
+      hideModalContentWhileAnimating={false}
+      onModalHide={[Function]}
+      onRequestClose={[Function]}
+      scrollOffset={0}
+      scrollOffsetMax={0}
+      scrollTo={null}
+      supportedOrientations={
+        Array [
+          "portrait",
+          "landscape",
+        ]
+      }
+      swipeThreshold={100}
+      transparent={true}
+      visible={false}
+    >
+      <View
+        accessible={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "black",
+            "bottom": 0,
+            "height": 1334,
+            "left": 0,
+            "opacity": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "width": 750,
+          }
+        }
+      />
+      <View
+        hideModalContentWhileAnimating={false}
+        onModalHide={[Function]}
+        pointerEvents="box-none"
+        scrollOffset={0}
+        scrollOffsetMax={0}
+        scrollTo={null}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "white",
+            "borderColor": "rgba(0, 0, 0, 0.1)",
+            "borderRadius": 4,
+            "flex": 1,
+            "justifyContent": "center",
+            "margin": 37.5,
+            "padding": 22,
+            "transform": Array [
+              Object {
+                "translateY": 0,
+              },
+            ],
+            "width": "90%",
+          }
+        }
+        supportedOrientations={
+          Array [
+            "portrait",
+            "landscape",
+          ]
+        }
+        swipeThreshold={100}
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#fff",
+              "flex": 1,
+              "justifyContent": "center",
+              "width": "100%",
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "marginTop": 20,
+              }
+            }
+          >
+            Set daily steps goal:
+          </Text>
+          <View
+            style={
+              Object {
+                "backgroundColor": "white",
+                "padding": 10,
+                "width": "100%",
+              }
+            }
+          >
+            <TextInput
+              allowFontScaling={true}
+              keyboardType="numeric"
+              onChangeText={[Function]}
+              returnKeyLabel="done"
+              returnKeyType="done"
+              style={
+                Object {
+                  "backgroundColor": "white",
+                  "borderColor": "#F2F2F2",
+                  "borderRadius": 15,
+                  "borderWidth": 2,
+                  "fontSize": 18,
+                  "height": 50,
+                  "paddingLeft": 15,
+                  "paddingRight": 15,
+                }
+              }
+              underlineColorAndroid="transparent"
+              value="8000"
+            />
+          </View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "marginTop": 20,
+              }
+            }
+          >
+            Set daily push-up goal:
+          </Text>
+          <View
+            style={
+              Object {
+                "backgroundColor": "white",
+                "padding": 10,
+                "width": "100%",
+              }
+            }
+          >
+            <TextInput
+              allowFontScaling={true}
+              keyboardType="numeric"
+              onChangeText={[Function]}
+              returnKeyLabel="done"
+              returnKeyType="done"
+              style={
+                Object {
+                  "backgroundColor": "white",
+                  "borderColor": "#F2F2F2",
+                  "borderRadius": 15,
+                  "borderWidth": 2,
+                  "fontSize": 18,
+                  "height": 50,
+                  "paddingLeft": 15,
+                  "paddingRight": 15,
+                }
+              }
+              underlineColorAndroid="transparent"
+              value="100"
+            />
+          </View>
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "marginTop": 20,
+              }
+            }
+          >
+            Set daily calorie goal:
+          </Text>
+          <View
+            style={
+              Object {
+                "backgroundColor": "white",
+                "padding": 10,
+                "width": "100%",
+              }
+            }
+          >
+            <TextInput
+              allowFontScaling={true}
+              keyboardType="numeric"
+              onChangeText={[Function]}
+              returnKeyLabel="done"
+              returnKeyType="done"
+              style={
+                Object {
+                  "backgroundColor": "white",
+                  "borderColor": "#F2F2F2",
+                  "borderRadius": 15,
+                  "borderWidth": 2,
+                  "fontSize": 18,
+                  "height": 50,
+                  "paddingLeft": 15,
+                  "paddingRight": 15,
+                }
+              }
+              underlineColorAndroid="transparent"
+              value="2000"
+            />
+          </View>
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "alignSelf": "stretch",
+                "backgroundColor": "#d9534f",
+                "borderBottomWidth": null,
+                "borderColor": "#007aff",
+                "borderLeftWidth": null,
+                "borderRadius": 5,
+                "borderRightWidth": null,
+                "borderTopWidth": null,
+                "borderWidth": undefined,
+                "elevation": 2,
+                "flexDirection": "row",
+                "height": 45,
+                "justifyContent": "center",
+                "marginTop": 20,
+                "opacity": 1,
+                "paddingBottom": 6,
+                "paddingTop": 6,
+                "shadowColor": undefined,
+                "shadowOffset": undefined,
+                "shadowOpacity": undefined,
+                "shadowRadius": undefined,
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "white",
+                }
+              }
+            >
+              Reset daily Progress
+            </Text>
+          </View>
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "alignSelf": "stretch",
+                "backgroundColor": "#007aff",
+                "borderBottomWidth": null,
+                "borderColor": "#007aff",
+                "borderLeftWidth": null,
+                "borderRadius": 5,
+                "borderRightWidth": null,
+                "borderTopWidth": null,
+                "borderWidth": undefined,
+                "elevation": 2,
+                "flexDirection": "row",
+                "height": 45,
+                "justifyContent": "center",
+                "marginTop": 20,
+                "opacity": 1,
+                "paddingBottom": 6,
+                "paddingTop": 6,
+                "shadowColor": undefined,
+                "shadowOffset": undefined,
+                "shadowOpacity": undefined,
+                "shadowRadius": undefined,
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "white",
+                }
+              }
+            >
+              Close
+            </Text>
+          </View>
+        </View>
+      </View>
+    </Modal>
+  </View>
+  <View>
+    <RNSVGSvgView
+      bbHeight="230"
+      bbWidth="230"
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {
+            "backgroundColor": "transparent",
+          },
+          false,
+          Object {
+            "flex": 0,
+            "height": 230,
+            "width": 230,
+          },
+        ]
+      }
+    >
+      <RNSVGGroup
+        fill={
+          Array [
+            0,
+            0,
+            0,
+            0,
+            1,
+          ]
+        }
+        fillOpacity={1}
+        fillRule={1}
+        font={Object {}}
+        matrix={
+          Array [
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+          ]
+        }
+        opacity={1}
+        originX={115}
+        originY={115}
+        propList={Array []}
+        rotation={0}
+        scaleX={1}
+        scaleY={1}
+        skewX={0}
+        skewY={0}
+        stroke={null}
+        strokeDasharray={null}
+        strokeDashoffset={null}
+        strokeLinecap={0}
+        strokeLinejoin={0}
+        strokeMiterlimit={4}
+        strokeOpacity={1}
+        strokeWidth="1"
+        x={0}
+        y={0}
+      >
+        <RNSVGPath
+          d="M 114.92931416994513 2.5000222066091737 A 112.5 112.5 0 1 0 115 2.5"
+          fill={
+            Array [
+              0,
+              0,
+              0,
+              0,
+              0,
+            ]
+          }
+          fillOpacity={1}
+          fillRule={1}
+          matrix={
+            Array [
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+            ]
+          }
+          opacity={1}
+          originX={0}
+          originY={0}
+          propList={
+            Array [
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "fill",
+            ]
+          }
+          rotation={0}
+          scaleX={1}
+          scaleY={1}
+          skewX={0}
+          skewY={0}
+          stroke={
+            Array [
+              0,
+              0.9176470588235294,
+              0.9176470588235294,
+              0.9176470588235294,
+              1,
+            ]
+          }
+          strokeDasharray={null}
+          strokeDashoffset={null}
+          strokeLinecap={0}
+          strokeLinejoin={0}
+          strokeMiterlimit={4}
+          strokeOpacity={1}
+          strokeWidth="5"
+          x={0}
+          y={0}
+        />
+        <RNSVGPath
+          d="M 115 2.5 A 112.5 112.5 0 0 0 115 2.5"
+          fill={
+            Array [
+              0,
+              0,
+              0,
+              0,
+              0,
+            ]
+          }
+          fillOpacity={1}
+          fillRule={1}
+          matrix={
+            Array [
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+            ]
+          }
+          opacity={1}
+          originX={0}
+          originY={0}
+          propList={
+            Array [
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+              "fill",
+            ]
+          }
+          rotation={0}
+          scaleX={1}
+          scaleY={1}
+          skewX={0}
+          skewY={0}
+          stroke={
+            Array [
+              0,
+              0,
+              0.8784313725490196,
+              1,
+              1,
+            ]
+          }
+          strokeDasharray={null}
+          strokeDashoffset={null}
+          strokeLinecap={0}
+          strokeLinejoin={0}
+          strokeMiterlimit={4}
+          strokeOpacity={1}
+          strokeWidth="5"
+          x={0}
+          y={0}
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "borderRadius": 110,
+          "height": 220,
+          "justifyContent": "center",
+          "left": 5,
+          "position": "absolute",
+          "top": 5,
+          "width": 220,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#8E8E8E",
+              "fontSize": 45,
+              "letterSpacing": 7,
+              "marginTop": 15,
+              "paddingLeft": 10,
+            }
+          }
+        >
+          0
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "color": "#8E8E8E",
+                "fontSize": 15,
+                "letterSpacing": 3,
+                "paddingLeft": 4,
+              },
+              Object {
+                "fontSize": 20,
+              },
+            ]
+          }
+        >
+          / 
+          8000
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "color": "#8E8E8E",
+                "fontSize": 15,
+                "letterSpacing": 3,
+                "paddingLeft": 4,
+              },
+              Object {
+                "marginTop": 0,
+              },
+            ]
+          }
+        >
+          STEPS WALKED
+        </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Array [
+              Object {
+                "color": "#8E8E8E",
+                "fontSize": 15,
+                "letterSpacing": 3,
+                "paddingLeft": 4,
+              },
+              Object {
+                "fontSize": 10,
+              },
+            ]
+          }
+        >
+          (past 24 hrs)
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#fff",
+        "flexDirection": "row",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "flexDirection": "column",
+          "justifyContent": "center",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "margin": 10,
+          }
+        }
+      >
+        <RNSVGSvgView
+          bbHeight="150"
+          bbWidth="150"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Object {
+                "backgroundColor": "transparent",
+              },
+              false,
+              Object {
+                "flex": 0,
+                "height": 150,
+                "width": 150,
+              },
+            ]
+          }
+        >
+          <RNSVGGroup
+            fill={
+              Array [
+                0,
+                0,
+                0,
+                0,
+                1,
+              ]
+            }
+            fillOpacity={1}
+            fillRule={1}
+            font={Object {}}
+            matrix={
+              Array [
+                1,
+                0,
+                0,
+                1,
+                0,
+                0,
+              ]
+            }
+            opacity={1}
+            originX={75}
+            originY={75}
+            propList={Array []}
+            rotation={0}
+            scaleX={1}
+            scaleY={1}
+            skewX={0}
+            skewY={0}
+            stroke={null}
+            strokeDasharray={null}
+            strokeDashoffset={null}
+            strokeLinecap={0}
+            strokeLinejoin={0}
+            strokeMiterlimit={4}
+            strokeOpacity={1}
+            strokeWidth="1"
+            x={0}
+            y={0}
+          >
+            <RNSVGPath
+              d="M 74.9544469095202 2.50001431092592 A 72.5 72.5 0 1 0 75 2.5"
+              fill={
+                Array [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                ]
+              }
+              fillOpacity={1}
+              fillRule={1}
+              matrix={
+                Array [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                ]
+              }
+              opacity={1}
+              originX={0}
+              originY={0}
+              propList={
+                Array [
+                  "stroke",
+                  "strokeWidth",
+                  "strokeLinecap",
+                  "fill",
+                ]
+              }
+              rotation={0}
+              scaleX={1}
+              scaleY={1}
+              skewX={0}
+              skewY={0}
+              stroke={
+                Array [
+                  0,
+                  0.9176470588235294,
+                  0.9176470588235294,
+                  0.9176470588235294,
+                  1,
+                ]
+              }
+              strokeDasharray={null}
+              strokeDashoffset={null}
+              strokeLinecap={0}
+              strokeLinejoin={0}
+              strokeMiterlimit={4}
+              strokeOpacity={1}
+              strokeWidth="5"
+              x={0}
+              y={0}
+            />
+            <RNSVGPath
+              d="M 75 2.5 A 72.5 72.5 0 0 0 75 2.5"
+              fill={
+                Array [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                ]
+              }
+              fillOpacity={1}
+              fillRule={1}
+              matrix={
+                Array [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                ]
+              }
+              opacity={1}
+              originX={0}
+              originY={0}
+              propList={
+                Array [
+                  "stroke",
+                  "strokeWidth",
+                  "strokeLinecap",
+                  "fill",
+                ]
+              }
+              rotation={0}
+              scaleX={1}
+              scaleY={1}
+              skewX={0}
+              skewY={0}
+              stroke={
+                Array [
+                  0,
+                  1,
+                  0.8745098039215686,
+                  0,
+                  1,
+                ]
+              }
+              strokeDasharray={null}
+              strokeDashoffset={null}
+              strokeLinecap={0}
+              strokeLinejoin={0}
+              strokeMiterlimit={4}
+              strokeOpacity={1}
+              strokeWidth="5"
+              x={0}
+              y={0}
+            />
+          </RNSVGGroup>
+        </RNSVGSvgView>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderRadius": 70,
+              "height": 140,
+              "justifyContent": "center",
+              "left": 5,
+              "position": "absolute",
+              "top": 5,
+              "width": 140,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#8E8E8E",
+                  "fontSize": 25,
+                  "letterSpacing": 3,
+                  "paddingLeft": 5,
+                }
+              }
+            >
+              0
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#8E8E8E",
+                  "fontSize": 10,
+                  "letterSpacing": 1,
+                  "paddingLeft": 1,
+                }
+              }
+            >
+              / 
+              100
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#8E8E8E",
+                  "fontSize": 10,
+                  "letterSpacing": 1,
+                  "paddingLeft": 1,
+                }
+              }
+            >
+              PUSH-UPS
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "center",
+          }
+        }
+      >
+        <View
+          accessible={true}
+          isTVSelectable={true}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "stretch",
+              "backgroundColor": "#5cb85c",
+              "borderBottomWidth": null,
+              "borderColor": "#007aff",
+              "borderLeftWidth": null,
+              "borderRadius": 57,
+              "borderRightWidth": null,
+              "borderTopWidth": null,
+              "borderWidth": undefined,
+              "elevation": 2,
+              "flex": 0.45,
+              "flexDirection": "row",
+              "height": 45,
+              "justifyContent": "center",
+              "marginLeft": 3,
+              "marginRight": 3,
+              "opacity": 1,
+              "paddingBottom": 6,
+              "paddingTop": 6,
+              "shadowColor": undefined,
+              "shadowOffset": undefined,
+              "shadowOpacity": undefined,
+              "shadowRadius": undefined,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 11,
+              }
+            }
+          >
+            +2
+          </Text>
+        </View>
+        <View
+          accessible={true}
+          isTVSelectable={true}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "stretch",
+              "backgroundColor": "#d9534f",
+              "borderBottomWidth": null,
+              "borderColor": "#007aff",
+              "borderLeftWidth": null,
+              "borderRadius": 57,
+              "borderRightWidth": null,
+              "borderTopWidth": null,
+              "borderWidth": undefined,
+              "elevation": 2,
+              "flex": 0.45,
+              "flexDirection": "row",
+              "height": 45,
+              "justifyContent": "center",
+              "marginLeft": 3,
+              "marginRight": 3,
+              "opacity": 1,
+              "paddingBottom": 6,
+              "paddingTop": 6,
+              "shadowColor": undefined,
+              "shadowOffset": undefined,
+              "shadowOpacity": undefined,
+              "shadowRadius": undefined,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 11,
+              }
+            }
+          >
+            -1
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#fff",
+          "flexDirection": "column",
+          "justifyContent": "center",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "margin": 10,
+          }
+        }
+      >
+        <RNSVGSvgView
+          bbHeight="150"
+          bbWidth="150"
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+              },
+              Object {
+                "backgroundColor": "transparent",
+              },
+              false,
+              Object {
+                "flex": 0,
+                "height": 150,
+                "width": 150,
+              },
+            ]
+          }
+        >
+          <RNSVGGroup
+            fill={
+              Array [
+                0,
+                0,
+                0,
+                0,
+                1,
+              ]
+            }
+            fillOpacity={1}
+            fillRule={1}
+            font={Object {}}
+            matrix={
+              Array [
+                1,
+                0,
+                0,
+                1,
+                0,
+                0,
+              ]
+            }
+            opacity={1}
+            originX={75}
+            originY={75}
+            propList={Array []}
+            rotation={0}
+            scaleX={1}
+            scaleY={1}
+            skewX={0}
+            skewY={0}
+            stroke={null}
+            strokeDasharray={null}
+            strokeDashoffset={null}
+            strokeLinecap={0}
+            strokeLinejoin={0}
+            strokeMiterlimit={4}
+            strokeOpacity={1}
+            strokeWidth="1"
+            x={0}
+            y={0}
+          >
+            <RNSVGPath
+              d="M 74.9544469095202 2.50001431092592 A 72.5 72.5 0 1 0 75 2.5"
+              fill={
+                Array [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                ]
+              }
+              fillOpacity={1}
+              fillRule={1}
+              matrix={
+                Array [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                ]
+              }
+              opacity={1}
+              originX={0}
+              originY={0}
+              propList={
+                Array [
+                  "stroke",
+                  "strokeWidth",
+                  "strokeLinecap",
+                  "fill",
+                ]
+              }
+              rotation={0}
+              scaleX={1}
+              scaleY={1}
+              skewX={0}
+              skewY={0}
+              stroke={
+                Array [
+                  0,
+                  0.9176470588235294,
+                  0.9176470588235294,
+                  0.9176470588235294,
+                  1,
+                ]
+              }
+              strokeDasharray={null}
+              strokeDashoffset={null}
+              strokeLinecap={0}
+              strokeLinejoin={0}
+              strokeMiterlimit={4}
+              strokeOpacity={1}
+              strokeWidth="5"
+              x={0}
+              y={0}
+            />
+            <RNSVGPath
+              d="M 75 2.5 A 72.5 72.5 0 0 0 75 2.5"
+              fill={
+                Array [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                ]
+              }
+              fillOpacity={1}
+              fillRule={1}
+              matrix={
+                Array [
+                  1,
+                  0,
+                  0,
+                  1,
+                  0,
+                  0,
+                ]
+              }
+              opacity={1}
+              originX={0}
+              originY={0}
+              propList={
+                Array [
+                  "stroke",
+                  "strokeWidth",
+                  "strokeLinecap",
+                  "fill",
+                ]
+              }
+              rotation={0}
+              scaleX={1}
+              scaleY={1}
+              skewX={0}
+              skewY={0}
+              stroke={
+                Array [
+                  0,
+                  1,
+                  0,
+                  0,
+                  1,
+                ]
+              }
+              strokeDasharray={null}
+              strokeDashoffset={null}
+              strokeLinecap={0}
+              strokeLinejoin={0}
+              strokeMiterlimit={4}
+              strokeOpacity={1}
+              strokeWidth="5"
+              x={0}
+              y={0}
+            />
+          </RNSVGGroup>
+        </RNSVGSvgView>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderRadius": 70,
+              "height": 140,
+              "justifyContent": "center",
+              "left": 5,
+              "position": "absolute",
+              "top": 5,
+              "width": 140,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+              }
+            }
+          >
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#8E8E8E",
+                  "fontSize": 25,
+                  "letterSpacing": 3,
+                  "paddingLeft": 5,
+                }
+              }
+            >
+              0
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#8E8E8E",
+                  "fontSize": 10,
+                  "letterSpacing": 1,
+                  "paddingLeft": 1,
+                }
+              }
+            >
+              / 
+              2000
+            </Text>
+            <Text
+              accessible={true}
+              allowFontScaling={true}
+              ellipsizeMode="tail"
+              style={
+                Object {
+                  "color": "#8E8E8E",
+                  "fontSize": 10,
+                  "letterSpacing": 1,
+                  "paddingLeft": 1,
+                }
+              }
+            >
+              KCAL
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "center",
+          }
+        }
+      >
+        <View
+          accessible={true}
+          isTVSelectable={true}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "flex-start",
+              "backgroundColor": "#5cb85c",
+              "borderBottomWidth": null,
+              "borderColor": "#007aff",
+              "borderLeftWidth": null,
+              "borderRadius": 57,
+              "borderRightWidth": null,
+              "borderTopWidth": null,
+              "borderWidth": undefined,
+              "elevation": 2,
+              "flex": 0.45,
+              "flexDirection": "row",
+              "height": 45,
+              "justifyContent": "center",
+              "marginLeft": 3,
+              "marginRight": 3,
+              "opacity": 1,
+              "paddingBottom": 6,
+              "paddingTop": 6,
+              "shadowColor": undefined,
+              "shadowOffset": undefined,
+              "shadowOpacity": undefined,
+              "shadowRadius": undefined,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 11,
+              }
+            }
+          >
+            +100
+          </Text>
+        </View>
+        <View
+          accessible={true}
+          isTVSelectable={true}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "flex-start",
+              "backgroundColor": "#d9534f",
+              "borderBottomWidth": null,
+              "borderColor": "#007aff",
+              "borderLeftWidth": null,
+              "borderRadius": 57,
+              "borderRightWidth": null,
+              "borderTopWidth": null,
+              "borderWidth": undefined,
+              "elevation": 2,
+              "flex": 0.45,
+              "flexDirection": "row",
+              "height": 45,
+              "justifyContent": "center",
+              "marginLeft": 3,
+              "marginRight": 3,
+              "opacity": 1,
+              "paddingBottom": 6,
+              "paddingTop": 6,
+              "shadowColor": undefined,
+              "shadowOffset": undefined,
+              "shadowOpacity": undefined,
+              "shadowRadius": undefined,
+            }
+          }
+        >
+          <Text
+            accessible={true}
+            allowFontScaling={true}
+            ellipsizeMode="tail"
+            style={
+              Object {
+                "color": "white",
+                "fontSize": 11,
+              }
+            }
+          >
+            -50
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

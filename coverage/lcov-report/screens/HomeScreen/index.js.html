@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for screens/HomeScreen/index.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">screens/HomeScreen</a> index.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>9/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">37.5% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>3/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/8</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>9/18</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, StatusBar} from 'react-native';
+import { Icon } from 'native-base';
+&nbsp;
+export default class HomeScreen extends React.Component {
+   constructor() {
+       super();
+       this.state = {
+&nbsp;
+           // List of inspirational quotes
+           quotes: [
+               "Don't judge each day by the harvest you reap but by the seeds that you plant. ",
+               "Whatever you are, be a good one.",
+               "Don’t wait. The time will never be just right.",
+               "Do what you can, with what you have, where you are.",
+               "Being glamorous is about strength and confidence. It's black and white - dramatic. You have to be strong.",
+               "If you dream it, you can do it.",
+               "Write it on your heart that every day is the best day in the year. ",
+               "Every moment is a fresh beginning.",
+               "Everything you’ve ever wanted is on the other side of fear. ",
+               "Begin at the beginning… and go on till you come to the end: then stop.",
+               "Make each day your masterpiece.",
+               "You cannot tailor-make the situations in life but you can tailor-make the attitudes to fit those situations.",
+               "The day is what you make it! So why not make it a great one?",
+               "To be the best, you must be able to handle the worst.",
+               "Believe and act as if it were impossible to fail.",
+               "You must be the change you wish to see in the world.",
+               "The greatest discovery of all time is that a person can change his future by merely changing his attitude."
+           ],
+           displayText: "You must be the change you wish to see in the world.",
+           curTime: new Date()
+       };
+   };
+&nbsp;
+   // React Navigation configuration
+   static navigationOptions = {
+       title: 'Home'
+   };
+&nbsp;
+&nbsp;
+   // LIFECYCLE METHODS
+&nbsp;
+&nbsp;
+   // Changes the color of the status bar to fit with the displayed content
+    componentDidMount() {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (this.props.navigation === undefined) {
+&nbsp;
+        } else {
+<span class="cstat-no" title="statement not covered" >            this._navListener = this.props.navigation.addListener('didFocus', <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                StatusBar.setBarStyle('light-content');</span>
+            });
+<span class="cstat-no" title="statement not covered" >            setInterval( <span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                this.setState({</span>
+                    curTime : new Date()
+                })
+            },10000);
+        }
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    co</span>mponentWillUnmount() {
+<span class="cstat-no" title="statement not covered" >        this._navListener.remove();</span>
+    }
+&nbsp;
+&nbsp;
+   render() {
+       return (
+           &lt;View style={styles.container}&gt;
+               &lt;StatusBar barStyle="light-content" /&gt;
+               &lt;ImageBackground
+                   source={require('../../assets/background.jpg')}
+                   imageStyle={{resizeMode: 'stretch'}}
+                   style={styles.image}&gt;
+                   &lt;View style={{padding:20, marginBottom: 70, marginTop: 40, width: "90%", flex: 1}}&gt;
+                       &lt;Text style={[styles.paragraph, styles.day]}&gt;{this.getDate()[0]}&lt;/Text&gt;
+                       &lt;Text style={[styles.paragraph, styles.clock]}&gt;{this.getDate()[1]}&lt;/Text&gt;
+&nbsp;
+                   &lt;/View&gt;
+                   &lt;TouchableOpacity onPress={this.toggleNewQuote} style={{marginBottom: 70, height: "50%", justifyContent: "center"}}&gt;
+                       &lt;View style={{backgroundColor:'rgba(0, 0, 0, 0.75)', padding:20, borderRadius: 15, width: "90%"}}&gt;
+                           &lt;Text style={[styles.paragraph, {opacity: 0.95}]}&gt;
+                               “{this.state.displayText}”
+                           &lt;/Text&gt;
+                           &lt;Icon type="MaterialCommunityIcons" name="gesture-tap" style={{
+                               position: 'absolute',
+                               color: "white",
+                               fontSize: 28,
+                               opacity: 0.85,
+                               right: 4,
+                               bottom: 4
+                           }} /&gt;
+                       &lt;/View&gt;
+                   &lt;/TouchableOpacity&gt;
+               &lt;/ImageBackground&gt;
+           &lt;/View&gt;
+       );
+       
+   }
+&nbsp;
+&nbsp;
+    // Toggle the random selection of a new "Quote of the Day" to be displayed
+    toggleNewQuote = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+        let rand = <span class="cstat-no" title="statement not covered" >this.state.quotes[Math.floor(Math.random() * this.state.quotes.length)];</span>
+<span class="cstat-no" title="statement not covered" >         if (rand===this.state.displayText) {</span>
+<span class="cstat-no" title="statement not covered" >             this.toggleNewQuote();</span>
+         } else {
+<span class="cstat-no" title="statement not covered" >             this.setState({displayText: rand});</span>
+         }
+    };
+&nbsp;
+    // Get the current date and format into a String. Returns an array of strings where index 0 is the current Date,
+    // and index 1 is the current time
+    getDate() {
+        let date = this.state.curTime;
+        let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        return [days[date.getDay()] + ", " + months[date.getMonth()] + " " + date.getDate(),
+                (date.getHours() &lt; 10 ? <span class="branch-0 cbranch-no" title="branch not covered" >"0" </span>: "") + date.getHours() + ":" +
+                (date.getMinutes() &lt; 10 ? "0" : <span class="branch-1 cbranch-no" title="branch not covered" >"")</span> + date.getMinutes()];
+   }
+}
+&nbsp;
+&nbsp;
+// Stylesheet
+const styles = StyleSheet.create({
+    container: {
+         flex: 1,
+         alignItems: 'stretch',
+         justifyContent: 'center',
+    },
+    image: {
+         flexGrow:1,
+         height:'100%',
+         width:null,
+         alignItems: 'center',
+         justifyContent:'center',
+    },
+    paragraph: {
+        textAlign: 'center',
+        color: 'white',
+        fontSize: 30,
+        opacity: 0.9
+    },
+    clock: {
+        fontSize: 70,
+        letterSpacing: 1
+    },
+    day: {
+        fontSize: 40,
+        marginBottom: 5
+    }
+ });</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Oct 19 2018 23:05:13 GMT+0200 (Central European Summer Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
