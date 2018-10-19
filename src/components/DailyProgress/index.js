@@ -14,6 +14,7 @@ import { Button, Icon} from 'native-base';
 import Modal from "react-native-modal";
 import Toast from "react-native-easy-toast";
 
+
 export default class DailyProgress extends React.Component {
     constructor(props) {
         super(props);
@@ -35,11 +36,14 @@ export default class DailyProgress extends React.Component {
         showToast: false
     };
 
+    // React Navigation configuration
     static navigationOptions = ({ navigation }) => {
         const params = navigation.state.params || {};
 
         return {
             title: 'Daily Progress',
+
+            // Setup a right header-button
             headerRight: (
                 <Button transparent onPress={params.toggleModal}>
                     <Icon name="ios-cog" type="Ionicons"/>
@@ -48,7 +52,11 @@ export default class DailyProgress extends React.Component {
         };
     };
 
+
+    // LIFECYCLE METHODS
+
     componentWillMount() {
+        // Send toggleModal-method to Right Header-button as navigationOptions have no access to {this}
         this.props.navigation.setParams({toggleModal: this._toggleModal});
     }
 
@@ -63,6 +71,7 @@ export default class DailyProgress extends React.Component {
         });
     }
 
+    // Unsubscribe from all subscriptions, remove listeners and save data to AsyncStorage.
     componentWillUnmount() {
         this._unsubscribe();
         this._saveData();
@@ -70,14 +79,22 @@ export default class DailyProgress extends React.Component {
         this._isMounted = false;
     }
 
+    // END LIFECYCLE METHODS
 
+
+    // Retrieve data from AsyncStorage asynchronously
     _retrieveData = async () => {
         try {
+            // Current user-set goal for walked steps.
             const goalStep = JSON.parse(await AsyncStorage.getItem('GOAL_STEP'));
+            // Current progress on left meter
             const valueLeft = JSON.parse(await AsyncStorage.getItem('PROGRESS_LEFT'));
-            const goalLeft = JSON.parse(await AsyncStorage.getItem('GOAL_1'));
+            // Current user-set goal on left meter
+            const goalLeft = JSON.parse(await AsyncStorage.getItem('GOAL_LEFT'));
+            // Current progress on right meter
             const valueRight = JSON.parse(await AsyncStorage.getItem('PROGRESS_RIGHT'));
-            const goalRight = JSON.parse(await AsyncStorage.getItem('GOAL_2'));
+            // Current user-set goal on right meter
+            const goalRight = JSON.parse(await AsyncStorage.getItem('GOAL_RIGHT'));
 
             if (valueLeft !== null && valueLeft !== undefined) {
                 this._isMounted && this.setState({progressLeft: valueLeft});
@@ -98,18 +115,27 @@ export default class DailyProgress extends React.Component {
         }
     };
 
+    // Saves data to AsyncStorage
     _saveData = () => {
+
+        // Current progress on left meter
         AsyncStorage.setItem("PROGRESS_LEFT", JSON.stringify(this.state.progressLeft));
+        // Current progress on right meter
         AsyncStorage.setItem("PROGRESS_RIGHT", JSON.stringify(this.state.progressRight));
-        AsyncStorage.setItem("GOAL_1", JSON.stringify(this.state.goalLeft));
-        AsyncStorage.setItem("GOAL_2", JSON.stringify(this.state.goalRight));
+        // Current user-set goal on left meter
+        AsyncStorage.setItem("GOAL_LEFT", JSON.stringify(this.state.goalLeft));
+        // Current user-set goal on right meter
+        AsyncStorage.setItem("GOAL_RIGHT", JSON.stringify(this.state.goalRight));
+        // Current user-set goal for walked steps.
         AsyncStorage.setItem("GOAL_STEP", JSON.stringify(this.state.goalStep));
     };
 
+    // Saves a single item to AsyncStorage
     _saveItem = (item, value) => {
         AsyncStorage.setItem(item, JSON.stringify(value));
     };
 
+    // Increment left progress meter by value
     changeProgressLeft(value) {
         if(this.state.progressLeft+value < 0) {
             this.setState({
@@ -126,6 +152,7 @@ export default class DailyProgress extends React.Component {
         this._saveItem("PROGRESS_LEFT", progress+value);
     }
 
+    // Increment right progress meter by value
     changeProgressRight(value) {
         if(this.state.progressRight+value < 0) {
             this.setState({
@@ -142,6 +169,7 @@ export default class DailyProgress extends React.Component {
         this._saveItem("PROGRESS_RIGHT", progress+value);
     }
 
+    // Show congratulary Toast-box upon completion of daily goals
     goalsReached(newStepVal, newLeftVal, newRightVal) {
         if((this.state.pastStepCount+newStepVal >= this.state.goalStep) &&
             (this.state.progressLeft+newLeftVal >= this.state.goalLeft) &&
@@ -151,21 +179,22 @@ export default class DailyProgress extends React.Component {
         }
     }
 
+    // Handler that is run each time
     onChanged(value, type) {
         if(type === "steps") {
             this.setState({goalStep: value});
             this._saveItem("GOAL_STEP", value);
         } else if(type === "left") {
             this.setState({goalLeft: value});
-            this._saveItem("GOAL_1", value);
+            this._saveItem("GOAL_LEFT", value);
         } else if(type === "right") {
             this.setState({goalRight: value});
-            this._saveItem("GOAL_2", value);
+            this._saveItem("GOAL_RIGHT", value);
         }
-
 
     }
 
+    // Subscription method for getting Pedometer-data asynchronously.
     _subscribe = () => {
         this._subscription = Pedometer.watchStepCount(result => {
             this._isMounted && this.setState({
@@ -187,9 +216,10 @@ export default class DailyProgress extends React.Component {
             }
         );
 
+        // Get amount of steps walked last 24 hours.
         const end = new Date();
         const start = new Date();
-        start.setDate(end.getDate()-1);
+        start.setDate(end.getDate()-1); // Gets the pedometer data from the past day.
         Pedometer.getStepCountAsync(start, end).then(
             result => {
                 this._isMounted && this.setState({ pastStepCount: result.steps });
@@ -202,16 +232,19 @@ export default class DailyProgress extends React.Component {
         );
     };
 
+    // Cancel subscriptions
     _unsubscribe = () => {
         this._subscription && this._subscription.remove();
         this._subscription = null;
     };
 
+    // Toggle display of Modal-component
     _toggleModal = () => {
         let temp = this.state.optionsVisible;
         this.setState({optionsVisible: !temp});
     };
 
+    // Handler that is run when the user chooses to reset their progress
     resetProgress = () => {
         this.setState({progressLeft: 0, progressRight: 0});
         this._toggleModal();
